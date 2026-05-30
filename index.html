@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PYTHON căn bản</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="layout">
+        <!-- SIDEBAR -->
+        <nav class="sidebar">
+            <div class="sidebar-logo">
+                <div class="brand">🐍 Python</div>
+                <div class="sub" id="sidebarSub">Python căn bản · 4 tuần</div>
+            </div>
+
+            <!-- TOOLBAR -->
+            <div class="toolbar">
+                <div class="search-wrap">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="searchInput" placeholder="Tìm kiếm nội dung..."
+                        oninput="onSearch(this.value)">
+                    <button class="clear-btn" id="clearBtn" onclick="clearSearch()">✕</button>
+                </div>
+                <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Đổi theme">🌙</button>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-section-title" id="nav-title-p1">PYTHON căn bản</div>
+                <a class="nav-item active" href="#p1-w1"><span class="nav-dot"></span><span class="nav-label" id="nav-label-p1-w1">Tuần 1 · Syntax & Types</span></a>
+                <a class="nav-item active" href="#p1-w2"><span class="nav-dot"></span><span class="nav-label" id="nav-label-p1-w2">Tuần 2 · Collections</span></a>
+                <a class="nav-item active" href="#p1-w3"><span class="nav-dot"></span><span class="nav-label" id="nav-label-p1-w3">Tuần 3 · File & Exceptions</span></a>
+                <a class="nav-item active" href="#p1-w4"><span class="nav-dot"></span><span class="nav-label" id="nav-label-p1-w4">Tuần 4 · OOP</span></a>
+                <a class="nav-item active" href="#p1-milestone"><span class="nav-dot"></span><span class="nav-label" id="nav-label-p1-milestone">Bài tập lớn Phase 1</span></a>
+            </div>
+
+            <!-- <div class="toc-progress">
+                <div class="progress-label">Tiến độ đọc</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div> -->
+        </nav>
+
+        <!-- MAIN -->
+        <main class="main">
+            <!-- HERO -->
+            <div class="hero">
+                <div class="hero-badge" id="heroBadge">📚 PYTHON căn bản</div>
+                <h1 id="heroTitle">PYTHON <span>căn bản</span></h1>
+                <p id="heroDesc">Học Python từ đầu — cú pháp, kiểu dữ liệu, collections, file, exceptions và OOP.</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-num" id="heroWeeks" style="color:var(--p1)">4</div>
+                        <div class="stat-label">Tuần học</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-num" id="heroMilestones" style="color:var(--p2)">1</div>
+                        <div class="stat-label">Bài tập lớn</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-num" style="color:var(--text)" id="heroTotalTasks">0</div>
+                        <div class="stat-label">Nhiệm vụ</div>
+                    </div>
+                </div>
+                <div class="overall-progress">
+                    <div class="overall-progress-label">Tiến độ hoàn thành <span id="overallPct">0%</span>
+                    </div>
+                    <div class="overall-bar-track">
+                        <div class="overall-bar-fill" id="overallBarFill"></div>
+                    </div>
+                    <div class="overall-phases">
+                        <div class="overall-phase-stat p1s">PYTHON căn bản <b id="p1pct">0%</b></div>
+                        <div class="overall-phase-stat" style="margin-left:auto" id="doneBadge"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="search-no-results" id="noResults">😕 Không tìm thấy kết quả nào cho "<span
+                        id="noResultsTerm"></span>"</div>
+
+                <!-- PHASE PLACEHOLDER -->
+                <div id="phase1-placeholder" class="phase-placeholder"></div>
+            </div> <!-- .content -->
+        </main>
+    </div> <!-- .layout -->
+
+    <script src="script.js"></script>
+</body>
+
+</html>

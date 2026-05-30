@@ -1,0 +1,1846 @@
+<div class="phase-block p1" id="phase1" data-phase="1">
+    <div class="phase-tag p1">Phase 1 · Tuần 1–4</div>
+    <div class="phase-title">Python Cơ Bản</div>
+    <div class="phase-subtitle">Nền tảng lập trình — từ biến đến lập trình hướng đối tượng</div>
+    <div class="phase-progress-wrap p1" id="prog-phase1">
+        <div class="phase-progress-header">
+            <span class="phase-progress-title">Tiến độ Phase 1</span>
+            <span class="phase-progress-pct" style="color:var(--p1)" id="pct-phase1">0%</span>
+        </div>
+        <div class="phase-bar-track">
+            <div class="phase-bar-fill" id="bar-phase1"></div>
+        </div>
+        <div class="phase-progress-tasks" id="tasks-phase1">0 / 0 nhiệm vụ hoàn thành</div>
+    </div>
+
+    <!-- WEEK 1 -->
+    <div class="week-block" id="p1-w1">
+        <div class="week-label">Tuần 1 · Variables, Types & Loops</div>
+
+        <!-- TOPIC: Variables & Data Types -->
+        <div class="topic-card">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <div class="topic-icon">🔢</div>
+                <div class="topic-meta">
+                    <div class="topic-name">Variables, Data Types & Operators</div>
+                    <div class="topic-desc">Kiểu dữ liệu cơ bản · toán tử · input/output</div>
+                </div>
+                <div class="topic-toggle">▼</div>
+                <span class="note-dot" id="note-dot-1"></span>
+            </div>
+            <div class="topic-body">
+                <div class="theory-section">
+                    <div class="section-label">Lý thuyết</div>
+                    <p>Python là ngôn ngữ <strong>dynamically typed</strong> — bạn không cần khai báo
+                        kiểu dữ liệu trước. Python tự hiểu kiểu của biến dựa vào giá trị được gán.</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang python">Python</span>
+                            <span class="code-filename">variables.py</span>
+                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><span class="cmt"># Các kiểu dữ liệu cơ bản</span>
+name     = <span class="str">"Selenium"</span>       <span class="cmt"># str  — chuỗi</span>
+version  = <span class="num">3</span>               <span class="cmt"># int  — số nguyên</span>
+speed    = <span class="num">0.5</span>             <span class="cmt"># float — số thực</span>
+is_pass  = <span class="kw">True</span>            <span class="cmt"># bool — True / False</span>
+
+<span class="cmt"># Kiểm tra kiểu</span>
+<span class="fn">print</span>(<span class="fn">type</span>(name))         <span class="cmt"># &lt;class 'str'&gt;</span>
+
+<span class="cmt"># f-string — cách ghép chuỗi hiện đại nhất</span>
+result = <span class="str">f"Test <span class="dec">{name}</span> v<span class="dec">{version}</span> — Pass: <span class="dec">{is_pass}</span>"</span>
+<span class="fn">print</span>(result)
+<span class="cmt"># → Test Selenium v3 — Pass: True</span>
+
+<span class="cmt"># Ép kiểu (Type casting)</span>
+score_str = <span class="str">"95"</span>
+score_int = <span class="fn">int</span>(score_str)     <span class="cmt"># str → int</span>
+score_f   = <span class="fn">float</span>(score_str)   <span class="cmt"># str → float</span></pre>
+                    </div>
+
+                    <div class="tip-box info">
+                        <span class="tip-icon">💡</span>
+                        <div class="tip-content"><strong>Quan trọng với QC:</strong> Khi đọc dữ liệu từ
+                            file CSV hay form web, mọi thứ đều là <code>str</code>. Bạn cần ép kiểu thủ
+                            công trước khi so sánh số.</div>
+                    </div>
+
+                    <p><strong>Operators (Toán tử)</strong> — 3 loại thường dùng nhất:</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang python">Python</span>
+                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><span class="cmt"># Arithmetic: + - * / // % **</span>
+total  = <span class="num">10</span> + <span class="num">5</span>     <span class="cmt"># 15</span>
+ratio  = <span class="num">7</span> / <span class="num">2</span>      <span class="cmt"># 3.5  (luôn ra float)</span>
+div    = <span class="num">7</span> // <span class="num">2</span>     <span class="cmt"># 3    (floor division)</span>
+remain = <span class="num">7</span> % <span class="num">2</span>      <span class="cmt"># 1    (phần dư)</span>
+
+<span class="cmt"># Comparison: == != > < >= <=  → trả về bool</span>
+<span class="fn">print</span>(<span class="num">5</span> == <span class="num">5</span>)       <span class="cmt"># True</span>
+<span class="fn">print</span>(<span class="str">"abc"</span> != <span class="str">"xyz"</span>) <span class="cmt"># True</span>
+
+<span class="cmt"># Logical: and  or  not</span>
+is_admin = <span class="kw">True</span>
+is_active = <span class="kw">False</span>
+<span class="fn">print</span>(is_admin <span class="kw">and</span> is_active)  <span class="cmt"># False</span>
+<span class="fn">print</span>(is_admin <span class="kw">or</span> is_active)   <span class="cmt"># True</span>
+<span class="fn">print</span>(<span class="kw">not</span> is_active)           <span class="cmt"># True</span></pre>
+                    </div>
+                </div>
+
+                <div class="theory-section">
+                    <div class="section-label">Bài tập thực hành</div>
+                    <div class="exercises">
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-1" onchange="onCheck(this)">
+                            <label for="ex-1" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Tính BMI từ input</div>
+                                    <div class="ex-desc">Nhập chiều cao (m) và cân nặng (kg) từ bàn
+                                        phím, tính BMI = weight/height², in ra kết quả và phân loại
+                                        (Gầy/Bình thường/Thừa cân).</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-2" onchange="onCheck(this)">
+                            <label for="ex-2" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Chuyển đổi nhiệt độ</div>
+                                    <div class="ex-desc">Nhập nhiệt độ Celsius, in ra cả Fahrenheit
+                                        (×9/5+32) và Kelvin (+273.15). Dùng f-string format 2 số thập
+                                        phân.</div>
+                                </div>
+                            </label>
+
+                            <div class="note-area" id="note-area-topic-1">
+                                <textarea class="note-textarea" id="note-text-topic-1"
+                                    placeholder="Ghi chú của bạn về topic này... (tự động lưu)"></textarea>
+                                <div class="note-footer">
+                                    <button class="note-clear-btn" onclick="clearNote('topic-1')">Xoá
+                                        ghi chú</button>
+                                    <span class="note-saved-msg" id="note-saved-topic-1">✓ Đã lưu</span>
+                                </div>
+                            </div>
+                            <button class="note-toggle-btn" id="note-btn-topic-1" onclick="toggleNote('topic-1')">📝 Ghi
+                                chú</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TOPIC: Conditionals & Loops -->
+            <div class="topic-card">
+                <div class="topic-header" onclick="toggleTopic(this)">
+                    <div class="topic-icon">🔄</div>
+                    <div class="topic-meta">
+                        <div class="topic-name">Conditionals & Loops</div>
+                        <div class="topic-desc">if/elif/else · for/while · break/continue · range()
+                        </div>
+                    </div>
+                    <div class="topic-toggle">▼</div>
+                    <span class="note-dot" id="note-dot-2"></span>
+                </div>
+                <div class="topic-body">
+                    <div class="theory-section">
+                        <div class="section-label">Lý thuyết</div>
+                        <p>Python sử dụng <strong>thụt lề (indentation)</strong> thay vì dấu ngoặc nhọn
+                            <code>{}</code>. Đây là điều quan trọng nhất cần nhớ — sai indent = lỗi
+                            ngay.
+                        </p>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang python">Python</span>
+                                <span class="code-filename">conditionals.py</span>
+                                <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><span class="cmt"># if / elif / else</span>
+score = <span class="num">75</span>
+
+<span class="kw">if</span> score >= <span class="num">90</span>:
+    <span class="fn">print</span>(<span class="str">"PASS — Excellent"</span>)
+<span class="kw">elif</span> score >= <span class="num">60</span>:
+    <span class="fn">print</span>(<span class="str">"PASS"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"FAIL"</span>)
+
+<span class="cmt"># Ternary (viết gọn trên 1 dòng)</span>
+status = <span class="str">"PASS"</span> <span class="kw">if</span> score >= <span class="num">60</span> <span class="kw">else</span> <span class="str">"FAIL"</span></pre>
+                        </div>
+
+                        <div class="code-block">
+                            <div class="code-header">
+                                <span class="code-lang python">Python</span>
+                                <span class="code-filename">loops.py</span>
+                                <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                            </div>
+                            <pre><span class="cmt"># for loop — lặp qua từng phần tử</span>
+test_cases = [<span class="str">"TC001"</span>, <span class="str">"TC002"</span>, <span class="str">"TC003"</span>]
+<span class="kw">for</span> tc <span class="kw">in</span> test_cases:
+    <span class="fn">print</span>(<span class="str">f"Running <span class="dec">{tc}</span>"</span>)
+
+<span class="cmt"># range() — lặp n lần</span>
+<span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">1</span>, <span class="num">6</span>):   <span class="cmt"># 1, 2, 3, 4, 5</span>
+    <span class="fn">print</span>(<span class="str">f"Attempt <span class="dec">{i}</span>"</span>)
+
+<span class="cmt"># enumerate() — lấy cả index lẫn giá trị</span>
+<span class="kw">for</span> idx, tc <span class="kw">in</span> <span class="fn">enumerate</span>(test_cases, start=<span class="num">1</span>):
+    <span class="fn">print</span>(<span class="str">f"[<span class="dec">{idx}</span>] <span class="dec">{tc}</span>"</span>)
+
+<span class="cmt"># while loop + break/continue</span>
+retries = <span class="num">0</span>
+<span class="kw">while</span> retries < <span class="num">3</span>:
+    retries += <span class="num">1</span>
+    <span class="fn">print</span>(<span class="str">f"Retry <span class="dec">{retries}</span>"</span>)
+    <span class="kw">if</span> retries == <span class="num">2</span>:
+        <span class="kw">break</span>  <span class="cmt"># thoát ngay</span></pre>
+                        </div>
+                    </div>
+                    <div class="theory-section">
+                        <div class="section-label">Bài tập thực hành</div>
+                        <div class="exercises">
+                            <div class="ex-item">
+                                <input type="checkbox" class="ex-check" id="ex-3" onchange="onCheck(this)">
+                                <label for="ex-3" style="display:contents;cursor:pointer">
+                                    <div class="ex-text">
+                                        <div class="ex-title">In bảng cửu chương</div>
+                                        <div class="ex-desc">Dùng 2 vòng lặp for lồng nhau, in bảng cửu
+                                            chương từ 1–9 theo định dạng đẹp: <code>3 x 4 = 12</code>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="ex-item">
+                                <input type="checkbox" class="ex-check" id="ex-4" onchange="onCheck(this)">
+                                <label for="ex-4" style="display:contents;cursor:pointer">
+                                    <div class="ex-text">
+                                        <div class="ex-title">Kiểm tra số chẵn/lẻ trong list</div>
+                                        <div class="ex-desc">Cho list
+                                            <code>[12, 7, 3, 18, 5, 20]</code>, in ra 2 list riêng: số
+                                            chẵn và số lẻ. Dùng <code>%</code> và <code>if</code> bên
+                                            trong vòng lặp.
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="note-area" id="note-area-topic-2">
+                                <textarea class="note-textarea" id="note-text-topic-2"
+                                    placeholder="Ghi chú của bạn về topic này... (tự động lưu)"></textarea>
+                                <div class="note-footer">
+                                    <button class="note-clear-btn" onclick="clearNote('topic-2')">Xoá
+                                        ghi chú</button>
+                                    <span class="note-saved-msg" id="note-saved-topic-2">✓ Đã lưu</span>
+                                </div>
+                            </div>
+                            <button class="note-toggle-btn" id="note-btn-topic-2" onclick="toggleNote('topic-2')">📝 Ghi
+                                chú</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="topic-card">
+        <div class="topic-header" onclick="toggleTopic(this)">
+            <div class="topic-icon">🛡️</div>
+            <div class="topic-meta">
+                <div class="topic-name">Virtualenv, Type Hints & Code Quality Basics</div>
+                <div class="topic-desc">venv · pip freeze · typing · ruff · mypy · lệnh chuẩn</div>
+            </div>
+            <div class="topic-toggle">▼</div>
+            <span class="note-dot" id="note-dot-python-quality"></span>
+        </div>
+        <div class="topic-body">
+            <div class="theory-section">
+                <div class="section-label">Kiến thức quan trọng</div>
+                <p>Khi học Python để làm automation, rất nhiều bạn chỉ tập trung viết code chạy được mà quên mất môi trường và chất lượng code. Trong dự án thật, <strong>virtualenv</strong>, <strong>type hints</strong> và các lệnh check như <code>ruff</code>, <code>mypy</code> giúp bạn tránh lỗi môi trường và lỗi logic từ rất sớm.</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-lang bash">Bash</span>
+                        <span class="code-filename">setup-python-env</span>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><span class="cmt"># Tạo môi trường ảo riêng cho project</span>
+python -m venv .venv
+
+<span class="cmt"># Windows PowerShell</span>
+.venv\Scripts\Activate.ps1
+
+<span class="cmt"># Cài package</span>
+pip install -r requirements.txt
+
+<span class="cmt"># Chốt lại dependency hiện tại</span>
+pip freeze &gt; requirements.txt</pre>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-lang python">Python</span>
+                        <span class="code-filename">type_hints_example.py</span>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><span class="imp">from</span> typing <span class="imp">import</span> Literal
+
+<span class="kw">def</span> <span class="fn">calc_pass_rate</span>(passed: <span class="fn">int</span>, total: <span class="fn">int</span>) -> <span class="fn">float</span>:
+    <span class="kw">return</span> passed / total
+
+<span class="kw">def</span> <span class="fn">mark_status</span>(status: Literal[<span class="str">"passed"</span>, <span class="str">"failed"</span>, <span class="str">"blocked"</span>]) -> <span class="fn">str</span>:
+    <span class="kw">return</span> <span class="str">f"Current status: <span class="dec">{status}</span>"</span></pre>
+                </div>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-lang bash">Bash</span>
+                        <span class="code-filename">quality-check</span>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><span class="cmt"># Format + lint + type check</span>
+ruff check .
+mypy .
+pytest -v</pre>
+                </div>
+
+                <div class="tip-box warning">
+                    <span class="tip-icon">⚠️</span>
+                    <div class="tip-content"><strong>Điểm rất nên tập sớm:</strong> dù Python là dynamic, hãy dùng type hints cho function quan trọng như parser dữ liệu, helper API, page methods và utils. Điều này là “bản Python” tương đương với việc bật strict mode ở TypeScript.</div>
+                </div>
+            </div>
+
+            <div class="theory-section">
+                <div class="section-label">Bài tập thực hành</div>
+                <div class="exercises">
+                    <div class="ex-item">
+                        <input type="checkbox" class="ex-check" id="ex-python-quality-1" onchange="onCheck(this)">
+                        <label for="ex-python-quality-1" style="display:contents;cursor:pointer">
+                            <div class="ex-text">
+                                <div class="ex-title">Tạo virtualenv và cài dependency</div>
+                                <div class="ex-desc">Tạo <code>.venv</code>, activate môi trường và cài package từ <code>requirements.txt</code>. Ghi chú lại sự khác nhau giữa cài global và cài trong virtualenv.</div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="ex-item">
+                        <input type="checkbox" class="ex-check" id="ex-python-quality-2" onchange="onCheck(this)">
+                        <label for="ex-python-quality-2" style="display:contents;cursor:pointer">
+                            <div class="ex-text">
+                                <div class="ex-title">Thêm type hints cho 3 function</div>
+                                <div class="ex-desc">Chọn 3 hàm nhỏ trong project học của bạn, thêm type hints cho input/output rồi chạy <code>mypy</code> để xem cảnh báo gì xuất hiện.</div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WEEK 2 -->
+    <div class="week-block" id="p1-w2">
+        <div class="week-label">Tuần 2 · Collections & Functions</div>
+
+        <div class="topic-card">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <div class="topic-icon">📦</div>
+                <div class="topic-meta">
+                    <div class="topic-name">List, Dictionary, Tuple, Set</div>
+                    <div class="topic-desc">Cấu trúc dữ liệu · indexing · methods ·
+                        comprehension</div>
+                </div>
+                <div class="topic-toggle">▼</div>
+                <span class="note-dot" id="note-dot-3"></span>
+            </div>
+            <div class="topic-body">
+                <div class="theory-section">
+                    <div class="section-label">Lý thuyết — So sánh 4 loại collection</div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Loại</th>
+                                <th>Thứ tự</th>
+                                <th>Thay đổi được</th>
+                                <th>Trùng lặp</th>
+                                <th>Dùng khi nào</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>list</code></td>
+                                <td>✅</td>
+                                <td>✅</td>
+                                <td>✅</td>
+                                <td>Danh sách thứ tự quan trọng</td>
+                            </tr>
+                            <tr>
+                                <td><code>dict</code></td>
+                                <td>✅ (3.7+)</td>
+                                <td>✅</td>
+                                <td>key ❌</td>
+                                <td>Key-value, tra cứu nhanh</td>
+                            </tr>
+                            <tr>
+                                <td><code>tuple</code></td>
+                                <td>✅</td>
+                                <td>❌</td>
+                                <td>✅</td>
+                                <td>Dữ liệu cố định, config</td>
+                            </tr>
+                            <tr>
+                                <td><code>set</code></td>
+                                <td>❌</td>
+                                <td>✅</td>
+                                <td>❌</td>
+                                <td>Loại trùng lặp, kiểm tra tồn tại</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang python">Python</span>
+                            <span class="code-filename">collections.py</span>
+                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><span class="cmt">## LIST ##</span>
+tests = [<span class="str">"login"</span>, <span class="str">"checkout"</span>, <span class="str">"search"</span>]
+tests.append(<span class="str">"logout"</span>)   <span class="cmt"># thêm cuối</span>
+tests.insert(<span class="num">0</span>, <span class="str">"home"</span>)   <span class="cmt"># thêm vị trí 0</span>
+tests.remove(<span class="str">"search"</span>)   <span class="cmt"># xoá theo giá trị</span>
+<span class="fn">print</span>(tests[<span class="num">1</span>])           <span class="cmt"># "checkout" — index từ 0</span>
+<span class="fn">print</span>(tests[-<span class="num">1</span>])          <span class="cmt"># "logout" — index âm: từ cuối</span>
+<span class="fn">print</span>(tests[<span class="num">1</span>:<span class="num">3</span>])         <span class="cmt"># ['login', 'checkout'] — slice</span>
+
+<span class="cmt">## DICTIONARY ##</span>
+tc = {
+    <span class="str">"id"</span>: <span class="str">"TC001"</span>,
+    <span class="str">"name"</span>: <span class="str">"Login with valid credentials"</span>,
+    <span class="str">"status"</span>: <span class="str">"PASS"</span>,
+    <span class="str">"module"</span>: <span class="str">"auth"</span>
+}
+<span class="fn">print</span>(tc[<span class="str">"name"</span>])           <span class="cmt"># truy cập bằng key</span>
+<span class="fn">print</span>(tc.get(<span class="str">"priority"</span>, <span class="str">"medium"</span>))  <span class="cmt"># default nếu key không tồn tại</span>
+tc[<span class="str">"priority"</span>] = <span class="str">"high"</span>    <span class="cmt"># thêm/cập nhật key</span>
+
+<span class="kw">for</span> key, value <span class="kw">in</span> tc.items():
+    <span class="fn">print</span>(<span class="str">f"  <span class="dec">{key}</span>: <span class="dec">{value}</span>"</span>)
+
+<span class="cmt">## LIST COMPREHENSION — cách Python-ic để tạo list</span>
+failed = [t <span class="kw">for</span> t <span class="kw">in</span> tests <span class="kw">if</span> t[<span class="str">"status"</span>] == <span class="str">"FAIL"</span>]
+names  = [t[<span class="str">"name"</span>].upper() <span class="kw">for</span> t <span class="kw">in</span> tests]</pre>
+                    </div>
+                </div>
+                <div class="theory-section">
+                    <div class="section-label">Bài tập thực hành</div>
+                    <div class="exercises">
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-5" onchange="onCheck(this)">
+                            <label for="ex-5" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Quản lý danh sách test case</div>
+                                    <div class="ex-desc">Tạo list chứa 5 dict test case (id,
+                                        name, status). Viết code: đếm PASS/FAIL, lọc ra các TC
+                                        thuộc module "auth", in ra theo định dạng đẹp.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-6" onchange="onCheck(this)">
+                            <label for="ex-6" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Group test case theo module</div>
+                                    <div class="ex-desc">Từ list test case ở bài 1, tạo dict
+                                        <code>{"auth": [...], "checkout": [...]}</code> — gom
+                                        test case theo module bằng vòng lặp.
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="note-area" id="note-area-topic-3">
+                        <textarea class="note-textarea" id="note-text-topic-3"
+                            placeholder="Ghi chú của bạn về topic này..." oninput="autoSaveNote('topic-3')"></textarea>
+                        <div class="note-footer">
+                            <button class="note-clear-btn" onclick="clearNote('topic-3')">Xoá
+                                ghi chú</button>
+                            <span class="note-saved-msg" id="note-saved-topic-3">✓ Đã
+                                lưu</span>
+                        </div>
+                    </div>
+                    <button class="note-toggle-btn" id="note-btn-topic-3" onclick="toggleNote('topic-3')">📝
+                        Ghi chú</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="topic-card">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <div class="topic-icon">⚙️</div>
+                <div class="topic-meta">
+                    <div class="topic-name">Functions</div>
+                    <div class="topic-desc">def · return · default params · *args ·
+                        **kwargs · scope</div>
+                </div>
+                <div class="topic-toggle">▼</div>
+                <span class="note-dot" id="note-dot-4"></span>
+            </div>
+            <div class="topic-body">
+                <div class="theory-section">
+                    <div class="section-label">Lý thuyết</div>
+                    <p>Function giúp bạn <strong>tái sử dụng code</strong> và tách logic
+                        ra thành các đơn vị nhỏ có thể test độc lập — đây là nền tảng để
+                        hiểu Page Object Model sau này.</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang python">Python</span>
+                            <span class="code-filename">functions.py</span>
+                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><span class="cmt"># Function cơ bản</span>
+<span class="kw">def</span> <span class="fn">calculate_pass_rate</span>(total, passed):
+    <span class="kw">if</span> total == <span class="num">0</span>:
+        <span class="kw">return</span> <span class="num">0.0</span>
+    <span class="kw">return</span> <span class="fn">round</span>(passed / total * <span class="num">100</span>, <span class="num">2</span>)
+
+rate = <span class="fn">calculate_pass_rate</span>(<span class="num">20</span>, <span class="num">17</span>)  <span class="cmt"># 85.0</span>
+
+<span class="cmt"># Default parameter</span>
+<span class="kw">def</span> <span class="fn">create_test_case</span>(name, status=<span class="str">"PENDING"</span>, priority=<span class="str">"medium"</span>):
+    <span class="kw">return</span> {<span class="str">"name"</span>: name, <span class="str">"status"</span>: status, <span class="str">"priority"</span>: priority}
+
+tc1 = <span class="fn">create_test_case</span>(<span class="str">"Login test"</span>)          <span class="cmt"># dùng default</span>
+tc2 = <span class="fn">create_test_case</span>(<span class="str">"Checkout"</span>, <span class="str">"PASS"</span>)   <span class="cmt"># override status</span>
+
+<span class="cmt"># *args — nhận nhiều positional arguments</span>
+<span class="kw">def</span> <span class="fn">run_tests</span>(*test_names):
+    <span class="kw">for</span> name <span class="kw">in</span> test_names:
+        <span class="fn">print</span>(<span class="str">f"Running: <span class="dec">{name}</span>"</span>)
+
+<span class="fn">run_tests</span>(<span class="str">"TC001"</span>, <span class="str">"TC002"</span>, <span class="str">"TC003"</span>)
+
+<span class="cmt"># **kwargs — nhận nhiều keyword arguments</span>
+<span class="kw">def</span> <span class="fn">log_result</span>(**kwargs):
+    <span class="kw">for</span> k, v <span class="kw">in</span> kwargs.items():
+        <span class="fn">print</span>(<span class="str">f"  <span class="dec">{k}</span> = <span class="dec">{v}</span>"</span>)
+
+<span class="fn">log_result</span>(test=<span class="str">"Login"</span>, status=<span class="str">"PASS"</span>, duration=<span class="num">1.23</span>)</pre>
+                    </div>
+                </div>
+                <div class="theory-section">
+                    <div class="section-label">Bài tập thực hành</div>
+                    <div class="exercises">
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-7" onchange="onCheck(this)">
+                            <label for="ex-7" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Hàm validate email</div>
+                                    <div class="ex-desc">Viết
+                                        <code>is_valid_email(email)</code> kiểm tra: có
+                                        chứa <code>@</code>, có phần domain sau
+                                        <code>@</code>, không có khoảng trắng. Trả về
+                                        <code>True/False</code>.
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-8" onchange="onCheck(this)">
+                            <label for="ex-8" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Hàm tính điểm test suite</div>
+                                    <div class="ex-desc">Viết
+                                        <code>summarize_suite(*results)</code> nhận
+                                        nhiều status ("PASS"/"FAIL"/"SKIP"), trả về dict
+                                        <code>{"total": n, "passed": n, "rate": n%}</code>.
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="note-area" id="note-area-topic-4">
+                            <textarea class="note-textarea" id="note-text-topic-4"
+                                placeholder="Ghi chú của bạn về topic này... (tự động lưu)"></textarea>
+                            <div class="note-footer">
+                                <button class="note-clear-btn" onclick="clearNote('topic-4')">Xoá ghi
+                                    chú</button>
+                                <span class="note-saved-msg" id="note-saved-topic-4">✓
+                                    Đã lưu</span>
+                            </div>
+                        </div>
+                        <button class="note-toggle-btn" id="note-btn-topic-4" onclick="toggleNote('topic-4')">📝
+                            Ghi chú</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- WEEK 3 -->
+<!-- <div class="week-block" id="p1-w3">
+    <div class="week-label">Tuần 3 · File I/O, JSON & Exceptions</div>
+
+    <div class="topic-card">
+        <div class="topic-header" onclick="toggleTopic(this)">
+            <div class="topic-icon">📄</div>
+            <div class="topic-meta">
+                <div class="topic-name">File I/O · CSV · JSON</div>
+                <div class="topic-desc">open() · read/write · csv module · json
+                    module</div>
+            </div>
+            <div class="topic-toggle">▼</div>
+            <span class="note-dot" id="note-dot-5"></span>
+        </div>
+        <div class="topic-body">
+            <div class="theory-section">
+                <div class="section-label">Lý thuyết</div>
+                <p>Trong automation testing, bạn sẽ <strong>liên tục đọc test
+                        data từ file</strong> (CSV/JSON) và ghi kết quả ra file
+                    báo cáo. Đây là kỹ năng cốt lõi.</p>
+                <div class="tip-box info">
+                    <span class="tip-icon">💡</span>
+                    <div class="tip-content"><strong>Giải thích
+                            <code>with open("test_data.csv", "r", encoding="utf-8") as f:</code></strong><br>
+                        Dùng để mở file <code>test_data.csv</code> ở chế độ đọc trong Python.<br>
+                        <code>"r"</code> chỉ định read mode (chỉ đọc dữ liệu từ file).<br>
+                        <code>encoding="utf-8"</code> xác định bảng mã ký tự UTF-8 để đọc đúng các ký tự, đặc biệt là
+                        tiếng Việt.<br>
+                        <code>as f</code> tạo một biến đại diện cho file object để thao tác với file trong khối lệnh bên
+                        dưới.<br>
+                        <code>with</code> là context manager, giúp tự động đóng file sau khi khối lệnh kết thúc, tránh
+                        quên <code>close()</code> và giúp quản lý tài nguyên an toàn hơn.
+                    </div>
+                </div>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-lang python">Python</span>
+                        <span class="code-filename">file_io.py</span>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><span class="imp">import</span> csv
+<span class="imp">import</span> json
+
+<span class="cmt">## ĐỌC CSV ##</span>
+<span class="cmt"># test_data.csv có dạng: username,password,expected</span>
+<span class="kw">with</span> <span class="fn">open</span>(<span class="str">"test_data.csv"</span>, <span class="str">"r"</span>, encoding=<span class="str">"utf-8"</span>) <span class="kw">as</span> f:
+    reader = csv.<span class="fn">DictReader</span>(f)  <span class="cmt"># mỗi row là dict</span>
+    <span class="kw">for</span> row <span class="kw">in</span> reader:
+        <span class="fn">print</span>(row[<span class="str">"username"</span>], row[<span class="str">"expected"</span>])
+
+<span class="cmt">## GHI JSON ##</span>
+results = [
+    {<span class="str">"id"</span>: <span class="str">"TC001"</span>, <span class="str">"status"</span>: <span class="str">"PASS"</span>, <span class="str">"duration"</span>: <span class="num">1.23</span>},
+    {<span class="str">"id"</span>: <span class="str">"TC002"</span>, <span class="str">"status"</span>: <span class="str">"FAIL"</span>, <span class="str">"duration"</span>: <span class="num">2.01</span>},
+]
+<span class="kw">with</span> <span class="fn">open</span>(<span class="str">"report.json"</span>, <span class="str">"w"</span>, encoding=<span class="str">"utf-8"</span>) <span class="kw">as</span> f:
+    json.<span class="fn">dump</span>(results, f, indent=<span class="num">2</span>, ensure_ascii=<span class="kw">False</span>)
+
+<span class="cmt">## ĐỌC JSON ##</span>
+<span class="kw">with</span> <span class="fn">open</span>(<span class="str">"report.json"</span>, <span class="str">"r"</span>) <span class="kw">as</span> f:
+    data = json.<span class="fn">load</span>(f)    <span class="cmt"># trả về list/dict Python</span>
+    <span class="fn">print</span>(data[<span class="num">0</span>][<span class="str">"status"</span>])</pre>
+                </div>
+                <div class="tip-box info">
+                    <span class="tip-icon">💡</span>
+                    <div class="tip-content"><strong>Giải thích: Ghi JSON ra file</strong><br>
+                        <code>open("report.json", "w", encoding="utf-8")</code> mở hoặc tạo file report.json ở chế độ
+                        ghi (write). Nếu file đã tồn tại, nội dung cũ sẽ bị ghi đè.<br>
+                        <code>with ... as f</code> sử dụng context manager để đảm bảo file được tự động đóng sau khi
+                        hoàn thành thao tác.<br>
+                        <code>json.dump()</code> dùng để chuyển đổi dữ liệu Python (dictionary, list, v.v.) sang định
+                        dạng JSON và ghi trực tiếp vào file.<br>
+                        <code>results</code> là dữ liệu cần ghi vào file.<br>
+                        <code>indent=2</code> giúp định dạng JSON dễ đọc hơn bằng cách thụt lề 2 khoảng trắng.<br>
+                        <code>ensure_ascii=False</code> cho phép ghi các ký tự Unicode (ví dụ tiếng Việt) thay vì chuyển
+                        chúng thành mã escape.
+                    </div>
+                </div>
+                <div class="tip-box info">
+                    <span class="tip-icon">💡</span>
+                    <div class="tip-content"><strong>Giải thích: Đọc JSON từ file</strong><br>
+                        <code>open("report.json", "r")</code> mở file report.json ở chế độ đọc (read).<br>
+                        <code>with ... as f</code> sử dụng context manager để đảm bảo file được tự động đóng sau khi
+                        hoàn tất việc đọc.<br>
+                        <code>json.load(f)</code> đọc nội dung JSON từ file và chuyển đổi thành cấu trúc dữ liệu Python,
+                        thường là list hoặc dictionary.<br>
+                        <code>data[0]["status"]</code> truy cập vào phần tử đầu tiên của danh sách và lấy giá trị của
+                        key "status".
+                    </div>
+                </div>
+                <div class="tip-box success">
+                    <span class="tip-icon">✅</span>
+                    <div class="tip-content"><strong>Best practice:</strong>
+                        Luôn dùng <code>with open(...)</code> thay vì
+                        <code>f = open()</code>. <code>with</code> tự đóng file
+                        khi xong, kể cả khi có lỗi xảy ra.
+                    </div>
+                </div>
+            </div>
+            <div class="theory-section">
+                <div class="section-label">Bài tập thực hành</div>
+                <div class="exercises">
+                    <div class="ex-item">
+                        <input type="checkbox" class="ex-check" id="ex-9" onchange="onCheck(this)">
+                        <label for="ex-9" style="display:contents;cursor:pointer">
+                            <div class="ex-text">
+                                <div class="ex-title">Đọc test data từ CSV</div>
+                                <div class="ex-desc">Tạo file
+                                    <code>test_data.csv</code> có 5 bộ
+                                    username/password/expected. Đọc file, in ra
+                                    mỗi bộ theo format:
+                                    <code>[TC1] user: admin | expected: success</code>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="ex-item">
+                        <input type="checkbox" class="ex-check" id="ex-10" onchange="onCheck(this)">
+                        <label for="ex-10" style="display:contents;cursor:pointer">
+                            <div class="ex-text">
+                                <div class="ex-title">Ghi kết quả test ra JSON
+                                </div>
+                                <div class="ex-desc">Mô phỏng kết quả 5 test
+                                    case (tạo list dict), ghi ra
+                                    <code>report.json</code> với indent=2. Đọc
+                                    lại và in tổng PASS/FAIL.
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="note-area" id="note-area-topic-5">
+                <textarea class="note-textarea" id="note-text-topic-5" placeholder="Ghi chú của bạn về topic này..."
+                    oninput="autoSaveNote('topic-5')"></textarea>
+                <div class="note-footer">
+                    <button class="note-clear-btn" onclick="clearNote('topic-5')">Xoá ghi
+                        chú</button>
+                    <span class="note-saved-msg" id="note-saved-topic-5">✓ Đã
+                        lưu</span>
+                </div>
+            </div>
+            <button class="note-toggle-btn" id="note-btn-topic-5" onclick="toggleNote('topic-5')">📝 Ghi
+                chú</button>
+        </div>
+
+        <div class="topic-card">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <div class="topic-icon">⚠️</div>
+                <div class="topic-meta">
+                    <div class="topic-name">Exceptions & Error handling</div>
+                    <div class="topic-desc">try/except/finally · raise · custom
+                        exceptions</div>
+                </div>
+                <div class="topic-toggle">▼</div>
+                <span class="note-dot" id="note-dot-6"></span>
+            </div>
+            <div class="topic-body">
+                <div class="theory-section">
+                    <div class="section-label">Lý thuyết</div>
+                    <div class="tip-box info">
+                        <div class="panel-title"><strong>PYTHON EXCEPTION HANDLING - CHEAT SHEET</strong></div>
+                        <h4>1. Exception là gì?</h4>
+                        <p>Exception là lỗi xảy ra khi chương trình đang chạy (runtime error). Nếu không xử lý, chương
+                            trình sẽ dừng.</p>
+                        <ul>
+                            <li>File không tồn tại</li>
+                            <li>JSON sai format</li>
+                            <li>Chia cho 0</li>
+                            <li>Truy cập key không tồn tại</li>
+                        </ul>
+
+                        <h4>2. Cấu trúc try / except</h4>
+                        <p>Dùng để bắt và xử lý lỗi.</p>
+                        <pre><code>try:
+    # code có thể gây lỗi
+except ErrorType:
+    # xử lý lỗi
+</code></pre>
+                        <p><strong>Ví dụ:</strong></p>
+                        <pre><code>try:
+    open("config.json")
+except FileNotFoundError:
+    print("File không tồn tại")
+</code></pre>
+                        <p><strong>Flow:</strong></p>
+                        <ul>
+                            <li>try chạy</li>
+                            <li>↓</li>
+                            <li>có lỗi</li>
+                            <li>↓</li>
+                            <li>except xử lý</li>
+                        </ul>
+
+                        <h4>3. Bắt nhiều loại lỗi</h4>
+                        <p>Một try có thể có nhiều except.</p>
+                        <pre><code>try:
+    with open("config.json") as f:
+        config = json.load(f)
+except FileNotFoundError:
+    print("File không tồn tại")
+except json.JSONDecodeError:
+    print("JSON sai format")
+</code></pre>
+                        <p><strong>Ý nghĩa:</strong></p>
+                        <table class="data-table">
+                            <tr>
+                                <th>Lỗi</th>
+                                <th>Khi xảy ra</th>
+                            </tr>
+                            <tr>
+                                <td>FileNotFoundError</td>
+                                <td>File không tồn tại</td>
+                            </tr>
+                            <tr>
+                                <td>JSONDecodeError</td>
+                                <td>JSON sai cấu trúc</td>
+                            </tr>
+                        </table>
+
+                        <h4>4. finally</h4>
+                        <p><code>finally</code> luôn chạy dù có lỗi hay không.</p>
+                        <pre><code>finally:
+    print("Luôn chạy")
+</code></pre>
+                        <p><strong>Flow:</strong></p>
+                        <ul>
+                            <li>try chạy</li>
+                            <li>↓</li>
+                            <li>có hoặc không lỗi</li>
+                            <li>↓</li>
+                            <li>finally luôn chạy</li>
+                        </ul>
+                        <p><strong>Ứng dụng:</strong></p>
+                        <ul>
+                            <li>đóng file</li>
+                            <li>đóng database</li>
+                            <li>cleanup resource</li>
+                        </ul>
+
+                        <h4>5. Custom Exception</h4>
+                        <p>Python cho phép tự tạo loại lỗi riêng.</p>
+                        <pre><code>class TestDataError(Exception):
+    pass
+</code></pre>
+                        <p><strong>Ở đây:</strong></p>
+                        <pre><code>TestDataError
+     ↓
+kế thừa
+     ↓
+Exception
+</code></pre>
+                        <p><strong>Ý nghĩa:</strong> → tạo loại lỗi chuyên biệt cho project</p>
+
+                        <h4>6. raise (ném lỗi)</h4>
+                        <p><code>raise</code> dùng để tự tạo exception.</p>
+                        <pre><code>raise TestDataError("Thiếu username")
+</code></pre>
+                        <p><strong>Ý nghĩa:</strong></p>
+                        <ul>
+                            <li>phát hiện dữ liệu sai</li>
+                            <li>↓</li>
+                            <li>raise error</li>
+                            <li>↓</li>
+                            <li>chương trình báo lỗi</li>
+                        </ul>
+
+                        <h4>7. Ví dụ trong code của cậu</h4>
+                        <pre><code>def load_test_user(data):
+    if "username" not in data:
+        raise TestDataError(f"Thiếu field 'username' trong: {data}")
+
+    return data["username"]
+</code></pre>
+                        <p><strong>Logic:</strong></p>
+                        <ul>
+                            <li>check username</li>
+                            <li>↓</li>
+                            <li>nếu không tồn tại</li>
+                            <li>↓</li>
+                            <li>raise TestDataError</li>
+                            <li>↓</li>
+                            <li>dừng hàm</li>
+                        </ul>
+                        <p><strong>Nếu hợp lệ:</strong> return username</p>
+
+                        <h4>8. Cách bắt Custom Exception</h4>
+                        <pre><code>try:
+    user = load_test_user(data)
+except TestDataError as e:
+    print("Lỗi dữ liệu:", e)
+</code></pre>
+                        <p><strong>Output:</strong> Lỗi dữ liệu: Thiếu field username</p>
+
+                        <h4>9. Best Practices</h4>
+                        <p><strong>1️⃣ Bắt lỗi cụ thể</strong></p>
+                        <p>✅ Đúng: <code>except FileNotFoundError</code></p>
+                        <p>❌ Không nên: <code>except:</code></p>
+                        <p><strong>2️⃣ Dùng Custom Exception cho validation</strong></p>
+                        <p><strong>Ví dụ:</strong></p>
+                        <ul>
+                            <li>ValidationError</li>
+                            <li>TestDataError</li>
+                            <li>APIError</li>
+                            <li>AuthError</li>
+                        </ul>
+                        <p><strong>3️⃣ Không lạm dụng exception</strong></p>
+                        <p>❌ Sai:</p>
+                        <pre><code>try:
+    username = data["username"]
+except:
+</code></pre>
+                        <p>✅ Đúng:</p>
+                        <pre><code>if "username" not in data:
+</code></pre>
+
+                        <h4>10. Ví dụ hoàn chỉnh</h4>
+                        <pre><code>import json
+
+class TestDataError(Exception):
+    pass
+
+def load_test_user(data):
+    if "username" not in data:
+        raise TestDataError("Thiếu username")
+
+    return data["username"]
+
+try:
+    with open("config.json") as f:
+        config = json.load(f)
+except FileNotFoundError:
+    print("File không tồn tại")
+    config = {"url": "http://localhost"}
+except json.JSONDecodeError as e:
+    print("JSON lỗi:", e)
+finally:
+    print("Chương trình kết thúc")
+</code></pre>
+
+                        <h4>11. Tóm tắt nhanh (cheat sheet)</h4>
+                        <table class="data-table">
+                            <tr>
+                                <th>Khái niệm</th>
+                                <th>Ý nghĩa</th>
+                            </tr>
+                            <tr>
+                                <td>try</td>
+                                <td>chứa code có thể gây lỗi</td>
+                            </tr>
+                            <tr>
+                                <td>except</td>
+                                <td>bắt lỗi</td>
+                            </tr>
+                            <tr>
+                                <td>finally</td>
+                                <td>luôn chạy</td>
+                            </tr>
+                            <tr>
+                                <td>raise</td>
+                                <td>ném lỗi</td>
+                            </tr>
+                            <tr>
+                                <td>Exception</td>
+                                <td>lớp lỗi gốc</td>
+                            </tr>
+                            <tr>
+                                <td>Custom Exception</td>
+                                <td>tạo loại lỗi riêng</td>
+                            </tr>
+                        </table>
+
+
+                    </div>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang python">Python</span>
+                            <span class="code-filename">exceptions.py</span>
+                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><span class="cmt"># try/except cơ bản</span>
+<span class="kw">try</span>:
+    <span class="kw">with</span> <span class="fn">open</span>(<span class="str">"config.json"</span>) <span class="kw">as</span> f:
+        config = json.<span class="fn">load</span>(f)
+<span class="kw">except</span> <span class="cls">FileNotFoundError</span>:
+    <span class="fn">print</span>(<span class="str">"File không tồn tại, dùng config mặc định"</span>)
+    config = {<span class="str">"url"</span>: <span class="str">"http://localhost"</span>}
+<span class="kw">except</span> json.<span class="cls">JSONDecodeError</span> <span class="kw">as</span> e:
+    <span class="fn">print</span>(<span class="str">f"JSON lỗi: <span class="dec">{e}</span>"</span>)
+<span class="kw">finally</span>:
+    <span class="fn">print</span>(<span class="str">"Luôn chạy dòng này dù có lỗi hay không"</span>)
+
+<span class="cmt"># Custom Exception — đặt tên lỗi rõ ràng</span>
+<span class="kw">class</span> <span class="cls">TestDataError</span>(<span class="cls">Exception</span>):
+    <span class="str">"""Lỗi khi dữ liệu test không hợp lệ"""</span>
+    <span class="kw">pass</span>
+
+<span class="kw">def</span> <span class="fn">load_test_user</span>(data):
+    <span class="kw">if</span> <span class="str">"username"</span> <span class="kw">not</span> <span class="kw">in</span> data:
+        <span class="kw">raise</span> <span class="cls">TestDataError</span>(<span class="str">f"Thiếu field 'username' trong: <span class="dec">{data}</span>"</span>)
+    <span class="kw">return</span> data[<span class="str">"username"</span>]</pre>
+                    </div>
+                </div>
+                <div class="theory-section">
+                    <div class="section-label">Bài tập thực hành</div>
+                    <div class="exercises">
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-11" onchange="onCheck(this)">
+                            <label for="ex-11" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Xử lý lỗi đọc file
+                                    </div>
+                                    <div class="ex-desc">Viết hàm
+                                        <code>load_config(path)</code> đọc JSON,
+                                        bắt <code>FileNotFoundError</code> và
+                                        <code>JSONDecodeError</code>, trả về
+                                        dict mặc định nếu lỗi.
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-12" onchange="onCheck(this)">
+                            <label for="ex-12" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Custom ValidationError
+                                    </div>
+                                    <div class="ex-desc">Tạo class
+                                        <code>ValidationError(Exception)</code>.
+                                        Viết hàm
+                                        <code>validate_test_data(row)</code>
+                                        kiểm tra các field bắt buộc, raise lỗi
+                                        tùy chỉnh nếu thiếu.
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="note-area" id="note-area-topic-6">
+                            <textarea class="note-textarea" id="note-text-topic-6"
+                                placeholder="Ghi chú của bạn về topic này... (tự động lưu)"></textarea>
+                            <div class="note-footer">
+                                <button class="note-clear-btn" onclick="clearNote('topic-6')">Xoá ghi
+                                    chú</button>
+                                <span class="note-saved-msg" id="note-saved-topic-6">✓ Đã
+                                    lưu</span>
+                            </div>
+                        </div>
+                        <button class="note-toggle-btn" id="note-btn-topic-6" onclick="toggleNote('topic-6')">📝 Ghi
+                            chú</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<!-- WEEK 3 -->
+<diexcep class="week-block" id="p1-w3">
+    <div class="week-label">Tuần 3 · File I/O, JSON & Exceptions</div>
+
+    <div class="topic-card">
+        <div class="topic-header" onclick="toggleTopic(this)">
+            <div class="topic-icon">📄</div>
+            <div class="topic-meta">
+                <div class="topic-name">File I/O · CSV · JSON</div>
+                <div class="topic-desc">open() · read/write · csv module · json
+                    module</div>
+            </div>
+            <div class="topic-toggle">▼</div>
+            <span class="note-dot" id="note-dot-5"></span>
+        </div>
+        <div class="topic-body">
+            <div class="theory-section">
+                <div class="section-label">Lý thuyết</div>
+                <p>Trong automation testing, bạn sẽ <strong>liên tục đọc test
+                        data từ file</strong> (CSV/JSON) và ghi kết quả ra file
+                    báo cáo. Đây là kỹ năng cốt lõi.</p>
+                <div class="tip-box info">
+                    <span class="tip-icon">💡</span>
+                    <div class="tip-content"><strong>Giải thích
+                            <code>with open("test_data.csv", "r", encoding="utf-8") as f:</code></strong><br>
+                        Dùng để mở file <code>test_data.csv</code> ở chế độ đọc trong Python.<br>
+                        <code>"r"</code> chỉ định read mode (chỉ đọc dữ liệu từ file).<br>
+                        <code>encoding="utf-8"</code> xác định bảng mã ký tự UTF-8 để đọc đúng các ký tự, đặc biệt là
+                        tiếng Việt.<br>
+                        <code>as f</code> tạo một biến đại diện cho file object để thao tác với file trong khối lệnh bên
+                        dưới.<br>
+                        <code>with</code> là context manager, giúp tự động đóng file sau khi khối lệnh kết thúc, tránh
+                        quên <code>close()</code> và giúp quản lý tài nguyên an toàn hơn.
+                    </div>
+                </div>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-lang python">Python</span>
+                        <span class="code-filename">file_io.py</span>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><span class="imp">import</span> csv
+<span class="imp">import</span> json
+
+<span class="cmt">## ĐỌC CSV ##</span>
+<span class="cmt"># test_data.csv có dạng: username,password,expected</span>
+<span class="kw">with</span> <span class="fn">open</span>(<span class="str">"test_data.csv"</span>, <span class="str">"r"</span>, encoding=<span class="str">"utf-8"</span>) <span class="kw">as</span> f:
+    reader = csv.<span class="fn">DictReader</span>(f)  <span class="cmt"># mỗi row là dict</span>
+    <span class="kw">for</span> row <span class="kw">in</span> reader:
+        <span class="fn">print</span>(row[<span class="str">"username"</span>], row[<span class="str">"expected"</span>])
+
+<span class="cmt">## GHI JSON ##</span>
+results = [
+    {<span class="str">"id"</span>: <span class="str">"TC001"</span>, <span class="str">"status"</span>: <span class="str">"PASS"</span>, <span class="str">"duration"</span>: <span class="num">1.23</span>},
+    {<span class="str">"id"</span>: <span class="str">"TC002"</span>, <span class="str">"status"</span>: <span class="str">"FAIL"</span>, <span class="str">"duration"</span>: <span class="num">2.01</span>},
+]
+<span class="kw">with</span> <span class="fn">open</span>(<span class="str">"report.json"</span>, <span class="str">"w"</span>, encoding=<span class="str">"utf-8"</span>) <span class="kw">as</span> f:
+    json.<span class="fn">dump</span>(results, f, indent=<span class="num">2</span>, ensure_ascii=<span class="kw">False</span>)
+
+<span class="cmt">## ĐỌC JSON ##</span>
+<span class="kw">with</span> <span class="fn">open</span>(<span class="str">"report.json"</span>, <span class="str">"r"</span>) <span class="kw">as</span> f:
+    data = json.<span class="fn">load</span>(f)    <span class="cmt"># trả về list/dict Python</span>
+    <span class="fn">print</span>(data[<span class="num">0</span>][<span class="str">"status"</span>])</pre>
+                </div>
+                <div class="tip-box info">
+                    <span class="tip-icon">💡</span>
+                    <div class="tip-content"><strong>Giải thích: Ghi JSON ra file</strong><br>
+                        <code>open("report.json", "w", encoding="utf-8")</code> mở hoặc tạo file report.json ở chế độ
+                        ghi (write). Nếu file đã tồn tại, nội dung cũ sẽ bị ghi đè.<br>
+                        <code>with ... as f</code> sử dụng context manager để đảm bảo file được tự động đóng sau khi
+                        hoàn thành thao tác.<br>
+                        <code>json.dump()</code> dùng để chuyển đổi dữ liệu Python (dictionary, list, v.v.) sang định
+                        dạng JSON và ghi trực tiếp vào file.<br>
+                        <code>results</code> là dữ liệu cần ghi vào file.<br>
+                        <code>indent=2</code> giúp định dạng JSON dễ đọc hơn bằng cách thụt lề 2 khoảng trắng.<br>
+                        <code>ensure_ascii=False</code> cho phép ghi các ký tự Unicode (ví dụ tiếng Việt) thay vì chuyển
+                        chúng thành mã escape.
+                    </div>
+                </div>
+                <div class="tip-box info">
+                    <span class="tip-icon">💡</span>
+                    <div class="tip-content"><strong>Giải thích: Đọc JSON từ file</strong><br>
+                        <code>open("report.json", "r")</code> mở file report.json ở chế độ đọc (read).<br>
+                        <code>with ... as f</code> sử dụng context manager để đảm bảo file được tự động đóng sau khi
+                        hoàn tất việc đọc.<br>
+                        <code>json.load(f)</code> đọc nội dung JSON từ file và chuyển đổi thành cấu trúc dữ liệu Python,
+                        thường là list hoặc dictionary.<br>
+                        <code>data[0]["status"]</code> truy cập vào phần tử đầu tiên của danh sách và lấy giá trị của
+                        key "status".
+                    </div>
+                </div>
+                <div class="tip-box success">
+                    <span class="tip-icon">✅</span>
+                    <div class="tip-content"><strong>Best practice:</strong>
+                        Luôn dùng <code>with open(...)</code> thay vì
+                        <code>f = open()</code>. <code>with</code> tự đóng file
+                        khi xong, kể cả khi có lỗi xảy ra.
+                    </div>
+                </div>
+            </div>
+            <div class="theory-section">
+                <div class="section-label">Bài tập thực hành</div>
+                <div class="exercises">
+                    <div class="ex-item">
+                        <input type="checkbox" class="ex-check" id="ex-9" onchange="onCheck(this)">
+                        <label for="ex-9" style="display:contents;cursor:pointer">
+                            <div class="ex-text">
+                                <div class="ex-title">Đọc test data từ CSV</div>
+                                <div class="ex-desc">Tạo file
+                                    <code>test_data.csv</code> có 5 bộ
+                                    username/password/expected. Đọc file, in ra
+                                    mỗi bộ theo format:
+                                    <code>[TC1] user: admin | expected: success</code>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="ex-item">
+                        <input type="checkbox" class="ex-check" id="ex-10" onchange="onCheck(this)">
+                        <label for="ex-10" style="display:contents;cursor:pointer">
+                            <div class="ex-text">
+                                <div class="ex-title">Ghi kết quả test ra JSON
+                                </div>
+                                <div class="ex-desc">Mô phỏng kết quả 5 test
+                                    case (tạo list dict), ghi ra
+                                    <code>report.json</code> với indent=2. Đọc
+                                    lại và in tổng PASS/FAIL.
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="note-area" id="note-area-topic-5">
+                <textarea class="note-textarea" id="note-text-topic-5" placeholder="Ghi chú của bạn về topic này..."
+                    oninput="autoSaveNote('topic-5')"></textarea>
+                <div class="note-footer">
+                    <button class="note-clear-btn" onclick="clearNote('topic-5')">Xoá ghi
+                        chú</button>
+                    <span class="note-saved-msg" id="note-saved-topic-5">✓ Đã
+                        lưu</span>
+                </div>
+            </div>
+            <button class="note-toggle-btn" id="note-btn-topic-5" onclick="toggleNote('topic-5')">📝 Ghi
+                chú</button>
+        </div>
+
+        <div class="topic-card">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <div class="topic-icon">⚠️</div>
+                <div class="topic-meta">
+                    <div class="topic-name">Exceptions & Error handling</div>
+                    <div class="topic-desc">try/except/finally · raise · custom exceptions</div>
+                </div>
+                <div class="topic-toggle">▼</div>
+                <span class="note-dot" id="note-dot-6"></span>
+            </div>
+            <div class="topic-body">
+                <div class="theory-section">
+                    <div class="section-label">Lý thuyết</div>
+
+                    <!-- WHAT IS EXCEPTION -->
+                    <p><strong>Exception</strong> là lỗi xảy ra khi chương trình đang chạy (runtime error). Nếu không xử
+                        lý, chương trình sẽ dừng ngay lập tức.</p>
+
+                    <!-- COMMON ERRORS GRID -->
+                    <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:0.6rem; margin:1rem 0 1.4rem;">
+                        <div
+                            style="background:var(--redl); border:1px solid rgba(240,110,110,0.2); border-radius:8px; padding:0.65rem 0.9rem; display:flex; align-items:center; gap:0.6rem;">
+                            <span style="font-size:16px;">📁</span>
+                            <div>
+                                <div
+                                    style="font-size:11px; font-weight:700; color:var(--red); text-transform:uppercase; letter-spacing:0.05em;">
+                                    FileNotFoundError</div>
+                                <div style="font-size:12px; color:var(--text2); margin-top:2px;">File không tồn tại
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            style="background:var(--redl); border:1px solid rgba(240,110,110,0.2); border-radius:8px; padding:0.65rem 0.9rem; display:flex; align-items:center; gap:0.6rem;">
+                            <span style="font-size:16px;">📋</span>
+                            <div>
+                                <div
+                                    style="font-size:11px; font-weight:700; color:var(--red); text-transform:uppercase; letter-spacing:0.05em;">
+                                    JSONDecodeError</div>
+                                <div style="font-size:12px; color:var(--text2); margin-top:2px;">JSON sai format</div>
+                            </div>
+                        </div>
+                        <div
+                            style="background:var(--redl); border:1px solid rgba(240,110,110,0.2); border-radius:8px; padding:0.65rem 0.9rem; display:flex; align-items:center; gap:0.6rem;">
+                            <span style="font-size:16px;">➗</span>
+                            <div>
+                                <div
+                                    style="font-size:11px; font-weight:700; color:var(--red); text-transform:uppercase; letter-spacing:0.05em;">
+                                    ZeroDivisionError</div>
+                                <div style="font-size:12px; color:var(--text2); margin-top:2px;">Chia cho 0</div>
+                            </div>
+                        </div>
+                        <div
+                            style="background:var(--redl); border:1px solid rgba(240,110,110,0.2); border-radius:8px; padding:0.65rem 0.9rem; display:flex; align-items:center; gap:0.6rem;">
+                            <span style="font-size:16px;">🔑</span>
+                            <div>
+                                <div
+                                    style="font-size:11px; font-weight:700; color:var(--red); text-transform:uppercase; letter-spacing:0.05em;">
+                                    KeyError</div>
+                                <div style="font-size:12px; color:var(--text2); margin-top:2px;">Truy cập key không tồn
+                                    tại</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TRY/EXCEPT FLOW DIAGRAM -->
+                    <div style="margin:1.4rem 0;">
+                        <div
+                            style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--text3); margin-bottom:0.75rem;">
+                            Cấu trúc &amp; Flow</div>
+                        <div
+                            style="display:grid; grid-template-columns:1fr auto 1fr; gap:0; align-items:stretch; border:1px solid var(--border2); border-radius:10px; overflow:hidden;">
+                            <!-- try block -->
+                            <div style="padding:1rem 1.1rem; background:var(--bg3);">
+                                <div
+                                    style="font-size:11px; font-weight:700; color:var(--p1); text-transform:uppercase; letter-spacing:0.07em; margin-bottom:0.5rem;">
+                                    try</div>
+                                <div style="font-size:12px; color:var(--text2); line-height:1.6;">Code có thể gây lỗi
+                                    chạy tại đây</div>
+                            </div>
+                            <!-- arrow divider -->
+                            <div
+                                style="display:flex; flex-direction:column; align-items:center; justify-content:center; background:var(--bg2); padding:0 0.75rem; gap:0.4rem; border-left:1px solid var(--border); border-right:1px solid var(--border);">
+                                <div
+                                    style="font-size:10px; color:var(--text3); writing-mode:vertical-rl; text-orientation:mixed; transform:rotate(180deg); letter-spacing:0.05em;">
+                                    LỖI?</div>
+                            </div>
+                            <!-- except/finally blocks -->
+                            <div style="display:flex; flex-direction:column;">
+                                <div
+                                    style="padding:0.75rem 1.1rem; background:rgba(240,110,110,0.06); border-bottom:1px solid var(--border); flex:1;">
+                                    <div
+                                        style="font-size:11px; font-weight:700; color:var(--red); text-transform:uppercase; letter-spacing:0.07em; margin-bottom:0.4rem;">
+                                        except</div>
+                                    <div style="font-size:12px; color:var(--text2); line-height:1.5;">Có lỗi → bắt &amp;
+                                        xử lý. Chạy một lần theo loại lỗi khớp.</div>
+                                </div>
+                                <div style="padding:0.75rem 1.1rem; background:var(--p2l); flex:1;">
+                                    <div
+                                        style="font-size:11px; font-weight:700; color:var(--p2); text-transform:uppercase; letter-spacing:0.07em; margin-bottom:0.4rem;">
+                                        finally</div>
+                                    <div style="font-size:12px; color:var(--text2); line-height:1.5;">Luôn chạy — dù có
+                                        lỗi hay không. Dùng để cleanup.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SYNTAX CODE BLOCK -->
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang python">Python</span>
+                            <span class="code-filename">exceptions.py</span>
+                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><span class="cmt"># try/except — bắt nhiều loại lỗi</span>
+<span class="kw">try</span>:
+    <span class="kw">with</span> <span class="fn">open</span>(<span class="str">"config.json"</span>) <span class="kw">as</span> f:
+        config = json.<span class="fn">load</span>(f)
+<span class="kw">except</span> <span class="cls">FileNotFoundError</span>:
+    <span class="fn">print</span>(<span class="str">"File không tồn tại, dùng config mặc định"</span>)
+    config = {<span class="str">"url"</span>: <span class="str">"http://localhost"</span>}
+<span class="kw">except</span> json.<span class="cls">JSONDecodeError</span> <span class="kw">as</span> e:
+    <span class="fn">print</span>(<span class="str">f"JSON lỗi: <span class="dec">{e}</span>"</span>)
+<span class="kw">finally</span>:
+    <span class="fn">print</span>(<span class="str">"Luôn chạy dòng này dù có lỗi hay không"</span>)
+
+<span class="cmt"># Custom Exception — đặt tên lỗi rõ ràng</span>
+<span class="kw">class</span> <span class="cls">TestDataError</span>(<span class="cls">Exception</span>):
+    <span class="str">"""Lỗi khi dữ liệu test không hợp lệ"""</span>
+    <span class="kw">pass</span>
+
+<span class="kw">def</span> <span class="fn">load_test_user</span>(data):
+    <span class="kw">if</span> <span class="str">"username"</span> <span class="kw">not</span> <span class="kw">in</span> data:
+        <span class="kw">raise</span> <span class="cls">TestDataError</span>(<span class="str">f"Thiếu field 'username' trong: <span class="dec">{data}</span>"</span>)
+    <span class="kw">return</span> data[<span class="str">"username"</span>]</pre>
+                    </div>
+
+                    <!-- CUSTOM EXCEPTION SECTION -->
+                    <div style="margin:1.4rem 0 1rem;">
+                        <div
+                            style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--text3); margin-bottom:0.75rem;">
+                            Custom Exception</div>
+                        <div style="display:flex; align-items:stretch; gap:0.75rem; flex-wrap:wrap;">
+                            <div
+                                style="flex:1; min-width:220px; background:var(--p1l); border:1px solid var(--p1b); border-radius:8px; padding:0.9rem 1rem;">
+                                <div
+                                    style="font-size:11px; font-weight:700; color:var(--p1); text-transform:uppercase; letter-spacing:0.07em; margin-bottom:0.5rem;">
+                                    Kế thừa từ Exception</div>
+                                <code
+                                    style="font-size:12px; color:var(--text); background:var(--code-bg); padding:0.4rem 0.7rem; border-radius:5px; display:block; line-height:1.7;">class TestDataError(Exception):<br>&nbsp;&nbsp;&nbsp;&nbsp;pass</code>
+                            </div>
+                            <div
+                                style="flex:1; min-width:220px; background:var(--p3l); border:1px solid var(--note-border); border-radius:8px; padding:0.9rem 1rem;">
+                                <div
+                                    style="font-size:11px; font-weight:700; color:var(--p3); text-transform:uppercase; letter-spacing:0.07em; margin-bottom:0.5rem;">
+                                    Ném lỗi với raise</div>
+                                <code
+                                    style="font-size:12px; color:var(--text); background:var(--code-bg); padding:0.4rem 0.7rem; border-radius:5px; display:block; line-height:1.7;">raise TestDataError("Thiếu username")</code>
+                            </div>
+                            <div
+                                style="flex:1; min-width:220px; background:var(--p2l); border:1px solid var(--p2b); border-radius:8px; padding:0.9rem 1rem;">
+                                <div
+                                    style="font-size:11px; font-weight:700; color:var(--p2); text-transform:uppercase; letter-spacing:0.07em; margin-bottom:0.5rem;">
+                                    Bắt lỗi tùy chỉnh</div>
+                                <code
+                                    style="font-size:12px; color:var(--text); background:var(--code-bg); padding:0.4rem 0.7rem; border-radius:5px; display:block; line-height:1.7;">except TestDataError as e:<br>&nbsp;&nbsp;&nbsp;&nbsp;print("Lỗi:", e)</code>
+                            </div>
+                        </div>
+                        <div style="margin-top:0.75rem; font-size:13px; color:var(--text2);">Dùng custom exception khi
+                            muốn phân loại lỗi rõ ràng theo domain: <code>ValidationError</code>,
+                            <code>TestDataError</code>, <code>APIError</code>, <code>AuthError</code>…
+                        </div>
+                    </div>
+
+                    <!-- BEST PRACTICES -->
+                    <div style="margin:1.4rem 0 0.5rem;">
+                        <div
+                            style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--text3); margin-bottom:0.75rem;">
+                            Best Practices</div>
+                        <div style="display:flex; flex-direction:column; gap:0.6rem;">
+                            <div
+                                style="display:flex; gap:0.75rem; align-items:flex-start; padding:0.75rem 1rem; background:var(--bg3); border:1px solid var(--border); border-radius:8px;">
+                                <span style="font-size:13px; margin-top:2px; flex-shrink:0;">1️⃣</span>
+                                <div style="flex:1;">
+                                    <div style="font-size:13px; font-weight:600; margin-bottom:0.35rem;">Bắt lỗi cụ thể,
+                                        không dùng <code>except:</code> trống</div>
+                                    <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+                                        <span
+                                            style="font-size:12px; background:var(--p2l); border:1px solid var(--p2b); color:var(--p2); padding:3px 8px; border-radius:5px;">✅
+                                            except FileNotFoundError</span>
+                                        <span
+                                            style="font-size:12px; background:var(--redl); border:1px solid rgba(240,110,110,0.2); color:var(--red); padding:3px 8px; border-radius:5px;">❌
+                                            except:</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                style="display:flex; gap:0.75rem; align-items:flex-start; padding:0.75rem 1rem; background:var(--bg3); border:1px solid var(--border); border-radius:8px;">
+                                <span style="font-size:13px; margin-top:2px; flex-shrink:0;">2️⃣</span>
+                                <div style="flex:1;">
+                                    <div style="font-size:13px; font-weight:600; margin-bottom:0.35rem;">Không lạm dụng
+                                        exception cho logic bình thường</div>
+                                    <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+                                        <span
+                                            style="font-size:12px; background:var(--p2l); border:1px solid var(--p2b); color:var(--p2); padding:3px 8px; border-radius:5px;">✅
+                                            if "username" not in data:</span>
+                                        <span
+                                            style="font-size:12px; background:var(--redl); border:1px solid rgba(240,110,110,0.2); color:var(--red); padding:3px 8px; border-radius:5px;">❌
+                                            try/except để check key</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                style="display:flex; gap:0.75rem; align-items:flex-start; padding:0.75rem 1rem; background:var(--bg3); border:1px solid var(--border); border-radius:8px;">
+                                <span style="font-size:13px; margin-top:2px; flex-shrink:0;">3️⃣</span>
+                                <div style="flex:1;">
+                                    <div style="font-size:13px; font-weight:600; margin-bottom:0.35rem;">Dùng
+                                        <code>finally</code> để cleanup resource
+                                    </div>
+                                    <div style="font-size:12px; color:var(--text2);">đóng file · đóng database
+                                        connection · giải phóng lock</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QUICK CHEAT SHEET TABLE -->
+                    <div style="margin:1.4rem 0 0.25rem;">
+                        <div
+                            style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--text3); margin-bottom:0.75rem;">
+                            Tóm tắt nhanh</div>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Keyword</th>
+                                    <th>Ý nghĩa</th>
+                                    <th>Khi nào chạy</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code style="color:var(--p1);">try</code></td>
+                                    <td>Chứa code có thể gây lỗi</td>
+                                    <td>Luôn chạy đầu tiên</td>
+                                </tr>
+                                <tr>
+                                    <td><code style="color:var(--red);">except</code></td>
+                                    <td>Bắt và xử lý lỗi</td>
+                                    <td>Chỉ khi có lỗi khớp</td>
+                                </tr>
+                                <tr>
+                                    <td><code style="color:var(--p2);">finally</code></td>
+                                    <td>Cleanup, đóng resource</td>
+                                    <td>Luôn luôn chạy</td>
+                                </tr>
+                                <tr>
+                                    <td><code style="color:var(--p3);">raise</code></td>
+                                    <td>Ném lỗi thủ công</td>
+                                    <td>Khi tự phát hiện lỗi</td>
+                                </tr>
+                                <tr>
+                                    <td><code style="color:var(--p1);">Exception</code></td>
+                                    <td>Lớp lỗi gốc của Python</td>
+                                    <td>Dùng để kế thừa</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="theory-section">
+                    <div class="section-label">Bài tập thực hành</div>
+                    <div class="exercises">
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-11" onchange="onCheck(this)">
+                            <label for="ex-11" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Xử lý lỗi đọc file</div>
+                                    <div class="ex-desc">Viết hàm <code>load_config(path)</code> đọc JSON, bắt
+                                        <code>FileNotFoundError</code> và <code>JSONDecodeError</code>, trả về dict mặc
+                                        định nếu lỗi.
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-12" onchange="onCheck(this)">
+                            <label for="ex-12" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Custom ValidationError</div>
+                                    <div class="ex-desc">Tạo class <code>ValidationError(Exception)</code>. Viết hàm
+                                        <code>validate_test_data(row)</code> kiểm tra các field bắt buộc, raise lỗi tùy
+                                        chỉnh nếu thiếu.
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="note-area" id="note-area-topic-6">
+                            <textarea class="note-textarea" id="note-text-topic-6"
+                                placeholder="Ghi chú của bạn về topic này... (tự động lưu)"></textarea>
+                            <div class="note-footer">
+                                <button class="note-clear-btn" onclick="clearNote('topic-6')">Xoá ghi chú</button>
+                                <span class="note-saved-msg" id="note-saved-topic-6">✓ Đã lưu</span>
+                            </div>
+                        </div>
+                        <button class="note-toggle-btn" id="note-btn-topic-6" onclick="toggleNote('topic-6')">📝 Ghi
+                            chú</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</diexcep <!-- WEEK 4 -->
+<div class="week-block" id="p1-w4">
+    <div class="week-label">Tuần 4 · OOP — Lập Trình Hướng Đối Tượng
+    </div>
+
+    <div class="topic-card">
+        <div class="topic-header" onclick="toggleTopic(this)">
+            <div class="topic-icon">🏗️</div>
+            <div class="topic-meta">
+                <div class="topic-name">Class, Object & Inheritance
+                </div>
+                <div class="topic-desc">__init__ · self · attributes &
+                    methods · kế thừa</div>
+            </div>
+            <div class="topic-toggle">▼</div>
+            <span class="note-dot" id="note-dot-7"></span>
+        </div>
+        <div class="topic-body">
+            <div class="theory-section">
+                <div class="section-label">Lý thuyết — Tại sao OOP quan
+                    trọng với QC?</div>
+                <p>OOP là nền tảng của <strong>Page Object Model
+                        (POM)</strong> — pattern bắt buộc khi làm
+                    automation. Mỗi trang web sẽ là một class. Khi bạn
+                    hiểu OOP, việc học POM chỉ là áp dụng.</p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-lang python">Python</span>
+                        <span class="code-filename">oop_basics.py</span>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><span class="cmt"># Khai báo class</span>
+<span class="kw">class</span> <span class="cls">TestCase</span>:
+    <span class="cmt"># __init__ chạy khi tạo object mới</span>
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="self">self</span>, tc_id, name, module):
+        <span class="self">self</span>.tc_id   = tc_id    <span class="cmt"># instance attribute</span>
+        <span class="self">self</span>.name    = name
+        <span class="self">self</span>.module  = module
+        <span class="self">self</span>.status  = <span class="str">"PENDING"</span>  <span class="cmt"># giá trị mặc định</span>
+        <span class="self">self</span>.duration = <span class="kw">None</span>
+
+    <span class="kw">def</span> <span class="fn">mark_pass</span>(<span class="self">self</span>, duration=<span class="num">0.0</span>):
+        <span class="self">self</span>.status   = <span class="str">"PASS"</span>
+        <span class="self">self</span>.duration = duration
+
+    <span class="kw">def</span> <span class="fn">mark_fail</span>(<span class="self">self</span>, reason=<span class="str">""</span>):
+        <span class="self">self</span>.status = <span class="str">"FAIL"</span>
+        <span class="self">self</span>.reason = reason
+
+    <span class="kw">def</span> <span class="fn">__repr__</span>(<span class="self">self</span>):
+        <span class="kw">return</span> <span class="str">f"&lt;TC <span class="dec">{self.tc_id}</span> | <span class="dec">{self.status}</span>&gt;"</span>
+
+
+<span class="cmt"># Tạo object (instance)</span>
+tc1 = <span class="cls">TestCase</span>(<span class="str">"TC001"</span>, <span class="str">"Login valid user"</span>, <span class="str">"auth"</span>)
+tc1.<span class="fn">mark_pass</span>(<span class="num">1.5</span>)
+<span class="fn">print</span>(tc1)   <span class="cmt"># &lt;TC TC001 | PASS&gt;</span>
+
+
+<span class="cmt"># Kế thừa (Inheritance)</span>
+<span class="kw">class</span> <span class="cls">TestSuite</span>(<span class="cls">TestCase</span>):   <span class="cmt"># kế thừa từ TestCase</span>
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="self">self</span>, suite_id, name):
+        <span class="fn">super</span>().<span class="fn">__init__</span>(suite_id, name, module=<span class="str">"suite"</span>)
+        <span class="self">self</span>.test_cases = []
+
+    <span class="kw">def</span> <span class="fn">add_test</span>(<span class="self">self</span>, tc: <span class="cls">TestCase</span>):
+        <span class="self">self</span>.test_cases.<span class="fn">append</span>(tc)
+
+    <span class="kw">def</span> <span class="fn">report</span>(<span class="self">self</span>):
+        total  = <span class="fn">len</span>(<span class="self">self</span>.test_cases)
+        passed = <span class="fn">sum</span>(<span class="num">1</span> <span class="kw">for</span> t <span class="kw">in</span> <span class="self">self</span>.test_cases <span class="kw">if</span> t.status == <span class="str">"PASS"</span>)
+        <span class="fn">print</span>(<span class="str">f"Suite: <span class="dec">{self.name}</span> — <span class="dec">{passed}</span>/<span class="dec">{total}</span> passed"</span>)</pre>
+                </div>
+            </div>
+            <!-- THEORY BLOCK 2: self là gì -->
+            <div class="theory-section">
+                <div class="section-label">self là gì — giải thích thật đơn giản</div>
+                <p>Đây là câu hỏi mà hầu hết người mới đều thắc mắc. Python không tự biết method đang chạy cho
+                    <em>object nào</em> — nên bạn phải truyền object đó vào thủ công. Tên <code>self</code> chỉ là quy
+                    ước, bạn đặt tên khác cũng được (nhưng đừng làm vậy).
+                </p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-lang python">Python</span>
+                        <span class="code-filename">self_explained.py</span>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><span class="cmt"># Khi bạn gọi:</span>
+tc1.<span class="fn">mark_pass</span>(<span class="num">1.5</span>)
+
+<span class="cmt"># Python ngầm dịch thành:</span>
+<span class="cls">TestCase</span>.<span class="fn">mark_pass</span>(tc1, <span class="num">1.5</span>)
+<span class="cmt"># → self chính là tc1 bên trong method!</span>
+
+<span class="cmt"># Nếu không có self, method không biết</span>
+<span class="cmt"># đang chỉnh status của tc1 hay tc2:</span>
+tc1 = <span class="cls">TestCase</span>(<span class="str">"TC001"</span>, <span class="str">"Login"</span>, <span class="str">"auth"</span>)
+tc2 = <span class="cls">TestCase</span>(<span class="str">"TC002"</span>, <span class="str">"Logout"</span>, <span class="str">"auth"</span>)
+
+tc1.<span class="fn">mark_pass</span>()   <span class="cmt"># self = tc1  → chỉ tc1.status đổi</span>
+tc2.<span class="fn">mark_fail</span>()   <span class="cmt"># self = tc2  → chỉ tc2.status đổi</span>
+
+<span class="fn">print</span>(tc1.status)  <span class="cmt"># PASS</span>
+<span class="fn">print</span>(tc2.status)  <span class="cmt"># FAIL</span></pre>
+                </div>
+                <div class="tip-box info">
+                    <span class="tip-icon">💡</span>
+                    <div class="tip-content"><strong>Quy tắc nhớ:</strong> Mỗi method muốn truy cập data của chính
+                        object đó thì phải có <code>self</code> làm tham số đầu tiên. Không có <code>self</code> →
+                        method không biết mình đang làm việc với object nào.</div>
+                </div>
+            </div>
+
+            <!-- THEORY BLOCK 3: Class attribute vs Instance attribute -->
+            <div class="theory-section">
+                <div class="section-label">Class attribute vs Instance attribute</div>
+                <p>Hai loại attribute này hoạt động rất khác nhau — nhầm lẫn chỗ này sẽ gây bug khó tìm. <strong>Class
+                        attribute</strong> được chia sẻ chung cho tất cả object. <strong>Instance attribute</strong>
+                    thuộc riêng từng object, khai báo bên trong <code>__init__</code> qua <code>self</code>.</p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-lang python">Python</span>
+                        <span class="code-filename">class_vs_instance_attr.py</span>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><span class="kw">class</span> <span class="cls">TestCase</span>:
+    <span class="cmt"># Class attribute — dùng chung, khai báo ngoài __init__</span>
+    category = <span class="str">"functional"</span>
+    count    = <span class="num">0</span>   <span class="cmt"># đếm tổng số TC đã tạo</span>
+
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="self">self</span>, tc_id, name):
+        <span class="cmt"># Instance attribute — riêng của từng object</span>
+        <span class="self">self</span>.tc_id  = tc_id
+        <span class="self">self</span>.name   = name
+        <span class="self">self</span>.status = <span class="str">"PENDING"</span>
+        <span class="cls">TestCase</span>.count += <span class="num">1</span>   <span class="cmt"># tăng bộ đếm chung</span>
+
+
+tc1 = <span class="cls">TestCase</span>(<span class="str">"TC001"</span>, <span class="str">"Login"</span>)
+tc2 = <span class="cls">TestCase</span>(<span class="str">"TC002"</span>, <span class="str">"Logout"</span>)
+
+<span class="cmt"># Class attribute — truy cập qua tên class hoặc object</span>
+<span class="fn">print</span>(<span class="cls">TestCase</span>.category)   <span class="cmt"># functional</span>
+<span class="fn">print</span>(tc1.category)        <span class="cmt"># functional (kế thừa từ class)</span>
+<span class="fn">print</span>(<span class="cls">TestCase</span>.count)      <span class="cmt"># 2  (tc1 + tc2)</span>
+
+<span class="cmt"># Instance attribute — riêng từng object</span>
+<span class="fn">print</span>(tc1.tc_id)            <span class="cmt"># TC001</span>
+<span class="fn">print</span>(tc2.tc_id)            <span class="cmt"># TC002</span>
+
+<span class="cmt"># ⚠️ Cẩn thận: gán qua object tạo instance attr mới,</span>
+<span class="cmt">#    không đổi class attr!</span>
+tc1.category = <span class="str">"regression"</span>   <span class="cmt"># tạo instance attr riêng cho tc1</span>
+<span class="fn">print</span>(tc1.category)            <span class="cmt"># regression (instance attr)</span>
+<span class="fn">print</span>(tc2.category)            <span class="cmt"># functional  (class attr gốc)</span>
+<span class="fn">print</span>(<span class="cls">TestCase</span>.category)      <span class="cmt"># functional  (không đổi)</span></pre>
+                </div>
+                <div class="tip-box warning">
+                    <span class="tip-icon">⚠️</span>
+                    <div class="tip-content"><strong>Dễ nhầm:</strong> Nếu class attribute là <strong>mutable</strong>
+                        (list, dict), tất cả object dùng chung <em>cùng một object</em> đó. Thay đổi từ một object → ảnh
+                        hưởng hết. Luôn khai báo list/dict mặc định bên trong <code>__init__</code> qua
+                        <code>self</code> để tránh lỗi này.
+                    </div>
+                </div>
+            </div>
+
+            <!-- THEORY BLOCK 4: Khi nào dùng kế thừa -->
+            <div class="theory-section">
+                <div class="section-label">Kế thừa — is-a hay has-a?</div>
+                <p>Kế thừa chỉ hợp lý khi có quan hệ <strong>"is-a"</strong> (là một loại của). Dùng sai sẽ khiến code
+                    khó hiểu và khó sửa. Kiểm tra nhanh: đọc câu <em>"A là một B"</em> — nếu câu đó nghe tự nhiên thì kế
+                    thừa đúng, nếu nghe gượng thì dùng composition (has-a) thay vào.</p>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-lang python">Python</span>
+                        <span class="code-filename">inheritance_vs_composition.py</span>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><span class="cmt"># ✅ is-a → dùng kế thừa hợp lý</span>
+<span class="cmt"># "AutomatedTestCase là một loại TestCase" → đúng</span>
+<span class="kw">class</span> <span class="cls">AutomatedTestCase</span>(<span class="cls">TestCase</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="self">self</span>, tc_id, name, script_path):
+        <span class="fn">super</span>().<span class="fn">__init__</span>(tc_id, name)
+        <span class="self">self</span>.script_path = script_path
+
+    <span class="kw">def</span> <span class="fn">run</span>(<span class="self">self</span>):
+        <span class="fn">print</span>(<span class="str">f"Chạy script: <span class="dec">{self.script_path}</span>"</span>)
+        <span class="self">self</span>.<span class="fn">mark_pass</span>()   <span class="cmt"># dùng method kế thừa từ TestCase</span>
+
+
+<span class="cmt"># ❌ has-a → KHÔNG nên kế thừa</span>
+<span class="cmt"># "TestSuite là một loại TestCase" → nghe sai!</span>
+<span class="cmt"># TestSuite CHỨA nhiều TestCase → dùng composition</span>
+<span class="kw">class</span> <span class="cls">TestSuite</span>:   <span class="cmt"># không kế thừa TestCase</span>
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="self">self</span>, name):
+        <span class="self">self</span>.name       = name
+        <span class="self">self</span>.test_cases = []   <span class="cmt"># has-a: chứa list TestCase</span>
+
+    <span class="kw">def</span> <span class="fn">add</span>(<span class="self">self</span>, tc: <span class="cls">TestCase</span>):
+        <span class="self">self</span>.test_cases.<span class="fn">append</span>(tc)
+
+    <span class="kw">def</span> <span class="fn">report</span>(<span class="self">self</span>):
+        total  = <span class="fn">len</span>(<span class="self">self</span>.test_cases)
+        passed = <span class="fn">sum</span>(<span class="num">1</span> <span class="kw">for</span> t <span class="kw">in</span> <span class="self">self</span>.test_cases <span class="kw">if</span> t.status == <span class="str">"PASS"</span>)
+        <span class="fn">print</span>(<span class="str">f"[<span class="dec">{self.name}</span>] <span class="dec">{passed}</span>/<span class="dec">{total}</span> passed"</span>)
+
+
+<span class="cmt"># Kết hợp: tạo suite, thêm các TC vào</span>
+suite = <span class="cls">TestSuite</span>(<span class="str">"Smoke Test"</span>)
+tc_auto = <span class="cls">AutomatedTestCase</span>(<span class="str">"TC001"</span>, <span class="str">"Login"</span>, <span class="str">"tests/login.py"</span>)
+tc_auto.<span class="fn">run</span>()
+suite.<span class="fn">add</span>(tc_auto)
+suite.<span class="fn">report</span>()   <span class="cmt"># [Smoke Test] 1/1 passed</span></pre>
+                </div>
+                <div class="tip-box info">
+                    <span class="tip-icon">💡</span>
+                    <div class="tip-content"><strong>Liên hệ POM:</strong> Trong Page Object Model sau này, mỗi page sẽ
+                        kế thừa từ một <code>BasePage</code> (vì "LoginPage <em>là một loại</em> BasePage").
+                        <code>BasePage</code> chứa các method dùng chung như <code>find_element()</code>,
+                        <code>click()</code>. Đây chính là is-a thực tế trong automation.
+                    </div>
+                </div>
+            </div>
+
+            <div class="theory-section">
+                <div class="section-label">Bài tập thực hành</div>
+                <div class="exercises">
+                    <div class="ex-item">
+                        <input type="checkbox" class="ex-check" id="ex-13" onchange="onCheck(this)">
+                        <label for="ex-13" style="display:contents;cursor:pointer">
+                            <div class="ex-text">
+                                <div class="ex-title">Xây dựng class
+                                    TestCase đầy đủ</div>
+                                <div class="ex-desc">Tạo class
+                                    <code>TestCase</code> với id, name,
+                                    status. Thêm method
+                                    <code>to_dict()</code> trả về dict
+                                    và <code>__str__</code> in thông tin
+                                    đẹp.
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="ex-item">
+                        <input type="checkbox" class="ex-check" id="ex-14" onchange="onCheck(this)">
+                        <label for="ex-14" style="display:contents;cursor:pointer">
+                            <div class="ex-text">
+                                <div class="ex-title">Class TestSuite kế
+                                    thừa</div>
+                                <div class="ex-desc">Tạo
+                                    <code>TestSuite</code> chứa list
+                                    <code>TestCase</code>, method
+                                    <code>add(tc)</code>,
+                                    <code>report()</code> in tổng kết,
+                                    <code>export_json(path)</code> ghi
+                                    kết quả ra file.
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="ex-item">
+                        <input type="checkbox" class="ex-check" id="ex-15" onchange="onCheck(this)">
+                        <label for="ex-15" style="display:contents;cursor:pointer">
+                            <div class="ex-text">
+                                <div class="ex-title">Class BugReport thực tế</div>
+                                <div class="ex-desc">Tạo class <code>BugReport</code> với <code>bug_id</code>,
+                                    <code>title</code>, <code>severity</code> (Low/Medium/High/Critical),
+                                    <code>status</code> (Open). Thêm method <code>escalate()</code> tự động tăng
+                                    severity lên một bậc, <code>resolve()</code> đổi status thành Closed, và
+                                    <code>to_dict()</code> trả về dict để export JSON. Tạo class attribute
+                                    <code>valid_severities</code> là list các mức hợp lệ.
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="note-area" id="note-area-topic-7">
+                        <textarea class="note-textarea" id="note-text-topic-7"
+                            placeholder="Ghi chú của bạn về topic này... (tự động lưu)"></textarea>
+                        <div class="note-footer">
+                            <button class="note-clear-btn" onclick="clearNote('topic-7')">Xoá ghi
+                                chú</button>
+                            <span class="note-saved-msg" id="note-saved-topic-7">✓ Đã
+                                lưu</span>
+                        </div>
+                    </div>
+                    <button class="note-toggle-btn" id="note-btn-topic-7" onclick="toggleNote('topic-7')">📝
+                        Ghi
+                        chú</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- MILESTONE 1 -->
+<div class="milestone-card p1" id="p1-milestone">
+    <div class="milestone-label">Bài Tập Lớn · Phase 1</div>
+    <div class="milestone-title">Mini Test Manager CLI</div>
+    <div class="milestone-desc">Xây dựng tool chạy trên terminal:
+        đọc test cases từ CSV, cho phép filter theo status/module,
+        tính tỉ lệ pass/fail, ghi báo cáo ra file JSON. Áp dụng toàn
+        bộ kiến thức Phase 1.</div>
+    <ul class="checklist">
+        <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check" id="ml-1"
+                onclick="event.stopPropagation()">
+            <span>Đọc file
+                CSV chứa test cases (dùng
+                <code>csv.DictReader</code>)</span>
+        </li>
+        <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check" id="ml-2"
+                onclick="event.stopPropagation()">
+            <span>Class
+                <code>TestCase</code> và <code>TestSuite</code>
+                (OOP)</span>
+        </li>
+        <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check" id="ml-3"
+                onclick="event.stopPropagation()">
+            <span>Filter theo
+                <code>--module</code> và <code>--status</code>
+                argument (dùng <code>sys.argv</code>)</span>
+        </li>
+        <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check" id="ml-4"
+                onclick="event.stopPropagation()">
+            <span>Tính và in
+                tỉ lệ pass/fail với format đẹp</span>
+        </li>
+        <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check" id="ml-5"
+                onclick="event.stopPropagation()">
+            <span>Ghi báo cáo
+                JSON với timestamp</span>
+        </li>
+        <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check" id="ml-6"
+                onclick="event.stopPropagation()">
+            <span>Xử lý lỗi
+                khi file không tồn tại</span>
+        </li>
+    </ul>
+</div>
+
+<div class="divider"></div>
