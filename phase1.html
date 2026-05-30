@@ -578,6 +578,352 @@ tc2 = <span class="fn">create_test_case</span>(<span class="str">"Checkout"</spa
                 </div>
             </div>
         </div>
+
+        <!-- TOPIC: Memory & References -->
+        <div class="topic-card">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <div class="topic-icon">🧠</div>
+                <div class="topic-meta">
+                    <div class="topic-name">Memory & References</div>
+                    <div class="topic-desc">id() · is vs == · Mutable vs Immutable · pass by reference · copy</div>
+                </div>
+                <div class="topic-toggle">▼</div>
+                <span class="note-dot"></span>
+            </div>
+            <div class="topic-body">
+                <div class="theory-section">
+                    <div class="section-label">Lý thuyết — Python lưu biến thế nào trong bộ nhớ?</div>
+                    <p>Trong Python, <strong>biến không chứa giá trị</strong> — biến chứa <strong>reference</strong> (địa chỉ tham chiếu) đến một object trên heap. Khi bạn viết <code>a = [1, 2, 3]</code>, Python tạo object list trên heap và <code>a</code> trỏ đến nó.</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang python">Python</span>
+                            <span class="code-filename">identity.py</span>
+                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><span class="cmt"># id() trả về địa chỉ bộ nhớ của object</span>
+a = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>]
+b = a           <span class="cmt"># b và a cùng trỏ đến 1 object</span>
+c = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>]  <span class="cmt"># c là object MỚI, khác a</span>
+
+<span class="fn">print</span>(<span class="fn">id</span>(a) == <span class="fn">id</span>(b))  <span class="cmt"># True  — cùng object</span>
+<span class="fn">print</span>(<span class="fn">id</span>(a) == <span class="fn">id</span>(c))  <span class="cmt"># False — khác object</span>
+
+<span class="cmt"># is: so sánh identity (cùng object?)</span>
+<span class="cmt"># ==: so sánh equality (cùng giá trị?)</span>
+<span class="fn">print</span>(a <span class="kw">is</span> b)   <span class="cmt"># True  — cùng 1 object</span>
+<span class="fn">print</span>(a <span class="kw">is</span> c)   <span class="cmt"># False — khác object</span>
+<span class="fn">print</span>(a == c)   <span class="cmt"># True  — giá trị bằng nhau</span>
+
+<span class="cmt"># Khi b = a rồi b.append → a cũng thay đổi!</span>
+b.<span class="fn">append</span>(<span class="num">4</span>)
+<span class="fn">print</span>(a)  <span class="cmt"># [1, 2, 3, 4] ← a bị ảnh hưởng vì cùng object</span></pre>
+                    </div>
+
+                    <p><strong>Mutable vs Immutable:</strong></p>
+                    <table class="data-table">
+                        <thead><tr><th>Mutable (thay đổi được)</th><th>Immutable (không thay đổi)</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>list</code>, <code>dict</code>, <code>set</code></td><td><code>int</code>, <code>float</code>, <code>str</code>, <code>tuple</code>, <code>bool</code></td></tr>
+                            <tr><td>Thay đổi in-place → ảnh hưởng tất cả reference</td><td>Mỗi thay đổi tạo object mới, không ảnh hưởng gì</td></tr>
+                        </tbody>
+                    </table>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang python">Python</span>
+                            <span class="code-filename">mutable_immutable.py</span>
+                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><span class="cmt"># Immutable — gán lại tạo object mới</span>
+x = <span class="num">10</span>
+y = x
+x = <span class="num">20</span>         <span class="cmt"># x trỏ đến object mới (20)</span>
+<span class="fn">print</span>(y)      <span class="cmt"># 10 — y vẫn trỏ đến object cũ</span>
+
+<span class="cmt"># str là immutable — không sửa được ký tự</span>
+s = <span class="str">"hello"</span>
+<span class="cmt"># s[0] = "H"  ← TypeError! str không mutable</span>
+s = <span class="str">"Hello"</span>    <span class="cmt"># tạo object str mới</span>
+
+<span class="cmt"># Hàm và mutable argument — cẩn thận!</span>
+<span class="kw">def</span> <span class="fn">add_item</span>(lst, item):
+    lst.<span class="fn">append</span>(item)   <span class="cmt"># sửa in-place → ảnh hưởng list gốc</span>
+
+my_list = [<span class="num">1</span>, <span class="num">2</span>]
+<span class="fn">add_item</span>(my_list, <span class="num">3</span>)
+<span class="fn">print</span>(my_list)  <span class="cmt"># [1, 2, 3] ← bị sửa!</span>
+
+<span class="cmt"># Tránh bằng cách tạo copy</span>
+<span class="imp">import</span> copy
+original = [[<span class="num">1</span>, <span class="num">2</span>], [<span class="num">3</span>, <span class="num">4</span>]]
+shallow  = original.<span class="fn">copy</span>()         <span class="cmt"># copy nông: list mới, phần tử vẫn share</span>
+deep     = copy.<span class="fn">deepcopy</span>(original)  <span class="cmt"># copy sâu: mọi thứ đều là bản mới độc lập</span></pre>
+                    </div>
+
+                    <div class="tip-box info">
+                        <span class="tip-icon">💡</span>
+                        <div class="tip-content"><strong>Quy tắc thực hành:</strong> Khi truyền list/dict vào hàm mà không muốn hàm sửa list gốc, hãy truyền <code>lst.copy()</code> hoặc dùng <code>copy.deepcopy()</code> nếu có nested objects. Không nên dùng default argument là list: <code>def f(x=[])</code> — list đó được chia sẻ giữa các lần gọi!</div>
+                    </div>
+                </div>
+                <div class="theory-section">
+                    <div class="section-label">Bài tập thực hành</div>
+                    <div class="exercises">
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p1-mem-1" onchange="onCheck(this)">
+                            <label for="ex-p1-mem-1" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Thí nghiệm is vs ==</div>
+                                    <div class="ex-desc">Tạo các cặp biến: số nguyên nhỏ (<code>a = 5; b = 5</code>), số lớn (<code>a = 1000; b = 1000</code>), list. Dùng <code>is</code>, <code>==</code> và <code>id()</code> để quan sát khi nào Python dùng chung object (integer caching).</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p1-mem-2" onchange="onCheck(this)">
+                            <label for="ex-p1-mem-2" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Hàm không sửa list gốc</div>
+                                    <div class="ex-desc">Viết hàm <code>remove_duplicates(lst)</code> trả về list mới không có trùng lặp, <strong>không sửa</strong> list gốc. Kiểm tra bằng <code>id()</code> rằng list gốc vẫn giữ nguyên.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="note-area" id="note-area-p1-memory">
+                            <textarea class="note-textarea" id="note-text-p1-memory" placeholder="Ghi chú..." oninput="handleNoteInput(this)"></textarea>
+                            <div class="note-footer">
+                                <button class="note-clear-btn" onclick="clearNote('p1-memory')">Xoá ghi chú</button>
+                                <span class="note-saved-msg" id="note-saved-p1-memory">✓ Đã lưu</span>
+                            </div>
+                        </div>
+                        <button class="note-toggle-btn" id="note-btn-p1-memory" onclick="toggleNote('p1-memory')">📝 Ghi chú</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TOPIC: Scope & Lifetime -->
+        <div class="topic-card">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <div class="topic-icon">🔭</div>
+                <div class="topic-meta">
+                    <div class="topic-name">Scope & Lifetime</div>
+                    <div class="topic-desc">LEGB rule · Local · Global · Enclosing · global keyword · Namespace</div>
+                </div>
+                <div class="topic-toggle">▼</div>
+                <span class="note-dot"></span>
+            </div>
+            <div class="topic-body">
+                <div class="theory-section">
+                    <div class="section-label">Lý thuyết — Python tìm kiếm biến theo thứ tự nào?</div>
+                    <p>Khi Python gặp một tên biến, nó tìm theo quy tắc <strong>LEGB</strong>: <strong>L</strong>ocal → <strong>E</strong>nclosing → <strong>G</strong>lobal → <strong>B</strong>uilt-in. Tìm thấy ở tầng nào thì dùng tầng đó, không tìm tiếp.</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang python">Python</span>
+                            <span class="code-filename">scope_legb.py</span>
+                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre>x = <span class="str">"global"</span>      <span class="cmt"># G — Global scope</span>
+
+<span class="kw">def</span> <span class="fn">outer</span>():
+    x = <span class="str">"enclosing"</span>  <span class="cmt"># E — Enclosing scope</span>
+
+    <span class="kw">def</span> <span class="fn">inner</span>():
+        x = <span class="str">"local"</span>  <span class="cmt"># L — Local scope</span>
+        <span class="fn">print</span>(x)    <span class="cmt"># "local" — tìm L trước</span>
+
+    <span class="fn">inner</span>()
+    <span class="fn">print</span>(x)        <span class="cmt"># "enclosing"</span>
+
+<span class="fn">outer</span>()
+<span class="fn">print</span>(x)          <span class="cmt"># "global"</span>
+<span class="fn">print</span>(<span class="fn">len</span>)         <span class="cmt"># B — Built-in (hàm có sẵn của Python)</span>
+
+<span class="cmt"># Đọc global bên trong hàm: OK</span>
+count = <span class="num">0</span>
+<span class="kw">def</span> <span class="fn">show_count</span>():
+    <span class="fn">print</span>(count)  <span class="cmt"># đọc được, không cần global</span>
+
+<span class="cmt"># Ghi global bên trong hàm: phải khai báo global</span>
+<span class="kw">def</span> <span class="fn">increment</span>():
+    <span class="kw">global</span> count    <span class="cmt"># thông báo: count này là global</span>
+    count += <span class="num">1</span>
+
+<span class="fn">increment</span>()
+<span class="fn">print</span>(count)  <span class="cmt"># 1</span></pre>
+                    </div>
+
+                    <p><strong>Variable Lifetime</strong> — biến tồn tại bao lâu?</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang python">Python</span>
+                            <span class="code-filename">lifetime.py</span>
+                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><span class="cmt"># Local variable: sống từ khi hàm chạy đến khi hàm return</span>
+<span class="kw">def</span> <span class="fn">calc</span>():
+    result = <span class="num">42</span>   <span class="cmt"># tạo khi hàm chạy</span>
+    <span class="kw">return</span> result  <span class="cmt"># sau return, result bị giải phóng</span>
+
+<span class="cmt"># Global variable: sống cả đời chương trình</span>
+APP_NAME = <span class="str">"MyApp"</span>  <span class="cmt"># tồn tại đến khi chương trình kết thúc</span>
+
+<span class="cmt"># Namespace — mỗi module/hàm có namespace riêng</span>
+<span class="fn">print</span>(<span class="fn">dir</span>())       <span class="cmt"># xem namespace hiện tại</span>
+<span class="fn">print</span>(<span class="fn">locals</span>())    <span class="cmt"># dict biến local hiện tại</span>
+<span class="fn">print</span>(<span class="fn">globals</span>())   <span class="cmt"># dict biến global hiện tại</span></pre>
+                    </div>
+
+                    <div class="tip-box warning">
+                        <span class="tip-icon">⚠️</span>
+                        <div class="tip-content"><strong>Hạn chế dùng <code>global</code>:</strong> Biến global khiến code khó test và khó debug vì bất kỳ hàm nào cũng có thể thay đổi nó. Thay vào đó, hãy truyền biến qua parameter và nhận lại qua return value.</div>
+                    </div>
+                </div>
+                <div class="theory-section">
+                    <div class="section-label">Bài tập thực hành</div>
+                    <div class="exercises">
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p1-scope-1" onchange="onCheck(this)">
+                            <label for="ex-p1-scope-1" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Truy vết LEGB</div>
+                                    <div class="ex-desc">Viết code có 3 tầng hàm lồng nhau, mỗi tầng có biến <code>msg</code>. Dùng <code>print</code> và <code>id()</code> để xác nhận Python lấy biến từ scope nào ở mỗi tầng.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p1-scope-2" onchange="onCheck(this)">
+                            <label for="ex-p1-scope-2" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Refactor bỏ global</div>
+                                    <div class="ex-desc">Cho đoạn code dùng <code>global counter</code>, viết lại thành class <code>Counter</code> với method <code>increment()</code> và <code>get()</code>. So sánh khả năng test của 2 cách.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="note-area" id="note-area-p1-scope">
+                            <textarea class="note-textarea" id="note-text-p1-scope" placeholder="Ghi chú..." oninput="handleNoteInput(this)"></textarea>
+                            <div class="note-footer">
+                                <button class="note-clear-btn" onclick="clearNote('p1-scope')">Xoá ghi chú</button>
+                                <span class="note-saved-msg" id="note-saved-p1-scope">✓ Đã lưu</span>
+                            </div>
+                        </div>
+                        <button class="note-toggle-btn" id="note-btn-p1-scope" onclick="toggleNote('p1-scope')">📝 Ghi chú</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TOPIC: Recursion -->
+        <div class="topic-card">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <div class="topic-icon">🌀</div>
+                <div class="topic-meta">
+                    <div class="topic-name">Recursion — Đệ quy</div>
+                    <div class="topic-desc">Base case · Recursive case · Call stack · Factorial · Fibonacci</div>
+                </div>
+                <div class="topic-toggle">▼</div>
+                <span class="note-dot"></span>
+            </div>
+            <div class="topic-body">
+                <div class="theory-section">
+                    <div class="section-label">Lý thuyết</div>
+                    <p><strong>Recursion</strong> là khi một hàm tự gọi chính nó. Mỗi hàm đệ quy phải có 2 phần: <strong>Base case</strong> (điều kiện dừng, không gọi đệ quy nữa) và <strong>Recursive case</strong> (gọi lại hàm với input nhỏ hơn). Thiếu base case → chạy mãi mãi → <code>RecursionError</code>.</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang python">Python</span>
+                            <span class="code-filename">recursion.py</span>
+                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><span class="cmt"># Factorial: n! = n × (n-1) × ... × 1</span>
+<span class="kw">def</span> <span class="fn">factorial</span>(n):
+    <span class="kw">if</span> n <= <span class="num">1</span>:          <span class="cmt"># BASE CASE — dừng đệ quy</span>
+        <span class="kw">return</span> <span class="num">1</span>
+    <span class="kw">return</span> n * <span class="fn">factorial</span>(n - <span class="num">1</span>)  <span class="cmt"># RECURSIVE CASE</span>
+
+<span class="cmt"># Call stack khi gọi factorial(4):</span>
+<span class="cmt"># factorial(4) → 4 × factorial(3)</span>
+<span class="cmt">#   factorial(3) → 3 × factorial(2)</span>
+<span class="cmt">#     factorial(2) → 2 × factorial(1)</span>
+<span class="cmt">#       factorial(1) → 1  ← base case</span>
+<span class="cmt">#     ← 2 × 1 = 2</span>
+<span class="cmt">#   ← 3 × 2 = 6</span>
+<span class="cmt"># ← 4 × 6 = 24</span>
+<span class="fn">print</span>(<span class="fn">factorial</span>(<span class="num">5</span>))  <span class="cmt"># 120</span>
+
+<span class="cmt"># Fibonacci: F(n) = F(n-1) + F(n-2)</span>
+<span class="kw">def</span> <span class="fn">fib</span>(n):
+    <span class="kw">if</span> n <= <span class="num">1</span>:                    <span class="cmt"># base case</span>
+        <span class="kw">return</span> n
+    <span class="kw">return</span> <span class="fn">fib</span>(n - <span class="num">1</span>) + <span class="fn">fib</span>(n - <span class="num">2</span>)  <span class="cmt"># recursive case</span>
+
+<span class="fn">print</span>([<span class="fn">fib</span>(i) <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">8</span>)])
+<span class="cmt"># [0, 1, 1, 2, 3, 5, 8, 13]</span></pre>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang python">Python</span>
+                            <span class="code-filename">recursion_vs_loop.py</span>
+                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><span class="cmt"># Khi nào dùng recursion thay vì loop?</span>
+<span class="cmt"># → Khi cấu trúc dữ liệu tự nhiên là đệ quy (cây, thư mục lồng nhau)</span>
+
+<span class="cmt"># Đếm files trong thư mục lồng nhau (recursion rất tự nhiên)</span>
+<span class="imp">import</span> os
+
+<span class="kw">def</span> <span class="fn">count_files</span>(path):
+    total = <span class="num">0</span>
+    <span class="kw">for</span> item <span class="kw">in</span> os.<span class="fn">listdir</span>(path):
+        full = os.path.<span class="fn">join</span>(path, item)
+        <span class="kw">if</span> os.path.<span class="fn">isfile</span>(full):
+            total += <span class="num">1</span>
+        <span class="kw">elif</span> os.path.<span class="fn">isdir</span>(full):
+            total += <span class="fn">count_files</span>(full)  <span class="cmt"># gọi lại với subdir</span>
+    <span class="kw">return</span> total
+
+<span class="cmt"># Python giới hạn default recursion depth = 1000</span>
+<span class="cmt"># sys.setrecursionlimit(n) để thay đổi nếu cần</span></pre>
+                    </div>
+
+                    <div class="tip-box warning">
+                        <span class="tip-icon">⚠️</span>
+                        <div class="tip-content"><strong>Khi nào KHÔNG nên dùng recursion:</strong> Fibonacci đệ quy là ví dụ kinh điển về recursion kém hiệu quả — <code>fib(40)</code> gọi hàm hơn 300 triệu lần! Nếu cần performance, dùng loop + memo hoặc <code>@functools.lru_cache</code>.</div>
+                    </div>
+                </div>
+                <div class="theory-section">
+                    <div class="section-label">Bài tập thực hành</div>
+                    <div class="exercises">
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p1-rec-1" onchange="onCheck(this)">
+                            <label for="ex-p1-rec-1" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Tổng các số trong list lồng nhau</div>
+                                    <div class="ex-desc">Viết hàm <code>deep_sum(lst)</code> tính tổng tất cả số trong list có thể lồng nhau: <code>deep_sum([1, [2, [3, 4]], 5])</code> → <code>15</code>. Dùng <code>isinstance(x, list)</code> để kiểm tra.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p1-rec-2" onchange="onCheck(this)">
+                            <label for="ex-p1-rec-2" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Đảo ngược chuỗi bằng đệ quy</div>
+                                    <div class="ex-desc">Viết <code>reverse_str(s)</code> dùng đệ quy. Base case: string rỗng hoặc 1 ký tự. Recursive case: ký tự cuối + <code>reverse_str(s[:-1])</code>. So sánh với <code>s[::-1]</code>.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="note-area" id="note-area-p1-recursion">
+                            <textarea class="note-textarea" id="note-text-p1-recursion" placeholder="Ghi chú..." oninput="handleNoteInput(this)"></textarea>
+                            <div class="note-footer">
+                                <button class="note-clear-btn" onclick="clearNote('p1-recursion')">Xoá ghi chú</button>
+                                <span class="note-saved-msg" id="note-saved-p1-recursion">✓ Đã lưu</span>
+                            </div>
+                        </div>
+                        <button class="note-toggle-btn" id="note-btn-p1-recursion" onclick="toggleNote('p1-recursion')">📝 Ghi chú</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <!-- WEEK 3 -->
@@ -1040,7 +1386,7 @@ finally:
 </div> -->
 
 <!-- WEEK 3 -->
-<diexcep class="week-block" id="p1-w3">
+<div class="week-block" id="p1-w3">
     <div class="week-label">Tuần 3 · File I/O, JSON & Exceptions</div>
 
     <div class="topic-card">
@@ -1500,7 +1846,8 @@ results = [
             </div>
         </div>
     </div>
-</diexcep <!-- WEEK 4 -->
+</div>
+<!-- WEEK 4 -->
 <div class="week-block" id="p1-w4">
     <div class="week-label">Tuần 4 · OOP — Lập Trình Hướng Đối Tượng
     </div>
@@ -1791,6 +2138,332 @@ suite.<span class="fn">report</span>()   <span class="cmt"># [Smoke Test] 1/1 pa
                     <button class="note-toggle-btn" id="note-btn-topic-7" onclick="toggleNote('topic-7')">📝
                         Ghi
                         chú</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TOPIC: Algorithms & Problem Solving -->
+        <div class="topic-card">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <div class="topic-icon">🔍</div>
+                <div class="topic-meta">
+                    <div class="topic-name">Algorithms & Problem Solving</div>
+                    <div class="topic-desc">Linear Search · Binary Search · Bubble Sort · Insertion Sort · Problem Decomposition</div>
+                </div>
+                <div class="topic-toggle">▼</div>
+                <span class="note-dot"></span>
+            </div>
+            <div class="topic-body">
+                <div class="theory-section">
+                    <div class="section-label">Lý thuyết — Thuật toán cơ bản</div>
+                    <p>Thuật toán là <strong>chuỗi bước có thứ tự</strong> để giải quyết vấn đề. Trước khi code, hãy chia vấn đề thành các bước nhỏ (<strong>Problem Decomposition</strong>). Bốn thuật toán dưới đây là nền tảng — hiểu chúng giúp bạn đọc và đánh giá code tốt hơn.</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang python">Python</span>
+                            <span class="code-filename">search.py</span>
+                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><span class="cmt"># LINEAR SEARCH — duyệt từng phần tử O(n)</span>
+<span class="kw">def</span> <span class="fn">linear_search</span>(lst, target):
+    <span class="kw">for</span> i, val <span class="kw">in</span> <span class="fn">enumerate</span>(lst):
+        <span class="kw">if</span> val == target:
+            <span class="kw">return</span> i       <span class="cmt"># trả về index</span>
+    <span class="kw">return</span> -<span class="num">1</span>           <span class="cmt"># không tìm thấy</span>
+
+nums = [<span class="num">3</span>, <span class="num">7</span>, <span class="num">1</span>, <span class="num">9</span>, <span class="num">4</span>]
+<span class="fn">print</span>(<span class="fn">linear_search</span>(nums, <span class="num">9</span>))  <span class="cmt"># 3</span>
+
+<span class="cmt"># BINARY SEARCH — list PHẢI sắp xếp trước, O(log n)</span>
+<span class="kw">def</span> <span class="fn">binary_search</span>(lst, target):
+    left, right = <span class="num">0</span>, <span class="fn">len</span>(lst) - <span class="num">1</span>
+    <span class="kw">while</span> left <= right:
+        mid = (left + right) // <span class="num">2</span>
+        <span class="kw">if</span> lst[mid] == target:   <span class="kw">return</span> mid
+        <span class="kw">elif</span> lst[mid] < target:  left  = mid + <span class="num">1</span>
+        <span class="kw">else</span>:                    right = mid - <span class="num">1</span>
+    <span class="kw">return</span> -<span class="num">1</span>
+
+sorted_nums = [<span class="num">1</span>, <span class="num">3</span>, <span class="num">5</span>, <span class="num">7</span>, <span class="num">9</span>, <span class="num">11</span>]
+<span class="fn">print</span>(<span class="fn">binary_search</span>(sorted_nums, <span class="num">7</span>))  <span class="cmt"># 3</span></pre>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang python">Python</span>
+                            <span class="code-filename">sorting.py</span>
+                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><span class="cmt"># BUBBLE SORT — đổi chỗ cặp liền kề, O(n²)</span>
+<span class="kw">def</span> <span class="fn">bubble_sort</span>(lst):
+    n = <span class="fn">len</span>(lst)
+    <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(n):
+        <span class="kw">for</span> j <span class="kw">in</span> <span class="fn">range</span>(<span class="num">0</span>, n - i - <span class="num">1</span>):
+            <span class="kw">if</span> lst[j] > lst[j + <span class="num">1</span>]:
+                lst[j], lst[j + <span class="num">1</span>] = lst[j + <span class="num">1</span>], lst[j]
+    <span class="kw">return</span> lst
+
+<span class="fn">print</span>(<span class="fn">bubble_sort</span>([<span class="num">64</span>, <span class="num">34</span>, <span class="num">25</span>, <span class="num">12</span>, <span class="num">22</span>]))
+<span class="cmt"># [12, 22, 25, 34, 64]</span>
+
+<span class="cmt"># INSERTION SORT — chèn phần tử vào đúng vị trí, O(n²)</span>
+<span class="cmt"># Tốt hơn Bubble Sort khi mảng gần như đã sắp xếp</span>
+<span class="kw">def</span> <span class="fn">insertion_sort</span>(lst):
+    <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">1</span>, <span class="fn">len</span>(lst)):
+        key = lst[i]
+        j = i - <span class="num">1</span>
+        <span class="kw">while</span> j >= <span class="num">0</span> <span class="kw">and</span> lst[j] > key:
+            lst[j + <span class="num">1</span>] = lst[j]
+            j -= <span class="num">1</span>
+        lst[j + <span class="num">1</span>] = key
+    <span class="kw">return</span> lst
+
+<span class="fn">print</span>(<span class="fn">insertion_sort</span>([<span class="num">5</span>, <span class="num">2</span>, <span class="num">4</span>, <span class="num">6</span>, <span class="num">1</span>]))
+<span class="cmt"># [1, 2, 4, 5, 6]</span></pre>
+                    </div>
+
+                    <div class="tip-box info">
+                        <span class="tip-icon">💡</span>
+                        <div class="tip-content"><strong>Tại sao học nếu đã có <code>sorted()</code>?</strong> Python built-in tốt hơn, nhưng hiểu thuật toán giúp bạn: (1) đọc code người khác, (2) giải bài toán tùy biến, (3) phỏng vấn kỹ thuật. Binary Search đặc biệt quan trọng — xuất hiện thường xuyên trong thực tế.</div>
+                    </div>
+                </div>
+                <div class="theory-section">
+                    <div class="section-label">Bài tập thực hành</div>
+                    <div class="exercises">
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p1-algo-1" onchange="onCheck(this)">
+                            <label for="ex-p1-algo-1" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">So sánh linear vs binary search</div>
+                                    <div class="ex-desc">Implement cả 2 hàm tìm kiếm. Thêm biến đếm <code>steps</code> vào từng hàm. Tìm cùng phần tử trong list 1.000 phần tử đã sắp xếp — so sánh số bước của 2 cách.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p1-algo-2" onchange="onCheck(this)">
+                            <label for="ex-p1-algo-2" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Sắp xếp test case theo priority</div>
+                                    <div class="ex-desc">Dùng <code>insertion_sort</code> để sort list dict test case theo <code>priority</code> (Critical → High → Medium → Low). So sánh với <code>sorted(cases, key=lambda x: x["priority"])</code>.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="note-area" id="note-area-p1-algo">
+                            <textarea class="note-textarea" id="note-text-p1-algo" placeholder="Ghi chú..." oninput="handleNoteInput(this)"></textarea>
+                            <div class="note-footer">
+                                <button class="note-clear-btn" onclick="clearNote('p1-algo')">Xoá ghi chú</button>
+                                <span class="note-saved-msg" id="note-saved-p1-algo">✓ Đã lưu</span>
+                            </div>
+                        </div>
+                        <button class="note-toggle-btn" id="note-btn-p1-algo" onclick="toggleNote('p1-algo')">📝 Ghi chú</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TOPIC: Complexity Analysis -->
+        <div class="topic-card">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <div class="topic-icon">📈</div>
+                <div class="topic-meta">
+                    <div class="topic-name">Complexity Analysis — Big O</div>
+                    <div class="topic-desc">Big O Notation · O(1) · O(log n) · O(n) · O(n²) · Time vs Space</div>
+                </div>
+                <div class="topic-toggle">▼</div>
+                <span class="note-dot"></span>
+            </div>
+            <div class="topic-body">
+                <div class="theory-section">
+                    <div class="section-label">Lý thuyết</div>
+                    <p><strong>Big O Notation</strong> mô tả tốc độ tăng của thời gian chạy khi kích thước input <code>n</code> tăng lên. Nó bỏ qua hằng số, chỉ quan tâm hành vi khi <code>n</code> rất lớn.</p>
+
+                    <table class="data-table">
+                        <thead><tr><th>Ký hiệu</th><th>Tên</th><th>Ví dụ</th><th>n=1.000 tốn</th></tr></thead>
+                        <tbody>
+                            <tr><td><code>O(1)</code></td><td>Constant</td><td>dict[key], list[i]</td><td>1 bước</td></tr>
+                            <tr><td><code>O(log n)</code></td><td>Logarithmic</td><td>Binary Search</td><td>~10 bước</td></tr>
+                            <tr><td><code>O(n)</code></td><td>Linear</td><td>Linear Search, vòng lặp đơn</td><td>1.000 bước</td></tr>
+                            <tr><td><code>O(n log n)</code></td><td>Linearithmic</td><td><code>sorted()</code> (Timsort)</td><td>~10.000 bước</td></tr>
+                            <tr><td><code>O(n²)</code></td><td>Quadratic</td><td>Bubble Sort, 2 vòng lồng</td><td>1.000.000 bước</td></tr>
+                        </tbody>
+                    </table>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang python">Python</span>
+                            <span class="code-filename">complexity.py</span>
+                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><span class="cmt"># O(1) — không phụ thuộc n</span>
+<span class="kw">def</span> <span class="fn">get_first</span>(lst):    <span class="kw">return</span> lst[<span class="num">0</span>]   <span class="cmt"># luôn 1 bước</span>
+<span class="kw">def</span> <span class="fn">lookup</span>(d, k):      <span class="kw">return</span> d[k]     <span class="cmt"># hash table → O(1)</span>
+
+<span class="cmt"># O(n) — tỷ lệ thuận với n</span>
+<span class="kw">def</span> <span class="fn">find_max</span>(lst):
+    max_val = lst[<span class="num">0</span>]
+    <span class="kw">for</span> x <span class="kw">in</span> lst:          <span class="cmt"># duyệt 1 lần</span>
+        <span class="kw">if</span> x > max_val: max_val = x
+    <span class="kw">return</span> max_val
+
+<span class="cmt"># O(n²) — 2 vòng lặp lồng nhau</span>
+<span class="kw">def</span> <span class="fn">has_dup_slow</span>(lst):
+    <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="fn">len</span>(lst)):
+        <span class="kw">for</span> j <span class="kw">in</span> <span class="fn">range</span>(i + <span class="num">1</span>, <span class="fn">len</span>(lst)):
+            <span class="kw">if</span> lst[i] == lst[j]: <span class="kw">return</span> <span class="kw">True</span>
+    <span class="kw">return</span> <span class="kw">False</span>
+
+<span class="cmt"># O(n) với set — trade-off: tốn thêm O(n) space</span>
+<span class="kw">def</span> <span class="fn">has_dup_fast</span>(lst):
+    <span class="kw">return</span> <span class="fn">len</span>(lst) != <span class="fn">len</span>(<span class="fn">set</span>(lst))
+
+<span class="cmt"># Đo thời gian thực tế</span>
+<span class="imp">import</span> time
+n = [i <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">10_000</span>)]
+t0 = time.<span class="fn">time</span>(); <span class="fn">has_dup_slow</span>(n); <span class="fn">print</span>(<span class="str">f"O(n²): {time.time()-t0:.3f}s"</span>)
+t0 = time.<span class="fn">time</span>(); <span class="fn">has_dup_fast</span>(n); <span class="fn">print</span>(<span class="str">f"O(n):  {time.time()-t0:.3f}s"</span>)</pre>
+                    </div>
+
+                    <div class="tip-box info">
+                        <span class="tip-icon">💡</span>
+                        <div class="tip-content"><strong>Quy tắc thực hành:</strong> Khi thấy code chậm, nhìn vào vòng lặp lồng nhau trước — thường là O(n²). Trong Python, <code>set</code>/<code>dict</code> lookup là O(1) nhờ hash table — ưu tiên hơn duyệt list khi cần kiểm tra tồn tại. Space complexity cũng quan trọng: đôi khi nên đánh đổi tốn memory để được thời gian nhanh hơn.</div>
+                    </div>
+                </div>
+                <div class="theory-section">
+                    <div class="section-label">Bài tập thực hành</div>
+                    <div class="exercises">
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p1-bigo-1" onchange="onCheck(this)">
+                            <label for="ex-p1-bigo-1" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Phân tích Big O của 5 đoạn code</div>
+                                    <div class="ex-desc">Xác định Big O của: (1) vòng lặp đơn, (2) 2 vòng tuần tự, (3) 2 vòng lồng, (4) dict lookup, (5) <code>sorted()</code>. Giải thích tại sao 2 vòng tuần tự vẫn là O(n) chứ không phải O(2n).</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p1-bigo-2" onchange="onCheck(this)">
+                            <label for="ex-p1-bigo-2" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Tối ưu O(n²) → O(n)</div>
+                                    <div class="ex-desc">Viết <code>find_common(l1, l2)</code> 2 version: (1) double loop O(n²), (2) dùng set intersection O(n). Đo thời gian với 10.000 phần tử. Quan sát sự chênh lệch.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="note-area" id="note-area-p1-complexity">
+                            <textarea class="note-textarea" id="note-text-p1-complexity" placeholder="Ghi chú..." oninput="handleNoteInput(this)"></textarea>
+                            <div class="note-footer">
+                                <button class="note-clear-btn" onclick="clearNote('p1-complexity')">Xoá ghi chú</button>
+                                <span class="note-saved-msg" id="note-saved-p1-complexity">✓ Đã lưu</span>
+                            </div>
+                        </div>
+                        <button class="note-toggle-btn" id="note-btn-p1-complexity" onclick="toggleNote('p1-complexity')">📝 Ghi chú</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TOPIC: Program Execution Model -->
+        <div class="topic-card">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <div class="topic-icon">🖥️</div>
+                <div class="topic-meta">
+                    <div class="topic-name">Program Execution Model</div>
+                    <div class="topic-desc">Interpreter · Bytecode · CPython · Stack · Heap · Garbage Collection</div>
+                </div>
+                <div class="topic-toggle">▼</div>
+                <span class="note-dot"></span>
+            </div>
+            <div class="topic-body">
+                <div class="theory-section">
+                    <div class="section-label">Lý thuyết — Python chạy code thế nào?</div>
+                    <p>Hiểu mô hình thực thi giúp giải thích tại sao code chậm, tại sao có memory leak, tại sao một số lỗi chỉ xuất hiện lúc runtime. Đây là kiến thức nền tảng của mọi Python developer.</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang text">Luồng thực thi Python</span>
+                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre>Source code (.py)
+       ↓  Lexer + Parser  (kiểm tra cú pháp)
+  AST (Abstract Syntax Tree)
+       ↓  Compiler
+  Bytecode (.pyc)          ← lưu trong __pycache__/
+       ↓  CPython VM       (stack machine)
+    Kết quả</pre>
+                    </div>
+
+                    <table class="data-table">
+                        <thead><tr><th></th><th>Call Stack</th><th>Heap</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>Lưu gì</strong></td><td>Stack frames (local vars, return address)</td><td>Objects (list, dict, class instances…)</td></tr>
+                            <tr><td><strong>Quản lý</strong></td><td>Tự động — Python tạo/xóa frame</td><td>Garbage Collector (GC)</td></tr>
+                            <tr><td><strong>Khi tràn</strong></td><td><code>RecursionError</code></td><td><code>MemoryError</code></td></tr>
+                        </tbody>
+                    </table>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang python">Python</span>
+                            <span class="code-filename">execution_model.py</span>
+                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><span class="imp">import</span> dis, sys, gc
+
+<span class="cmt"># Xem bytecode của hàm</span>
+<span class="kw">def</span> <span class="fn">add</span>(a, b): <span class="kw">return</span> a + b
+dis.<span class="fn">dis</span>(add)
+<span class="cmt"># LOAD_FAST 'a'  → push a lên stack</span>
+<span class="cmt"># LOAD_FAST 'b'  → push b lên stack</span>
+<span class="cmt"># BINARY_OP  +   → pop 2, push kết quả</span>
+<span class="cmt"># RETURN_VALUE   → trả về đỉnh stack</span>
+
+<span class="cmt"># Garbage Collection — Reference Counting</span>
+a = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>]
+<span class="fn">print</span>(sys.<span class="fn">getrefcount</span>(a))  <span class="cmt"># số lần object được tham chiếu</span>
+b = a                        <span class="cmt"># refcount tăng</span>
+<span class="kw">del</span> a                        <span class="cmt"># refcount giảm</span>
+<span class="kw">del</span> b                        <span class="cmt"># refcount = 0 → GC giải phóng ngay</span>
+
+<span class="cmt"># Circular reference → refcount không về 0</span>
+<span class="cmt"># Python có cycle detector bổ sung để xử lý</span>
+gc.<span class="fn">collect</span>()   <span class="cmt"># chạy cycle detector thủ công</span></pre>
+                    </div>
+
+                    <div class="tip-box info">
+                        <span class="tip-icon">💡</span>
+                        <div class="tip-content"><strong>Interpreter vs Compiler:</strong> Python là <strong>interpreted</strong> — dịch và chạy từng dòng lúc runtime. C/Java là <strong>compiled</strong> — dịch toàn bộ sang machine code trước khi chạy. Python chậm hơn C nhưng linh hoạt hơn và code nhanh hơn. CPython là implementation mặc định; PyPy dùng JIT compiler để chạy nhanh hơn ~5–10x cho CPU-bound code.</div>
+                    </div>
+                </div>
+                <div class="theory-section">
+                    <div class="section-label">Bài tập thực hành</div>
+                    <div class="exercises">
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p1-exec-1" onchange="onCheck(this)">
+                            <label for="ex-p1-exec-1" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Xem bytecode với dis</div>
+                                    <div class="ex-desc">Viết 3 hàm: tính tổng list, tìm max, sort. Dùng <code>dis.dis(fn)</code> xem bytecode. Giải thích: tại sao hàm sort có nhiều instruction hơn hàm tính tổng?</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p1-exec-2" onchange="onCheck(this)">
+                            <label for="ex-p1-exec-2" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Theo dõi reference count</div>
+                                    <div class="ex-desc">Dùng <code>sys.getrefcount(obj)</code> theo dõi: tạo object, gán biến, truyền vào hàm, xóa biến. Quan sát refcount thay đổi qua từng bước. Thử tạo circular reference và xác nhận <code>gc.collect()</code> giải phóng được.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="note-area" id="note-area-p1-execution">
+                            <textarea class="note-textarea" id="note-text-p1-execution" placeholder="Ghi chú..." oninput="handleNoteInput(this)"></textarea>
+                            <div class="note-footer">
+                                <button class="note-clear-btn" onclick="clearNote('p1-execution')">Xoá ghi chú</button>
+                                <span class="note-saved-msg" id="note-saved-p1-execution">✓ Đã lưu</span>
+                            </div>
+                        </div>
+                        <button class="note-toggle-btn" id="note-btn-p1-execution" onclick="toggleNote('p1-execution')">📝 Ghi chú</button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 <div class="phase-block" id="phase3" data-phase="3">
-    <div class="phase-tag p3">Phase 3 · Tuần 9–12</div>
-    <div class="phase-title">Nâng Cao & Production-Ready</div>
-    <div class="phase-subtitle">POM · Allure Report · API Testing · CI/CD · Best Practices</div>
+    <div class="phase-tag p3">Phase 3 · Tuần 7–10</div>
+    <div class="phase-title">Project Thực Chiến</div>
+    <div class="phase-subtitle">Pygame · Game Loop · OOP thực chiến · Flappy Bird</div>
     <div class="phase-progress-wrap p3" id="prog-phase3">
         <div class="phase-progress-header">
             <span class="phase-progress-title">Tiến độ Phase 3</span>
@@ -13,973 +13,1210 @@
         <div class="phase-progress-tasks" id="tasks-phase3">0 / 0 nhiệm vụ hoàn thành</div>
     </div>
 
-    <!-- WEEK 9 -->
-    <div class="week-block" id="p3-w9">
-        <div class="week-label">Tuần 9 · Page Object Model (POM)</div>
+    <!-- ═══════════════════════════════ GIỚI THIỆU PROJECT ═══════════════════════════════ -->
+    <div class="week-block" id="p3-intro">
+        <div class="week-label">Giới thiệu · Project Flappy Bird</div>
 
         <div class="topic-card">
             <div class="topic-header" onclick="toggleTopic(this)">
-                <div class="topic-icon">🏛️</div>
+                <div class="topic-icon">🎮</div>
                 <div class="topic-meta">
-                    <div class="topic-name">Page Object Model — Kiến trúc POM</div>
-                    <div class="topic-desc">BasePage · locators tập trung · action methods · tách logic</div>
+                    <div class="topic-name">Tổng quan dự án</div>
+                    <div class="topic-desc">Mục tiêu · Tính năng · Kiến trúc 7 class · Thư mục project</div>
                 </div>
                 <div class="topic-toggle">▼</div>
-                <span class="note-dot" id="note-dot-14"></span>
+                <span class="note-dot"></span>
             </div>
             <div class="topic-body">
                 <div class="theory-section">
-                    <div class="section-label">Lý thuyết — POM là gì và tại sao cần dùng?</div>
-                    <p><strong>POM (Page Object Model)</strong> là design pattern tổ chức code automation. Thay vì viết
-                        locator và action rải rác trong test, bạn <strong>tạo một class cho mỗi trang</strong> — class
-                        đó chứa locators và các method tương tác.</p>
+                    <div class="section-label">Chúng ta sẽ xây dựng gì?</div>
+                    <p>Phase 3 là dự án thực chiến — bạn sẽ xây dựng hoàn chỉnh game <strong>Flappy Bird</strong> bằng Python và thư viện <strong>Pygame</strong>. Đây không phải bài tập nhỏ — đây là sản phẩm có đầy đủ: đồ họa, vật lý, âm thanh, UI và lưu dữ liệu.</p>
 
                     <div class="tip-box info">
                         <span class="tip-icon">💡</span>
-                        <div class="tip-content"><strong>Lợi ích POM:</strong> Khi UI thay đổi (ví dụ dev đổi id của
-                            nút), bạn chỉ cần sửa <strong>1 chỗ</strong> trong page class — thay vì tìm và sửa trong 20
-                            file test.</div>
+                        <div class="tip-content">
+                            <strong>Tại sao Flappy Bird?</strong> Game đủ đơn giản để hoàn thành trong 1 tháng, nhưng đủ phức tạp để bạn thực hành OOP, vật lý, xử lý sự kiện, animation và file I/O — tất cả những gì đã học ở Phase 1.
+                        </div>
                     </div>
 
-                    <p><strong>Cấu trúc thư mục chuẩn:</strong></p>
+                    <p><strong>Tính năng của game hoàn chỉnh:</strong></p>
+                    <ul style="margin:0.5rem 0 1rem 1.2rem; line-height:2">
+                        <li>Cửa sổ 500×700px, chạy 60 FPS</li>
+                        <li>Bird với animation 17 frame, trọng lực và nhảy bằng click/Space</li>
+                        <li>Cột (Pipe) tự động sinh ngẫu nhiên và di chuyển</li>
+                        <li>Sàn (Floor) cuộn vô hạn</li>
+                        <li>Va chạm chính xác — game over khi chạm sàn, cột, hoặc mép trên</li>
+                        <li>Tính điểm khi vượt qua mỗi cặp cột</li>
+                        <li>Nhạc nền, SFX nhảy, va chạm, thua, cộng điểm</li>
+                        <li>Bật/tắt âm thanh trong game</li>
+                        <li>Input tên người chơi</li>
+                        <li>Bảng xếp hạng Top 5 lưu ra file</li>
+                        <li>Animation màn hình Game Over (slide in)</li>
+                    </ul>
+
+                    <p><strong>Kiến trúc — 7 class chính:</strong></p>
                     <div class="code-block">
                         <div class="code-header">
-                            <span class="code-lang text">Cấu trúc project</span>
+                            <span class="code-lang text">Cấu trúc thư mục</span>
                             <button class="code-copy" onclick="copyCode(this)">Copy</button>
                         </div>
                         <pre><div class="tree">
-<span class="tree-dir">my_automation_project/</span>
-├── <span class="tree-dir">pages/</span>              <span class="tree-comment"># Mỗi file = 1 trang web</span>
-│   ├── <span class="tree-py">base_page.py</span>    <span class="tree-comment"># Class cha: common methods</span>
-│   ├── <span class="tree-py">login_page.py</span>   <span class="tree-comment"># Trang login</span>
-│   ├── <span class="tree-py">inventory_page.py</span>
-│   └── <span class="tree-py">cart_page.py</span>
-├── <span class="tree-dir">tests/</span>             <span class="tree-comment"># Chỉ chứa test logic</span>
-│   ├── <span class="tree-py">conftest.py</span>
-│   ├── <span class="tree-py">test_login.py</span>
-│   ├── <span class="tree-py">test_cart.py</span>
-│   └── <span class="tree-py">test_checkout.py</span>
-├── <span class="tree-dir">test_data/</span>         <span class="tree-comment"># Data tách riêng</span>
-│   ├── <span class="tree-file">users.json</span>
-│   └── <span class="tree-file">products.csv</span>
-├── <span class="tree-file">.env</span>               <span class="tree-comment"># Biến môi trường (URL, credentials)</span>
-├── <span class="tree-file">pytest.ini</span>         <span class="tree-comment"># Cấu hình pytest</span>
-└── <span class="tree-file">requirements.txt</span></div></pre>
+<span class="tree-dir">python-flappy-bird/</span>
+├── <span class="tree-py">main.py</span>         <span class="tree-comment"># Điểm khởi động — tạo Control và gọi startGame()</span>
+├── <span class="tree-py">Control.py</span>      <span class="tree-comment"># Bộ điều khiển trung tâm — vòng game, sự kiện, state</span>
+├── <span class="tree-py">Screen.py</span>       <span class="tree-comment"># Quản lý cửa sổ pygame</span>
+├── <span class="tree-py">Bird.py</span>         <span class="tree-comment"># Nhân vật chính — vật lý, animation, va chạm</span>
+├── <span class="tree-py">Pipe.py</span>         <span class="tree-comment"># Cột chướng ngại vật</span>
+├── <span class="tree-py">Floor.py</span>        <span class="tree-comment"># Sàn cuộn vô hạn</span>
+├── <span class="tree-py">Achievement.py</span>  <span class="tree-comment"># Điểm số và bảng xếp hạng</span>
+├── <span class="tree-py">StaticView.py</span>   <span class="tree-comment"># Background, button, giao diện tĩnh</span>
+├── <span class="tree-py">Utilitie.py</span>     <span class="tree-comment"># Helper: load ảnh, font, Button, Input</span>
+├── <span class="tree-file">top.txt</span>         <span class="tree-comment"># Dữ liệu Top 5 người chơi</span>
+├── <span class="tree-dir">image/</span>          <span class="tree-comment"># Hình ảnh game</span>
+├── <span class="tree-dir">sound/</span>          <span class="tree-comment"># File âm thanh .mp3</span>
+└── <span class="tree-dir">font/</span>           <span class="tree-comment"># Font chữ .ttf</span></div></pre>
                     </div>
 
+                    <p><strong>Sơ đồ quan hệ giữa các class:</strong></p>
                     <div class="code-block">
                         <div class="code-header">
-                            <span class="code-lang python">Python</span>
-                            <span class="code-filename">pages/base_page.py</span>
+                            <span class="code-lang text">Class Diagram</span>
                             <button class="code-copy" onclick="copyCode(this)">Copy</button>
                         </div>
-                        <pre><span class="imp">from</span> playwright.sync_api <span class="imp">import</span> Page, expect
-
-<span class="kw">class</span> <span class="cls">BasePage</span>:
-    <span class="str">"""Class cha chứa các method dùng chung"""</span>
-
-    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="self">self</span>, page: <span class="cls">Page</span>):
-        <span class="self">self</span>.page = page
-
-    <span class="kw">def</span> <span class="fn">navigate</span>(<span class="self">self</span>, url: <span class="fn">str</span>):
-        <span class="self">self</span>.page.<span class="fn">goto</span>(url)
-
-    <span class="kw">def</span> <span class="fn">wait_for_page_load</span>(<span class="self">self</span>):
-        <span class="self">self</span>.page.<span class="fn">wait_for_load_state</span>(<span class="str">"networkidle"</span>)
-
-    <span class="kw">def</span> <span class="fn">take_screenshot</span>(<span class="self">self</span>, name: <span class="fn">str</span>):
-        <span class="self">self</span>.page.<span class="fn">screenshot</span>(path=<span class="str">f"screenshots/<span class="dec">{name}</span>.png"</span>)
-
-    <span class="kw">def</span> <span class="fn">get_title</span>(<span class="self">self</span>) -> <span class="fn">str</span>:
-        <span class="kw">return</span> <span class="self</span>.page.<span class="fn">title</span>()</pre>
-                    </div>
-
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-lang python">Python</span>
-                            <span class="code-filename">pages/login_page.py</span>
-                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
-                        </div>
-                        <pre><span class="imp">from</span> playwright.sync_api <span class="imp">import</span> expect
-<span class="imp">from</span> pages.base_page <span class="imp">import</span> BasePage
-
-<span class="kw">class</span> <span class="cls">LoginPage</span>(<span class="cls">BasePage</span>):
-    <span class="cmt"># Locators — tập trung tại đây</span>
-    URL          = <span class="str">"https://www.saucedemo.com"</span>
-    USERNAME_INP = <span class="str">"#user-name"</span>
-    PASSWORD_INP = <span class="str">"#password"</span>
-    LOGIN_BTN    = <span class="str">"#login-button"</span>
-    ERROR_MSG    = <span class="str">"[data-test='error']"</span>
-
-    <span class="kw">def</span> <span class="fn">open</span>(<span class="self">self</span>):
-        <span class="self">self</span>.<span class="fn">navigate</span>(<span class="self">self</span>.URL)
-        <span class="kw">return</span> <span class="self">self</span>
-
-    <span class="kw">def</span> <span class="fn">login</span>(<span class="self">self</span>, username: <span class="fn">str</span>, password: <span class="fn">str</span>):
-        <span class="self">self</span>.page.<span class="fn">fill</span>(<span class="self">self</span>.USERNAME_INP, username)
-        <span class="self">self</span>.page.<span class="fn">fill</span>(<span class="self">self</span>.PASSWORD_INP, password)
-        <span class="self">self</span>.page.<span class="fn">click</span>(<span class="self">self</span>.LOGIN_BTN)
-        <span class="kw">return</span> <span class="self">self</span>  <span class="cmt"># cho phép method chaining</span>
-
-    <span class="kw">def</span> <span class="fn">get_error_message</span>(<span class="self">self</span>) -> <span class="fn">str</span>:
-        <span class="kw">return</span> <span class="self</span>.page.locator(<span class="self">self</span>.ERROR_MSG).<span class="fn">inner_text</span>()
-
-    <span class="kw">def</span> <span class="fn">assert_error_visible</span>(<span class="self">self</span>):
-        <span class="fn">expect</span>(<span class="self">self</span>.page.locator(<span class="self">self</span>.ERROR_MSG)).<span class="fn">to_be_visible</span>()
-        <span class="kw">return</span> <span class="self">self</span></pre>
-                    </div>
-
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-lang python">Python</span>
-                            <span class="code-filename">tests/test_login.py</span>
-                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
-                        </div>
-                        <pre><span class="imp">from</span> pages.login_page <span class="imp">import</span> LoginPage
-<span class="imp">from</span> playwright.sync_api <span class="imp">import</span> expect
-
-<span class="cmt"># Test code GỌN GÀNG — không có locator cứng</span>
-<span class="kw">def</span> <span class="fn">test_login_success</span>(page):
-    login = <span class="cls">LoginPage</span>(page)
-    login.<span class="fn">open</span>().<span class="fn">login</span>(<span class="str">"standard_user"</span>, <span class="str">"secret_sauce"</span>)
-    <span class="fn">expect</span>(page).<span class="fn">to_have_url</span>(<span class="str">"https://www.saucedemo.com/inventory.html"</span>)
-
-<span class="kw">def</span> <span class="fn">test_login_fail</span>(page):
-    login = <span class="cls">LoginPage</span>(page)
-    login.<span class="fn">open</span>().<span class="fn">login</span>(<span class="str">"wrong_user"</span>, <span class="str">"wrong_pass"</span>)
-    login.<span class="fn">assert_error_visible</span>()
-    <span class="cmt"># Nếu sau này error selector đổi, chỉ sửa trong LoginPage!</span></pre>
+                        <pre>          <span class="cls">Control</span>   ← điều phối tất cả
+         /    |    \    \     \
+   <span class="cls">Bird</span>  <span class="cls">Pipe</span>  <span class="cls">Floor</span>  <span class="cls">Achievement</span>  <span class="cls">StaticView</span>
+     \    \    /        |
+      <span class="cls">Screen</span>  ←  tất cả đều nhận screen để vẽ lên
+        |
+   <span class="cls">Utilitie</span>  ←  helper tĩnh: load ảnh, font, Button, Input</pre>
                     </div>
                 </div>
                 <div class="theory-section">
                     <div class="section-label">Bài tập thực hành</div>
                     <div class="exercises">
                         <div class="ex-item">
-                            <input type="checkbox" class="ex-check" id="ex-27" onchange="onCheck(this)">
-                            <label for="ex-27" style="display:contents;cursor:pointer">
+                            <input type="checkbox" class="ex-check" id="ex-p3-intro-1" onchange="onCheck(this)">
+                            <label for="ex-p3-intro-1" style="display:contents;cursor:pointer">
                                 <div class="ex-text">
-                                    <div class="ex-title">Refactor bài Phase 2 sang POM</div>
-                                    <div class="ex-desc">Lấy test suite từ Phase 2, tạo <code>LoginPage</code>,
-                                        <code>InventoryPage</code>, <code>CartPage</code>. Mỗi page class có đủ locators
-                                        và methods. Test file chỉ gọi methods.</div>
+                                    <div class="ex-title">Clone project và chạy thử</div>
+                                    <div class="ex-desc">Clone repo, cài pygame (<code>pip install pygame</code>), chạy <code>python main.py</code>. Chơi thử 5 phút để cảm nhận toàn bộ tính năng trước khi bắt đầu code lại từ đầu.</div>
                                 </div>
                             </label>
                         </div>
                         <div class="ex-item">
-                            <input type="checkbox" class="ex-check" id="ex-28" onchange="onCheck(this)">
-                            <label for="ex-28" style="display:contents;cursor:pointer">
+                            <input type="checkbox" class="ex-check" id="ex-p3-intro-2" onchange="onCheck(this)">
+                            <label for="ex-p3-intro-2" style="display:contents;cursor:pointer">
                                 <div class="ex-text">
-                                    <div class="ex-title">BasePage với common methods</div>
-                                    <div class="ex-desc">Tạo <code>BasePage</code> với: <code>navigate()</code>,
-                                        <code>wait_for_spinner_gone()</code>, <code>take_screenshot()</code>. Tất cả
-                                        page class kế thừa từ đây.</div>
+                                    <div class="ex-title">Vẽ sơ đồ class bằng tay</div>
+                                    <div class="ex-desc">Đọc lần lượt từng file .py, vẽ ra giấy: class nào import class nào, method nào gọi method nào. Hiểu được luồng từ <code>main.py</code> → <code>Control.startGame()</code> → <code>Control.handlGame()</code>.</div>
                                 </div>
                             </label>
                         </div>
-
-                        <div class="note-area" id="note-area-topic-10">
-                            <textarea class="note-textarea" id="note-text-topic-10"
-                                placeholder="Ghi chú của bạn về topic này... (tự động lưu)"></textarea>
+                        <div class="note-area" id="note-area-p3-intro">
+                            <textarea class="note-textarea" id="note-text-p3-intro" placeholder="Ghi chú của bạn..." oninput="handleNoteInput(this)"></textarea>
                             <div class="note-footer">
-                                <button class="note-clear-btn" onclick="clearNote('topic-10')">Xoá ghi chú</button>
-                                <span class="note-saved-msg" id="note-saved-topic-10">✓ Đã lưu</span>
+                                <button class="note-clear-btn" onclick="clearNote('p3-intro')">Xoá ghi chú</button>
+                                <span class="note-saved-msg" id="note-saved-p3-intro">✓ Đã lưu</span>
                             </div>
                         </div>
-                        <button class="note-toggle-btn" id="note-btn-topic-10" onclick="toggleNote('topic-10')">📝 Ghi
-                            chú</button>
+                        <button class="note-toggle-btn" id="note-btn-p3-intro" onclick="toggleNote('p3-intro')">📝 Ghi chú</button>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
+    <!-- ═══════════════════════════════ WEEK 7 ═══════════════════════════════ -->
+    <div class="week-block" id="p3-w7">
+        <div class="week-label">Tuần 7 · Pygame là gì? — Cài đặt & Game Loop</div>
 
         <div class="topic-card">
             <div class="topic-header" onclick="toggleTopic(this)">
-                <div class="topic-icon">🗄️</div>
+                <div class="topic-icon">🐍</div>
                 <div class="topic-meta">
-                    <div class="topic-name">Test Data Management</div>
-                    <div class="topic-desc">Data fixtures · factory functions · .env config · scope</div>
+                    <div class="topic-name">Pygame là gì?</div>
+                    <div class="topic-desc">SDL · cross-platform · cài đặt · tổng quan module</div>
                 </div>
                 <div class="topic-toggle">▼</div>
-                <span class="note-dot" id="note-dot-testdata"></span>
+                <span class="note-dot"></span>
             </div>
             <div class="topic-body">
                 <div class="theory-section">
                     <div class="section-label">Lý thuyết</div>
-                    <p>Test data nên được <strong>tách hoàn toàn khỏi test logic</strong>. Khi data thay đổi (ví dụ URL
-                        môi trường, credentials), bạn chỉ cần sửa file data — không cần chạm vào test code.</p>
+                    <p><strong>Pygame</strong> là một tập hợp các module Python được xây dựng trên thư viện <strong>SDL (Simple DirectMedia Layer)</strong> — một thư viện C cấp thấp xử lý đồ họa, âm thanh, bàn phím, chuột. Pygame bọc SDL lại để Python có thể sử dụng dễ dàng.</p>
 
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-lang text">Cấu trúc</span>
-                            <span class="code-filename">test_data/users.json</span>
-                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    <div class="tip-box info">
+                        <span class="tip-icon">💡</span>
+                        <div class="tip-content">
+                            <strong>Pygame không phải game engine.</strong> Nó chỉ cung cấp công cụ cấp thấp: vẽ pixel, phát âm thanh, đọc input. Bạn phải tự xây dựng game loop, physics, collision — đó là lý do dùng Pygame để học: bạn hiểu từng thứ hoạt động thế nào.
                         </div>
-                        <pre>{
-  <span class="str">"valid_user"</span>:   { <span class="str">"username"</span>: <span class="str">"standard_user"</span>,  <span class="str">"password"</span>: <span class="str">"secret_sauce"</span> },
-  <span class="str">"locked_user"</span>:  { <span class="str">"username"</span>: <span class="str">"locked_out_user"</span>, <span class="str">"password"</span>: <span class="str">"secret_sauce"</span> },
-  <span class="str">"invalid_user"</span>: { <span class="str">"username"</span>: <span class="str">"wrong"</span>,           <span class="str">"password"</span>: <span class="str">"wrong"</span> }
-}</pre>
                     </div>
 
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-lang python">Python</span>
-                            <span class="code-filename">tests/conftest.py</span>
-                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
-                        </div>
-                        <pre><span class="imp">import</span> json, os
-<span class="imp">import</span> pytest
-<span class="imp">from</span> dotenv <span class="imp">import</span> load_dotenv
-
-load_dotenv()   <span class="cmt"># đọc file .env</span>
-
-<span class="cmt">## Fixture đọc test users từ JSON</span>
-<span class="dec">@pytest.fixture</span>(scope=<span class="str">"session"</span>)
-<span class="kw">def</span> <span class="fn">test_users</span>():
-    <span class="kw">with</span> <span class="fn">open</span>(<span class="str">"test_data/users.json"</span>) <span class="kw">as</span> f:
-        <span class="kw">return</span> json.<span class="fn">load</span>(f)
-
-<span class="cmt">## Fixture cấu hình base URL từ môi trường</span>
-<span class="dec">@pytest.fixture</span>(scope=<span class="str">"session"</span>)
-<span class="kw">def</span> <span class="fn">base_url</span>():
-    <span class="kw">return</span> os.<span class="fn">getenv</span>(<span class="str">"BASE_URL"</span>, <span class="str">"https://www.saucedemo.com"</span>)
-
-<span class="cmt">## Factory function — tạo test data động</span>
-<span class="dec">@pytest.fixture</span>
-<span class="kw">def</span> <span class="fn">make_user</span>():
-    <span class="kw">def</span> <span class="fn">_make</span>(role=<span class="str">"standard"</span>, **overrides):
-        defaults = {
-            <span class="str">"username"</span>: <span class="str">f"test_user_<span class="dec">{role}</span>"</span>,
-            <span class="str">"email"</span>:    <span class="str">f"<span class="dec">{role}</span>@test.com"</span>,
-            <span class="str">"role"</span>:     role
-        }
-        <span class="kw">return</span> {**defaults, **overrides}   <span class="cmt"># overrides thắng defaults</span>
-    <span class="kw">return</span> _make
-
-<span class="cmt">## Dùng trong test</span>
-<span class="kw">def</span> <span class="fn">test_admin_panel</span>(make_user, page, base_url):
-    admin = <span class="fn">make_user</span>(role=<span class="str">"admin"</span>, username=<span class="str">"actual_admin"</span>)
-    page.<span class="fn">goto</span>(base_url)
-    page.<span class="fn">fill</span>(<span class="str">"#username"</span>, admin[<span class="str">"username"</span>])</pre>
-                    </div>
+                    <p><strong>Các module chính của Pygame:</strong></p>
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Module</th><th>Chức năng</th><th>Dùng trong project</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>pygame.display</code></td><td>Quản lý cửa sổ game</td><td>Screen.py</td></tr>
+                            <tr><td><code>pygame.event</code></td><td>Lắng nghe sự kiện bàn phím, chuột</td><td>Control.py</td></tr>
+                            <tr><td><code>pygame.image</code></td><td>Load file ảnh</td><td>Pipe.py, Floor.py, Utilitie.py</td></tr>
+                            <tr><td><code>pygame.transform</code></td><td>Scale, flip, rotate ảnh</td><td>Pipe.py, Utilitie.py</td></tr>
+                            <tr><td><code>pygame.time</code></td><td>Clock, FPS, Timer event</td><td>Control.py, Bird.py</td></tr>
+                            <tr><td><code>pygame.mixer</code></td><td>Âm thanh và nhạc nền</td><td>Bird.py, Achievement.py, Control.py</td></tr>
+                            <tr><td><code>pygame.font</code></td><td>Render text</td><td>Utilitie.py, Achievement.py</td></tr>
+                            <tr><td><code>pygame.draw</code></td><td>Vẽ hình học cơ bản</td><td>Utilitie.py (Input border)</td></tr>
+                        </tbody>
+                    </table>
 
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-lang bash">Bash</span>
-                            <span class="code-filename">.env</span>
                             <button class="code-copy" onclick="copyCode(this)">Copy</button>
                         </div>
-                        <pre><span class="cmt"># Môi trường dev</span>
-BASE_URL=https://staging.myapp.com
-API_URL=https://api-staging.myapp.com
-ADMIN_USER=admin_test
-ADMIN_PASS=secret123</pre>
-                    </div>
+                        <pre><span class="cmt"># Cài đặt pygame</span>
+pip install pygame
 
-                    <div class="tip-box info">
-                        <span class="tip-icon">💡</span>
-                        <div class="tip-content"><strong>scope của fixture:</strong> <code>scope="session"</code> = chạy
-                            1 lần cho cả test run (dùng cho config, DB connection). <code>scope="function"</code>
-                            (default) = chạy lại mỗi test (dùng cho page, fresh data).</div>
+<span class="cmt"># Kiểm tra cài đặt thành công</span>
+python -m pygame --version</pre>
                     </div>
                 </div>
                 <div class="theory-section">
                     <div class="section-label">Bài tập thực hành</div>
                     <div class="exercises">
                         <div class="ex-item">
-                            <input type="checkbox" class="ex-check" id="ex-testdata-1" onchange="onCheck(this)">
-                            <label for="ex-testdata-1" style="display:contents;cursor:pointer">
+                            <input type="checkbox" class="ex-check" id="ex-p3-pygame-1" onchange="onCheck(this)">
+                            <label for="ex-p3-pygame-1" style="display:contents;cursor:pointer">
                                 <div class="ex-text">
-                                    <div class="ex-title">Tách test data ra file JSON</div>
-                                    <div class="ex-desc">Di chuyển toàn bộ credentials khỏi test file sang
-                                        <code>test_data/users.json</code>. Load qua <code>session</code> fixture. Không
-                                        còn hardcode trong test.</div>
+                                    <div class="ex-title">Cài pygame và kiểm tra version</div>
+                                    <div class="ex-desc">Chạy <code>python -m pygame --version</code> và <code>python -c "import pygame; print(pygame.ver)"</code>. Ghi lại version đang dùng.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="note-area" id="note-area-p3-pygame">
+                            <textarea class="note-textarea" id="note-text-p3-pygame" placeholder="Ghi chú..." oninput="handleNoteInput(this)"></textarea>
+                            <div class="note-footer">
+                                <button class="note-clear-btn" onclick="clearNote('p3-pygame')">Xoá ghi chú</button>
+                                <span class="note-saved-msg" id="note-saved-p3-pygame">✓ Đã lưu</span>
+                            </div>
+                        </div>
+                        <button class="note-toggle-btn" id="note-btn-p3-pygame" onclick="toggleNote('p3-pygame')">📝 Ghi chú</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="topic-card">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <div class="topic-icon">🔄</div>
+                <div class="topic-meta">
+                    <div class="topic-name">Cửa sổ game & Game Loop</div>
+                    <div class="topic-desc">pygame.init · display.set_mode · Clock · FPS · event.get · QUIT</div>
+                </div>
+                <div class="topic-toggle">▼</div>
+                <span class="note-dot"></span>
+            </div>
+            <div class="topic-body">
+                <div class="theory-section">
+                    <div class="section-label">Lý thuyết — Khung xương của mọi game Pygame</div>
+                    <p>Mọi game Pygame đều có cùng một cấu trúc: <strong>khởi tạo → tạo cửa sổ → game loop</strong>. Game loop chạy lặp đi lặp lại 60 lần/giây, mỗi vòng làm 3 việc: xử lý sự kiện, cập nhật trạng thái, vẽ lại màn hình.</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang python">Python</span>
+                            <span class="code-filename">Khung xương game loop cơ bản</span>
+                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><span class="imp">import</span> pygame
+<span class="imp">import</span> sys
+
+pygame.<span class="fn">init</span>()                                    <span class="cmt"># Bật tất cả module pygame</span>
+window = pygame.display.<span class="fn">set_mode</span>((<span class="num">500</span>, <span class="num">700</span>))    <span class="cmt"># Tạo cửa sổ 500×700 px</span>
+pygame.display.<span class="fn">set_caption</span>(<span class="str">"Flappy Bird"</span>)       <span class="cmt"># Tiêu đề cửa sổ</span>
+clock = pygame.time.<span class="fn">Clock</span>()                     <span class="cmt"># Đối tượng kiểm soát FPS</span>
+
+<span class="kw">while</span> <span class="kw">True</span>:
+    clock.<span class="fn">tick</span>(<span class="num">60</span>)                               <span class="cmt"># Giới hạn 60 frame/giây</span>
+
+    <span class="cmt"># 1. Xử lý sự kiện</span>
+    <span class="kw">for</span> event <span class="kw">in</span> pygame.event.<span class="fn">get</span>():
+        <span class="kw">if</span> event.type == pygame.QUIT:             <span class="cmt"># Người dùng bấm X cửa sổ</span>
+            pygame.<span class="fn">quit</span>()
+            sys.<span class="fn">exit</span>()
+
+    <span class="cmt"># 2. Cập nhật trạng thái game (physics, logic)</span>
+    window.<span class="fn">fill</span>((<span class="num">135</span>, <span class="num">206</span>, <span class="num">235</span>))               <span class="cmt"># Tô nền màu xanh trời</span>
+
+    <span class="cmt"># 3. Vẽ lại màn hình</span>
+    pygame.display.<span class="fn">update</span>()                     <span class="cmt"># Refresh cửa sổ</span></pre>
+                    </div>
+
+                    <p>Trong project Flappy Bird, phần này được đóng gói thành <strong>Screen class</strong> và <strong>Control class</strong>:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang python">Python</span>
+                            <span class="code-filename">Screen.py</span>
+                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><span class="imp">from</span> pygame <span class="imp">import</span> display
+
+<span class="kw">class</span> <span class="cls">Screen</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="self">self</span>, size):
+        <span class="self">self</span>.width, <span class="self">self</span>.height = size
+        <span class="self">self</span>.size = size
+        <span class="self">self</span>.window = display.<span class="fn">set_mode</span>(<span class="self">self</span>.size)  <span class="cmt"># Tạo cửa sổ</span>
+
+    <span class="kw">def</span> <span class="fn">draw</span>(<span class="self">self</span>, surface, coordinate):
+        <span class="self">self</span>.window.<span class="fn">blit</span>(surface, coordinate)      <span class="cmt"># Vẽ surface lên cửa sổ</span>
+
+    <span class="kw">def</span> <span class="fn">midleXScreen</span>(<span class="self">self</span>, surface):
+        w = surface.<span class="fn">get_width</span>()
+        <span class="kw">return</span> <span class="self">self</span>.width / <span class="num">2</span> - w / <span class="num">2</span>           <span class="cmt"># Căn giữa ngang</span></pre>
+                    </div>
+
+                    <div class="tip-box warning">
+                        <span class="tip-icon">⚠️</span>
+                        <div class="tip-content">
+                            <strong>clock.tick(60)</strong> phải gọi <strong>đầu mỗi vòng loop</strong>, không phải cuối. Nó ngủ đúng số ms cần thiết để đảm bảo 60 FPS — nếu frame tính toán nhanh thì ngủ lâu hơn, nếu chậm thì không ngủ.
+                        </div>
+                    </div>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Hàm</th><th>Tác dụng</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>pygame.init()</code></td><td>Khởi tạo toàn bộ module pygame. Gọi một lần duy nhất đầu chương trình.</td></tr>
+                            <tr><td><code>pygame.display.set_mode((w, h))</code></td><td>Tạo cửa sổ game kích thước w×h pixels. Trả về Surface của cửa sổ.</td></tr>
+                            <tr><td><code>pygame.display.update()</code></td><td>Refresh toàn bộ màn hình. Gọi cuối mỗi vòng loop.</td></tr>
+                            <tr><td><code>pygame.event.get()</code></td><td>Trả về danh sách tất cả sự kiện đang chờ xử lý (bàn phím, chuột, timer…).</td></tr>
+                            <tr><td><code>pygame.time.Clock()</code></td><td>Tạo đối tượng clock để kiểm soát FPS.</td></tr>
+                            <tr><td><code>clock.tick(fps)</code></td><td>Ngủ đủ thời gian để đạt fps chỉ định. Trả về ms đã trôi qua.</td></tr>
+                            <tr><td><code>pygame.quit()</code></td><td>Tắt tất cả module pygame trước khi thoát.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="theory-section">
+                    <div class="section-label">Bài tập thực hành</div>
+                    <div class="exercises">
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p3-loop-1" onchange="onCheck(this)">
+                            <label for="ex-p3-loop-1" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Tạo cửa sổ 500×700 màu xanh trời</div>
+                                    <div class="ex-desc">Viết chương trình tạo cửa sổ pygame 500×700, tô nền RGB(135, 206, 235), title "Flappy Bird". Chạy ổn định 60FPS và thoát được bằng nút X.</div>
                                 </div>
                             </label>
                         </div>
                         <div class="ex-item">
-                            <input type="checkbox" class="ex-check" id="ex-testdata-2" onchange="onCheck(this)">
-                            <label for="ex-testdata-2" style="display:contents;cursor:pointer">
+                            <input type="checkbox" class="ex-check" id="ex-p3-loop-2" onchange="onCheck(this)">
+                            <label for="ex-p3-loop-2" style="display:contents;cursor:pointer">
                                 <div class="ex-text">
-                                    <div class="ex-title">Cấu hình BASE_URL qua .env</div>
-                                    <div class="ex-desc">Cài <code>python-dotenv</code>, tạo file <code>.env</code> với
-                                        <code>BASE_URL</code>. Đọc trong conftest và truyền vào mọi
-                                        <code>page.goto()</code>.</div>
+                                    <div class="ex-title">Tạo Screen class</div>
+                                    <div class="ex-desc">Tách code cửa sổ thành <code>Screen</code> class với <code>__init__(size)</code> và method <code>draw(surface, rect)</code>. <code>main.py</code> chỉ tạo <code>Screen((500, 700))</code> và gọi game loop.</div>
                                 </div>
                             </label>
                         </div>
+                        <div class="note-area" id="note-area-p3-gameloop">
+                            <textarea class="note-textarea" id="note-text-p3-gameloop" placeholder="Ghi chú..." oninput="handleNoteInput(this)"></textarea>
+                            <div class="note-footer">
+                                <button class="note-clear-btn" onclick="clearNote('p3-gameloop')">Xoá ghi chú</button>
+                                <span class="note-saved-msg" id="note-saved-p3-gameloop">✓ Đã lưu</span>
+                            </div>
+                        </div>
+                        <button class="note-toggle-btn" id="note-btn-p3-gameloop" onclick="toggleNote('p3-gameloop')">📝 Ghi chú</button>
                     </div>
                 </div>
-                <div class="note-area" id="note-area-testdata">
-                    <textarea class="note-textarea" id="note-text-testdata" placeholder="Ghi chú của bạn..."
-                        oninput="handleNoteInput(this)"></textarea>
-                    <div class="note-footer">
-                        <button class="note-clear-btn" onclick="clearNote('testdata')">Xoá ghi chú</button>
-                        <span class="note-saved-msg" id="note-saved-testdata">✓ Đã lưu</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════ WEEK 8 ═══════════════════════════════ -->
+    <div class="week-block" id="p3-w8">
+        <div class="week-label">Tuần 8 · Surface, Rect, Hình ảnh & Bird</div>
+
+        <div class="topic-card">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <div class="topic-icon">🖼️</div>
+                <div class="topic-meta">
+                    <div class="topic-name">Surface & Rect — Nền tảng đồ họa Pygame</div>
+                    <div class="topic-desc">Surface · blit · Rect · get_rect · topleft · center · colliderect</div>
+                </div>
+                <div class="topic-toggle">▼</div>
+                <span class="note-dot"></span>
+            </div>
+            <div class="topic-body">
+                <div class="theory-section">
+                    <div class="section-label">Lý thuyết</div>
+                    <p>Hai khái niệm quan trọng nhất trong Pygame: <strong>Surface</strong> (tấm ảnh/canvas) và <strong>Rect</strong> (vị trí + kích thước). Mọi thứ bạn vẽ đều là blit một Surface lên một Rect.</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang python">Python</span>
+                            <span class="code-filename">Surface và Rect</span>
+                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><span class="cmt"># Surface = tấm canvas chứa pixel</span>
+surface = pygame.image.<span class="fn">load</span>(<span class="str">'image/bird/0.jpg'</span>)  <span class="cmt"># load từ file</span>
+
+<span class="cmt"># Rect = hình chữ nhật xác định vị trí</span>
+rect = surface.<span class="fn">get_rect</span>(topleft=(<span class="num">140</span>, <span class="num">200</span>))    <span class="cmt"># góc trên-trái tại (140, 200)</span>
+rect = surface.<span class="fn">get_rect</span>(center=(<span class="num">250</span>, <span class="num">350</span>))     <span class="cmt"># tâm tại (250, 350)</span>
+rect = surface.<span class="fn">get_rect</span>(midleft=(<span class="num">370</span>, <span class="num">180</span>))    <span class="cmt"># cạnh trái-giữa tại (370, 180)</span>
+
+<span class="cmt"># Di chuyển rect (không di chuyển surface)</span>
+rect.x -= <span class="num">2</span>           <span class="cmt"># dịch sang trái 2px</span>
+rect.centery += <span class="num">0.25</span>  <span class="cmt"># dịch xuống 0.25px (gravity!)</span>
+
+<span class="cmt"># Vẽ surface lên cửa sổ tại vị trí rect</span>
+window.<span class="fn">blit</span>(surface, rect)
+
+<span class="cmt"># Kiểm tra va chạm giữa 2 rect</span>
+<span class="kw">if</span> rect_bird.<span class="fn">colliderect</span>(rect_pipe):
+    <span class="fn">print</span>(<span class="str">"Va chạm!"</span>)
+
+<span class="cmt"># Lấy kích thước surface</span>
+width, height = surface.<span class="fn">get_size</span>()
+w = surface.<span class="fn">get_width</span>()
+h = surface.<span class="fn">get_height</span>()</pre>
+                    </div>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Thuộc tính Rect</th><th>Ý nghĩa</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>rect.x, rect.y</code></td><td>Tọa độ góc trên-trái</td></tr>
+                            <tr><td><code>rect.width, rect.height</code></td><td>Kích thước</td></tr>
+                            <tr><td><code>rect.center</code></td><td>Tọa độ tâm (x, y)</td></tr>
+                            <tr><td><code>rect.centerx, rect.centery</code></td><td>Tọa độ tâm theo từng trục</td></tr>
+                            <tr><td><code>rect.top, rect.bottom</code></td><td>Y của cạnh trên/dưới</td></tr>
+                            <tr><td><code>rect.left, rect.right</code></td><td>X của cạnh trái/phải</td></tr>
+                            <tr><td><code>rect.topleft</code></td><td>Tuple (left, top)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="theory-section">
+                    <div class="section-label">Bài tập thực hành</div>
+                    <div class="exercises">
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p3-rect-1" onchange="onCheck(this)">
+                            <label for="ex-p3-rect-1" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Load và hiển thị ảnh background</div>
+                                    <div class="ex-desc">Load <code>image/background.jpg</code>, scale về kích thước cửa sổ (500×700), vẽ lên cửa sổ. Nhớ: vẽ background trước tất cả mọi thứ khác mỗi frame.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="note-area" id="note-area-p3-rect">
+                            <textarea class="note-textarea" id="note-text-p3-rect" placeholder="Ghi chú..." oninput="handleNoteInput(this)"></textarea>
+                            <div class="note-footer">
+                                <button class="note-clear-btn" onclick="clearNote('p3-rect')">Xoá ghi chú</button>
+                                <span class="note-saved-msg" id="note-saved-p3-rect">✓ Đã lưu</span>
+                            </div>
+                        </div>
+                        <button class="note-toggle-btn" id="note-btn-p3-rect" onclick="toggleNote('p3-rect')">📝 Ghi chú</button>
                     </div>
                 </div>
-                <button class="note-toggle-btn" id="note-btn-testdata" onclick="toggleNote('testdata')">📝 Ghi
-                    chú</button>
             </div>
         </div>
 
-        <!-- WEEK 10 -->
-        <div class="week-block" id="p3-w10">
-            <div class="week-label">Tuần 10 · Reporting & Debugging</div>
-
-            <div class="topic-card">
-                <div class="topic-header" onclick="toggleTopic(this)">
-                    <div class="topic-icon">📊</div>
-                    <div class="topic-meta">
-                        <div class="topic-name">Allure Report & Trace Viewer</div>
-                        <div class="topic-desc">allure-pytest · steps · trace viewer · HTML report</div>
-                    </div>
-                    <div class="topic-toggle">▼</div>
-                    <span class="note-dot" id="note-dot-15"></span>
+        <div class="topic-card">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <div class="topic-icon">🔧</div>
+                <div class="topic-meta">
+                    <div class="topic-name">pygame.image & pygame.transform</div>
+                    <div class="topic-desc">image.load · transform.scale · transform.flip · scale by factor</div>
                 </div>
-                <div class="topic-body">
-                    <div class="theory-section">
-                        <div class="section-label">Lý thuyết</div>
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang bash">Bash</span>
-                                <button class="code-copy" onclick="copyCode(this)">Copy</button>
-                            </div>
-                            <pre><span class="cmt"># Cài Allure</span>
-pip install allure-pytest
-
-<span class="cmt"># Chạy test và generate report</span>
-pytest tests/ --alluredir=./allure-results
-allure serve ./allure-results  <span class="cmt"># mở report trên browser</span></pre>
+                <div class="topic-toggle">▼</div>
+                <span class="note-dot"></span>
+            </div>
+            <div class="topic-body">
+                <div class="theory-section">
+                    <div class="section-label">Lý thuyết</div>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang python">Python</span>
+                            <span class="code-filename">Utilitie.py — các helper load ảnh</span>
+                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
                         </div>
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang python">Python</span>
-                                <span class="code-filename">tests/test_login.py (với Allure)</span>
-                                <button class="code-copy" onclick="copyCode(this)">Copy</button>
-                            </div>
-                            <pre><span class="imp">import</span> allure
+                        <pre><span class="imp">from</span> pygame <span class="imp">import</span> image, transform
 
-<span class="dec">@allure.feature</span>(<span class="str">"Authentication"</span>)
-<span class="dec">@allure.story</span>(<span class="str">"Login"</span>)
-<span class="kw">def</span> <span class="fn">test_login_success</span>(page):
-    <span class="kw">with</span> allure.<span class="fn">step</span>(<span class="str">"Mở trang login"</span>):
-        page.<span class="fn">goto</span>(<span class="str">"https://www.saucedemo.com"</span>)
+<span class="kw">class</span> <span class="cls">Utilitie</span>:
 
-    <span class="kw">with</span> allure.<span class="fn">step</span>(<span class="str">"Điền credentials"</span>):
-        page.<span class="fn">fill</span>(<span class="str">"#user-name"</span>, <span class="str">"standard_user"</span>)
-        page.<span class="fn">fill</span>(<span class="str">"#password"</span>, <span class="str">"secret_sauce"</span>)
+    <span class="cmt"># Load ảnh và scale về kích thước cố định</span>
+    <span class="dec">@staticmethod</span>
+    <span class="kw">def</span> <span class="fn">surfaceSize</span>(path, size):
+        surface = transform.<span class="fn">scale</span>(image.<span class="fn">load</span>(path), size)
+        <span class="kw">return</span> surface
 
-    <span class="kw">with</span> allure.<span class="fn">step</span>(<span class="str">"Click Login"</span>):
-        page.<span class="fn">click</span>(<span class="str">"#login-button"</span>)
-        screenshot = page.<span class="fn">screenshot</span>()
-        allure.<span class="fn">attach</span>(screenshot, name=<span class="str">"After login"</span>,
-                      attachment_type=allure.attachment_type.PNG)</pre>
-                        </div>
+    <span class="cmt"># Load ảnh và thu nhỏ theo tỷ lệ (chia scale lần)</span>
+    <span class="dec">@staticmethod</span>
+    <span class="kw">def</span> <span class="fn">surfaceScale</span>(path, scale):
+        surface = image.<span class="fn">load</span>(path)
+        width, height = surface.<span class="fn">get_size</span>()
+        surface = transform.<span class="fn">scale</span>(surface, (width / scale, height / scale))
+        <span class="kw">return</span> surface
 
-                        <p><strong>Playwright Trace Viewer</strong> — công cụ debug mạnh nhất:</p>
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang python">Python</span>
-                                <span class="code-filename">conftest.py</span>
-                                <button class="code-copy" onclick="copyCode(this)">Copy</button>
-                            </div>
-                            <pre><span class="cmt"># Bật trace khi test FAIL (tự động)</span>
-<span class="dec">@pytest.fixture</span>(autouse=<span class="kw">True</span>)
-<span class="kw">def</span> <span class="fn">trace_on_failure</span>(page, request):
-    page.context.tracing.<span class="fn">start</span>(screenshots=<span class="kw">True</span>, snapshots=<span class="kw">True</span>)
-    <span class="kw">yield</span>
-    <span class="kw">if</span> request.node.rep_call.failed:
-        page.context.tracing.<span class="fn">stop</span>(path=<span class="str">f"traces/<span class="dec">{request.node.name}</span>.zip"</span>)
-    <span class="kw">else</span>:
-        page.context.tracing.<span class="fn">stop</span>()</pre>
+<span class="cmt"># Ví dụ trong Pipe.py — load cột và lật ngược để tạo cột trên</span>
+SF_COL_BOTTOM = transform.<span class="fn">scale</span>(image.<span class="fn">load</span>(<span class="str">'image/pipe.jpg'</span>), (<span class="num">60</span>, <span class="num">360</span>))
+SF_COL_TOP    = transform.<span class="fn">flip</span>(SF_COL_BOTTOM, <span class="kw">False</span>, <span class="kw">True</span>)  <span class="cmt"># lật dọc</span></pre>
+                    </div>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Hàm</th><th>Tham số</th><th>Tác dụng</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>image.load(path)</code></td><td>Đường dẫn file</td><td>Load ảnh từ file, trả về Surface</td></tr>
+                            <tr><td><code>transform.scale(surface, (w, h))</code></td><td>Surface, tuple kích thước</td><td>Thay đổi kích thước ảnh về đúng (w, h)</td></tr>
+                            <tr><td><code>transform.flip(surface, xbool, ybool)</code></td><td>Surface, lật ngang?, lật dọc?</td><td>Lật ảnh. <code>flip(s, False, True)</code> = lật ngược dọc</td></tr>
+                        </tbody>
+                    </table>
+
+                    <div class="tip-box warning">
+                        <span class="tip-icon">⚠️</span>
+                        <div class="tip-content">
+                            <code>image.load()</code> và <code>transform.scale()</code> <strong>tốn thời gian</strong> — đừng gọi chúng trong game loop. Load ảnh một lần ở <code>__init__</code> hoặc class variable, rồi dùng lại. Trong Pipe.py, <code>SF_COL_BOTTOM</code> và <code>SF_COL_TOP</code> là class variable — load đúng 1 lần.
                         </div>
                     </div>
-                    <div class="theory-section">
-                        <div class="section-label">Bài tập thực hành</div>
-                        <div class="exercises">
-                            <div class="ex-item">
-                                <input type="checkbox" class="ex-check" id="ex-29" onchange="onCheck(this)">
-                                <label for="ex-29" style="display:contents;cursor:pointer">
-                                    <div class="ex-text">
-                                        <div class="ex-title">Tích hợp Allure vào project</div>
-                                        <div class="ex-desc">Thêm <code>@allure.feature</code>,
-                                            <code>@allure.step</code> vào 3 test. Chạy và xem report. Attach screenshot
-                                            vào step cuối.</div>
-                                    </div>
-                                </label>
-                            </div>
-                            <div class="ex-item">
-                                <input type="checkbox" class="ex-check" id="ex-30" onchange="onCheck(this)">
-                                <label for="ex-30" style="display:contents;cursor:pointer">
-                                    <div class="ex-text">
-                                        <div class="ex-title">Debug với Trace Viewer</div>
-                                        <div class="ex-desc">Cố tình viết test fail. Bật trace, chạy test, mở
-                                            <code>playwright show-trace</code> và phân tích từng step đến khi fail.
-                                        </div>
-                                    </div>
-                                </label>
-                            </div>
-
-                            <div class="note-area" id="note-area-topic-11">
-                                <textarea class="note-textarea" id="note-text-topic-11"
-                                    placeholder="Ghi chú của bạn về topic này... (tự động lưu)"></textarea>
-                                <div class="note-footer">
-                                    <button class="note-clear-btn" onclick="clearNote('topic-11')">Xoá ghi chú</button>
-                                    <span class="note-saved-msg" id="note-saved-topic-11">✓ Đã lưu</span>
+                </div>
+                <div class="theory-section">
+                    <div class="section-label">Bài tập thực hành</div>
+                    <div class="exercises">
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p3-img-1" onchange="onCheck(this)">
+                            <label for="ex-p3-img-1" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Tạo Utilitie class với 2 method</div>
+                                    <div class="ex-desc">Viết <code>Utilitie.surfaceSize(path, size)</code> và <code>Utilitie.surfaceScale(path, scale)</code>. Test bằng cách load ảnh bird và background, hiển thị cả hai lên cửa sổ.</div>
                                 </div>
-                            </div>
-                            <button class="note-toggle-btn" id="note-btn-topic-11" onclick="toggleNote('topic-11')">📝
-                                Ghi chú</button>
+                            </label>
                         </div>
+                        <div class="note-area" id="note-area-p3-image">
+                            <textarea class="note-textarea" id="note-text-p3-image" placeholder="Ghi chú..." oninput="handleNoteInput(this)"></textarea>
+                            <div class="note-footer">
+                                <button class="note-clear-btn" onclick="clearNote('p3-image')">Xoá ghi chú</button>
+                                <span class="note-saved-msg" id="note-saved-p3-image">✓ Đã lưu</span>
+                            </div>
+                        </div>
+                        <button class="note-toggle-btn" id="note-btn-p3-image" onclick="toggleNote('p3-image')">📝 Ghi chú</button>
                     </div>
                 </div>
             </div>
+        </div>
 
-
-            <div class="topic-card">
-                <div class="topic-header" onclick="toggleTopic(this)">
-                    <div class="topic-icon">🐛</div>
-                    <div class="topic-meta">
-                        <div class="topic-name">Debugging & Flaky Test Strategies</div>
-                        <div class="topic-desc">Trace viewer · headed mode · retries · isolating failures</div>
-                    </div>
-                    <div class="topic-toggle">▼</div>
-                    <span class="note-dot" id="note-dot-flaky"></span>
+        <div class="topic-card">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <div class="topic-icon">🐦</div>
+                <div class="topic-meta">
+                    <div class="topic-name">Bird — Trọng lực, Nhảy & Animation</div>
+                    <div class="topic-desc">GRAVITY · movement · handleJump · USEREVENT · set_timer · frame list</div>
                 </div>
-                <div class="topic-body">
-                    <div class="theory-section">
-                        <div class="section-label">Lý thuyết — Flaky test là gì?</div>
-                        <p><strong>Flaky test</strong> = test lúc pass lúc fail không có lý do rõ ràng. Đây là vấn đề
-                            phổ biến nhất trong automation. Nguyên nhân chính: timing issue, data không sạch, phụ thuộc
-                            giữa tests, animation chưa xong.</p>
+                <div class="topic-toggle">▼</div>
+                <span class="note-dot"></span>
+            </div>
+            <div class="topic-body">
+                <div class="theory-section">
+                    <div class="section-label">Lý thuyết — Vật lý đơn giản</div>
+                    <p>Bird dùng mô hình vật lý đơn giản: mỗi frame, <strong>movement</strong> tăng thêm GRAVITY (rơi xuống), tọa độ Y tăng theo movement. Khi nhảy, movement bị reset về -SPEED (bắn lên).</p>
 
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang bash">Bash</span>
-                                <span class="code-filename">Debug commands</span>
-                                <button class="code-copy" onclick="copyCode(this)">Copy</button>
-                            </div>
-                            <pre><span class="cmt"># Chạy headed để xem browser</span>
-pytest tests/ --headed
-
-<span class="cmt"># Chạy chậm lại 1000ms mỗi action</span>
-pytest tests/ --headed --slowmo 1000
-
-<span class="cmt"># Bật trace để debug sau khi fail</span>
-pytest tests/ --tracing=on
-
-<span class="cmt"># Xem trace file</span>
-playwright show-trace traces/test_login.zip
-
-<span class="cmt"># Retry tự động khi fail</span>
-pytest tests/ --retries=2</pre>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang python">Python</span>
+                            <span class="code-filename">Bird.py — Trọng lực và nhảy</span>
+                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
                         </div>
+                        <pre><span class="kw">class</span> <span class="cls">Bird</span>:
+    GRAVITY = <span class="num">0.25</span>   <span class="cmt"># gia tốc rơi mỗi frame</span>
+    SPEED   = <span class="num">5</span>      <span class="cmt"># tốc độ nhảy lên</span>
+    X       = <span class="num">140</span>    <span class="cmt"># tọa độ X cố định (bird không di chuyển ngang)</span>
 
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang python">Python</span>
-                                <span class="code-filename">pytest.ini</span>
-                                <button class="code-copy" onclick="copyCode(this)">Copy</button>
-                            </div>
-                            <pre>[pytest]
-<span class="cmt"># Tự động retry 2 lần trước khi mark FAIL</span>
-addopts = --retries=2 --retry-delay=1
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="self">self</span>, screen):
+        <span class="self">self</span>.movement = <span class="num">0</span>          <span class="cmt"># vận tốc dọc hiện tại</span>
+        <span class="self">self</span>.rect = surface.<span class="fn">get_rect</span>(center=(<span class="cls">Bird</span>.X, <span class="num">200</span>))
 
-<span class="cmt"># Cần cài: pip install pytest-retry</span></pre>
-                        </div>
+    <span class="kw">def</span> <span class="fn">handleJump</span>(<span class="self">self</span>):
+        <span class="self">self</span>.movement = -<span class="cls">Bird</span>.SPEED  <span class="cmt"># đặt vận tốc âm = bay lên</span>
 
-                        <div class="code-block">
-                            <div class="code-header">
-                                <span class="code-lang python">Python</span>
-                                <span class="code-filename">conftest.py — auto trace on fail</span>
-                                <button class="code-copy" onclick="copyCode(this)">Copy</button>
-                            </div>
-                            <pre><span class="dec">@pytest.fixture</span>(autouse=<span class="kw">True</span>)
-<span class="kw">def</span> <span class="fn">trace_on_failure</span>(page, request):
-    page.context.tracing.<span class="fn">start</span>(screenshots=<span class="kw">True</span>, snapshots=<span class="kw">True</span>)
-    <span class="kw">yield</span>
-    <span class="cmt"># Chỉ lưu trace khi test FAIL</span>
-    <span class="kw">if</span> <span class="fn">hasattr</span>(request.node, <span class="str">"rep_call"</span>) <span class="kw">and</span> request.node.rep_call.failed:
-        path = <span class="str">f"traces/<span class="dec">{request.node.name}</span>.zip"</span>
-        page.context.tracing.<span class="fn">stop</span>(path=path)
-        <span class="fn">print</span>(<span class="str">f"\nTrace saved: <span class="dec">{path}</span>"</span>)
-    <span class="kw">else</span>:
-        page.context.tracing.<span class="fn">stop</span>()</pre>
-                        </div>
-
-                        <table class="data-table">
-                            <thead>
-                                <tr>
-                                    <th>Triệu chứng</th>
-                                    <th>Nguyên nhân thường gặp</th>
-                                    <th>Cách fix</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Element not found</td>
-                                    <td>Page chưa load xong</td>
-                                    <td>Dùng <code>wait_for</code> / <code>expect().to_be_visible()</code></td>
-                                </tr>
-                                <tr>
-                                    <td>Click không hoạt động</td>
-                                    <td>Element bị che/đang animate</td>
-                                    <td>Chờ animation xong, scroll into view</td>
-                                </tr>
-                                <tr>
-                                    <td>Data sai</td>
-                                    <td>Test trước để lại dữ liệu</td>
-                                    <td>Cleanup trong fixture teardown</td>
-                                </tr>
-                                <tr>
-                                    <td>Timeout</td>
-                                    <td>Network chậm ở CI</td>
-                                    <td>Tăng global timeout trong playwright.config</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <div class="tip-box danger">
-                            <span class="tip-icon">❌</span>
-                            <div class="tip-content"><strong>Đừng chỉ tăng retry để che flaky test.</strong> Retry là
-                                lưới an toàn tạm thời — hãy tìm root cause thật sự. Trace viewer thường chỉ ra vấn đề
-                                trong 5 phút.</div>
-                        </div>
+    <span class="kw">def</span> <span class="fn">updateHandleGame</span>(<span class="self">self</span>):
+        <span class="self">self</span>.movement += <span class="cls">Bird</span>.GRAVITY  <span class="cmt"># trọng lực kéo xuống mỗi frame</span>
+        <span class="self">self</span>.rect.centery += <span class="self">self</span>.movement
+        <span class="self">self</span>.screen.<span class="fn">draw</span>(<span class="self">self</span>.surface, <span class="self">self</span>.rect)</pre>
                     </div>
-                    <div class="theory-section">
-                        <div class="section-label">Bài tập thực hành</div>
-                        <div class="exercises">
-                            <div class="ex-item">
-                                <input type="checkbox" class="ex-check" id="ex-flaky-1" onchange="onCheck(this)">
-                                <label for="ex-flaky-1" style="display:contents;cursor:pointer">
-                                    <div class="ex-text">
-                                        <div class="ex-title">Bật trace on failure</div>
-                                        <div class="ex-desc">Thêm fixture <code>trace_on_failure</code> vào conftest. Cố
-                                            tình viết test fail. Chạy <code>playwright show-trace</code> và phân tích
-                                            từng step.</div>
-                                    </div>
-                                </label>
-                            </div>
-                            <div class="ex-item">
-                                <input type="checkbox" class="ex-check" id="ex-flaky-2" onchange="onCheck(this)">
-                                <label for="ex-flaky-2" style="display:contents;cursor:pointer">
-                                    <div class="ex-text">
-                                        <div class="ex-title">Tái hiện và fix một flaky test</div>
-                                        <div class="ex-desc">Dùng <code>--slowmo 500</code> để tìm timing issue. Thay
-                                            <code>time.sleep()</code> bằng proper wait. Chạy test 10 lần liên tiếp để
-                                            xác nhận ổn định.</div>
-                                    </div>
-                                </label>
+
+                    <p><strong>Animation</strong> — Bird có 17 frame ảnh, chuyển đổi mỗi 16ms bằng USEREVENT:</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang python">Python</span>
+                            <span class="code-filename">Bird.py — Animation với USEREVENT</span>
+                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><span class="imp">from</span> pygame <span class="imp">import</span> USEREVENT, time
+
+<span class="kw">class</span> <span class="cls">Bird</span>:
+    eventBirdFly = USEREVENT + <span class="num">5</span>              <span class="cmt"># tạo event ID riêng</span>
+    time.<span class="fn">set_timer</span>(eventBirdFly, <span class="num">16</span>)          <span class="cmt"># gửi event này mỗi 16ms</span>
+
+    <span class="kw">def</span> <span class="fn">addListSurface</span>(<span class="self">self</span>):
+        <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">17</span>):                     <span class="cmt"># 17 frame ảnh</span>
+            temp = Utilitie.<span class="fn">surfaceScale</span>(<span class="str">f'image/bird/{i}.jpg'</span>, <span class="num">17</span>)
+            <span class="self">self</span>.list_surface.<span class="fn">append</span>(temp)
+
+    <span class="kw">def</span> <span class="fn">eventFly</span>(<span class="self">self</span>, event):
+        <span class="kw">if</span> event.type == <span class="cls">Bird</span>.eventBirdFly:
+            <span class="self">self</span>.index_surface = (<span class="self">self</span>.index_surface + <span class="num">1</span>) % <span class="num">17</span>  <span class="cmt"># vòng qua 17 frame</span>
+            <span class="self">self</span>.surface = <span class="self">self</span>.list_surface[<span class="self">self</span>.index_surface]</pre>
+                    </div>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Hàm / Hằng số</th><th>Tác dụng</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>pygame.USEREVENT</code></td><td>Giá trị int cơ sở để tạo custom event. Dùng <code>USEREVENT + N</code> để tạo nhiều event khác nhau.</td></tr>
+                            <tr><td><code>pygame.time.set_timer(event_id, ms)</code></td><td>Gửi event có id <code>event_id</code> vào queue mỗi <code>ms</code> millisecond.</td></tr>
+                            <tr><td><code>pygame.KEYDOWN</code></td><td>Event type: phím được nhấn xuống.</td></tr>
+                            <tr><td><code>pygame.K_SPACE</code></td><td>Mã phím Space. Dùng: <code>event.key == K_SPACE</code>.</td></tr>
+                            <tr><td><code>pygame.MOUSEBUTTONDOWN</code></td><td>Event type: chuột được click. <code>event.button == 1</code> là chuột trái.</td></tr>
+                            <tr><td><code>pygame.mouse.get_pos()</code></td><td>Trả về (x, y) vị trí chuột hiện tại.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="theory-section">
+                    <div class="section-label">Bài tập thực hành</div>
+                    <div class="exercises">
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p3-bird-1" onchange="onCheck(this)">
+                            <label for="ex-p3-bird-1" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Bird rơi bởi trọng lực</div>
+                                    <div class="ex-desc">Tạo <code>Bird</code> class. Khởi tạo <code>movement = 0</code>. Mỗi frame: <code>movement += 0.25</code>, <code>rect.centery += movement</code>. Bird phải rơi dần từ trên xuống.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p3-bird-2" onchange="onCheck(this)">
+                            <label for="ex-p3-bird-2" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Bird nhảy khi click chuột hoặc Space</div>
+                                    <div class="ex-desc">Trong event loop, khi <code>MOUSEBUTTONDOWN</code> hoặc <code>KEYDOWN + K_SPACE</code>: gọi <code>bird.handleJump()</code> đặt <code>movement = -5</code>. Bird phải bật lên rồi rơi lại.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p3-bird-3" onchange="onCheck(this)">
+                            <label for="ex-p3-bird-3" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Animation 17 frame</div>
+                                    <div class="ex-desc">Load 17 ảnh bird vào <code>list_surface</code>. Dùng <code>USEREVENT + 5</code> và <code>set_timer(event, 16)</code>. Mỗi khi nhận event, chuyển sang frame tiếp theo (vòng tròn).</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="note-area" id="note-area-p3-bird">
+                            <textarea class="note-textarea" id="note-text-p3-bird" placeholder="Ghi chú..." oninput="handleNoteInput(this)"></textarea>
+                            <div class="note-footer">
+                                <button class="note-clear-btn" onclick="clearNote('p3-bird')">Xoá ghi chú</button>
+                                <span class="note-saved-msg" id="note-saved-p3-bird">✓ Đã lưu</span>
                             </div>
                         </div>
+                        <button class="note-toggle-btn" id="note-btn-p3-bird" onclick="toggleNote('p3-bird')">📝 Ghi chú</button>
                     </div>
-                    <div class="note-area" id="note-area-flaky">
-                        <textarea class="note-textarea" id="note-text-flaky" placeholder="Ghi chú của bạn..."
-                            oninput="handleNoteInput(this)"></textarea>
-                        <div class="note-footer">
-                            <button class="note-clear-btn" onclick="clearNote('flaky')">Xoá ghi chú</button>
-                            <span class="note-saved-msg" id="note-saved-flaky">✓ Đã lưu</span>
-                        </div>
-                    </div>
-                    <button class="note-toggle-btn" id="note-btn-flaky" onclick="toggleNote('flaky')">📝 Ghi
-                        chú</button>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <!-- WEEK 11 -->
-            <div class="week-block" id="p3-w11">
-                <div class="week-label">Tuần 11 · API Testing & CI/CD</div>
+    <!-- ═══════════════════════════════ WEEK 9 ═══════════════════════════════ -->
+    <div class="week-block" id="p3-w9">
+        <div class="week-label">Tuần 9 · Floor, Pipe, Va chạm & Âm thanh</div>
 
-                <div class="topic-card">
-                    <div class="topic-header" onclick="toggleTopic(this)">
-                        <div class="topic-icon">🔌</div>
-                        <div class="topic-meta">
-                            <div class="topic-name">API Testing với Playwright</div>
-                            <div class="topic-desc">APIRequestContext · GET/POST/DELETE · headers · kết hợp UI+API</div>
+        <div class="topic-card">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <div class="topic-icon">🏃</div>
+                <div class="topic-meta">
+                    <div class="topic-name">Floor — Sàn cuộn vô hạn</div>
+                    <div class="topic-desc">Tiling 3 bản · cuộn theo SPEED · reset khi ra ngoài màn hình</div>
+                </div>
+                <div class="topic-toggle">▼</div>
+                <span class="note-dot"></span>
+            </div>
+            <div class="topic-body">
+                <div class="theory-section">
+                    <div class="section-label">Lý thuyết</div>
+                    <p>Sàn cuộn vô hạn bằng kỹ thuật <strong>tiling</strong>: vẽ 3 bản sàn nối tiếp nhau, dịch sang trái mỗi frame. Khi bản đầu ra ngoài màn hình thì reset x về 0 — tạo hiệu ứng vô hạn.</p>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang python">Python</span>
+                            <span class="code-filename">Floor.py</span>
+                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
                         </div>
-                        <div class="topic-toggle">▼</div>
-                        <span class="note-dot" id="note-dot-16"></span>
-                    </div>
-                    <div class="topic-body">
-                        <div class="theory-section">
-                            <div class="section-label">Lý thuyết</div>
-                            <p>Thay vì luôn login qua UI (chậm), bạn có thể <strong>setup trạng thái qua API</strong>
-                                rồi mới chạy test UI. Điều này giúp test nhanh hơn nhiều và tách biệt concern.</p>
-                            <div class="code-block">
-                                <div class="code-header">
-                                    <span class="code-lang python">Python</span>
-                                    <span class="code-filename">tests/test_api.py</span>
-                                    <button class="code-copy" onclick="copyCode(this)">Copy</button>
-                                </div>
-                                <pre><span class="imp">import</span> pytest
-<span class="imp">from</span> playwright.sync_api <span class="imp">import</span> Playwright
+                        <pre><span class="kw">class</span> <span class="cls">Floor</span>:
+    surface = image.<span class="fn">load</span>(<span class="str">'image/floor.jpg'</span>)
+    width, height = <span class="cls">Surface</span>.<span class="fn">get_size</span>(surface)
+    SPEED = <span class="num">2</span>
 
-<span class="dec">@pytest.fixture</span>
-<span class="kw">def</span> <span class="fn">api_context</span>(playwright: <span class="cls">Playwright</span>):
-    context = playwright.request.<span class="fn">new_context</span>(
-        base_url=<span class="str">"https://reqres.in"</span>,
-        extra_http_headers={<span class="str">"Accept"</span>: <span class="str">"application/json"</span>}
-    )
-    <span class="kw">yield</span> context
-    context.<span class="fn">dispose</span>()
+    <span class="kw">def</span> <span class="fn">updateHandleGame</span>(<span class="self">self</span>, isPlay):
+        <span class="cmt"># Vẽ 3 bản sàn nối tiếp</span>
+        rect01 = <span class="self">self</span>.surface.<span class="fn">get_rect</span>(bottomleft=(<span class="self">self</span>.x,              <span class="self">self</span>.screen.height))
+        rect02 = <span class="self">self</span>.surface.<span class="fn">get_rect</span>(bottomleft=(<span class="self">self</span>.x + <span class="self">self</span>.width,   <span class="self">self</span>.screen.height))
+        rect03 = <span class="self">self</span>.surface.<span class="fn">get_rect</span>(bottomleft=(<span class="self">self</span>.x + <span class="self">self</span>.width*<span class="num">2</span>, <span class="self">self</span>.screen.height))
+        <span class="self">self</span>.screen.<span class="fn">draw</span>(<span class="self">self</span>.surface, rect01)
+        <span class="self">self</span>.screen.<span class="fn">draw</span>(<span class="self">self</span>.surface, rect02)
+        <span class="self">self</span>.screen.<span class="fn">draw</span>(<span class="self">self</span>.surface, rect03)
 
-
-<span class="kw">def</span> <span class="fn">test_get_users</span>(api_context):
-    response = api_context.<span class="fn">get</span>(<span class="str">"/api/users"</span>, params={<span class="str">"page"</span>: <span class="num">1</span>})
-    <span class="fn">assert</span> response.status == <span class="num">200</span>
-    body = response.<span class="fn">json</span>()
-    <span class="fn">assert</span> <span class="str">"data"</span> <span class="kw">in</span> body
-    <span class="fn">assert</span> <span class="fn">len</span>(body[<span class="str">"data"</span>]) > <span class="num">0</span>
-
-
-<span class="kw">def</span> <span class="fn">test_create_user</span>(api_context):
-    response = api_context.<span class="fn">post</span>(<span class="str">"/api/users"</span>, data={
-        <span class="str">"name"</span>: <span class="str">"QC Tester"</span>,
-        <span class="str">"job"</span>: <span class="str">"Automation Engineer"</span>
-    })
-    <span class="fn">assert</span> response.status == <span class="num">201</span>
-    user = response.<span class="fn">json</span>()
-    <span class="fn">assert</span> user[<span class="str">"name"</span>] == <span class="str">"QC Tester"</span>
-    <span class="fn">print</span>(<span class="str">f"Created user id: <span class="dec">{user['id']}</span>"</span>)
-
-
-<span class="cmt"># Kết hợp: tạo user qua API, verify qua UI</span>
-<span class="kw">def</span> <span class="fn">test_api_then_ui</span>(api_context, page):
-    <span class="cmt"># 1. Setup: tạo user qua API (nhanh)</span>
-    res = api_context.<span class="fn">post</span>(<span class="str">"/api/users"</span>, data={<span class="str">"name"</span>: <span class="str">"Test User"</span>})
-    user_id = res.<span class="fn">json</span>()[<span class="str">"id"</span>]
-
-    <span class="cmt"># 2. Verify qua UI</span>
-    page.<span class="fn">goto</span>(<span class="str">f"/users/<span class="dec">{user_id}</span>"</span>)
-    <span class="cmt"># assert user hiển thị đúng...</span></pre>
-                            </div>
-                        </div>
-                        <div class="theory-section">
-                            <div class="section-label">Bài tập thực hành</div>
-                            <div class="exercises">
-                                <div class="ex-item">
-                                    <input type="checkbox" class="ex-check" id="ex-31" onchange="onCheck(this)">
-                                    <label for="ex-31" style="display:contents;cursor:pointer">
-                                        <div class="ex-text">
-                                            <div class="ex-title">Test API CRUD với reqres.in</div>
-                                            <div class="ex-desc">Viết 4 test: GET users, GET single user (404 nếu không
-                                                tồn tại), POST tạo user, DELETE user. Assert status code và body.</div>
-                                        </div>
-                                    </label>
-                                </div>
-                                <div class="ex-item">
-                                    <input type="checkbox" class="ex-check" id="ex-32" onchange="onCheck(this)">
-                                    <label for="ex-32" style="display:contents;cursor:pointer">
-                                        <div class="ex-text">
-                                            <div class="ex-title">API setup + UI verify</div>
-                                            <div class="ex-desc">Dùng API để setup trạng thái (thêm item vào cart qua
-                                                API), sau đó mở UI và verify item xuất hiện đúng.</div>
-                                        </div>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="topic-card">
-                        <div class="topic-header" onclick="toggleTopic(this)">
-                            <div class="topic-icon">⚡</div>
-                            <div class="topic-meta">
-                                <div class="topic-name">GitHub Actions CI/CD</div>
-                                <div class="topic-desc">workflow .yml · install dependencies · upload artifacts</div>
-                            </div>
-                            <div class="topic-toggle">▼</div>
-                            <span class="note-dot" id="note-dot-17"></span>
-                        </div>
-                        <div class="topic-body">
-                            <div class="theory-section">
-                                <div class="section-label">Lý thuyết</div>
-                                <div class="code-block">
-                                    <div class="code-header">
-                                        <span class="code-lang text">YAML</span>
-                                        <span class="code-filename">.github/workflows/playwright.yml</span>
-                                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
-                                    </div>
-                                    <pre>name: Playwright Tests
-
-on:
-  push:
-    branches: [ main, develop ]
-  pull_request:
-    branches: [ main ]
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-          playwright install --with-deps chromium
-
-      - name: Run Playwright tests
-        run: pytest tests/ -v --alluredir=allure-results
-
-      - name: Upload Allure results
-        if: always()   <span class="cmt"># upload kể cả khi test fail</span>
-        uses: actions/upload-artifact@v3
-        with:
-          name: allure-results
-          path: allure-results/
-
-      - name: Upload screenshots on failure
-        if: failure()
-        uses: actions/upload-artifact@v3
-        with:
-          name: screenshots
-          path: screenshots/</pre>
-                                </div>
-                            </div>
-                            <div class="theory-section">
-                                <div class="section-label">Bài tập thực hành</div>
-                                <div class="exercises">
-                                    <div class="ex-item">
-                                        <input type="checkbox" class="ex-check" id="ex-33" onchange="onCheck(this)">
-                                        <label for="ex-33" style="display:contents;cursor:pointer">
-                                            <div class="ex-text">
-                                                <div class="ex-title">Push project lên GitHub, bật Actions</div>
-                                                <div class="ex-desc">Tạo file workflow, push code, xem Actions chạy.
-                                                    Kiểm tra kết quả trên tab Actions của repo.</div>
-                                            </div>
-                                        </label>
-                                    </div>
-                                    <div class="ex-item">
-                                        <input type="checkbox" class="ex-check" id="ex-34" onchange="onCheck(this)">
-                                        <label for="ex-34" style="display:contents;cursor:pointer">
-                                            <div class="ex-text">
-                                                <div class="ex-title">Upload report artifact</div>
-                                                <div class="ex-desc">Cấu hình upload Allure results sau khi chạy.
-                                                    Download artifact, mở report local bằng <code>allure open</code>.
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </div>
-
-                                    <div class="note-area" id="note-area-topic-12">
-                                        <textarea class="note-textarea" id="note-text-topic-12"
-                                            placeholder="Ghi chú của bạn về topic này... (tự động lưu)"></textarea>
-                                        <div class="note-footer">
-                                            <button class="note-clear-btn" onclick="clearNote('topic-12')">Xoá ghi
-                                                chú</button>
-                                            <span class="note-saved-msg" id="note-saved-topic-12">✓ Đã lưu</span>
-                                        </div>
-                                    </div>
-                                    <button class="note-toggle-btn" id="note-btn-topic-12"
-                                        onclick="toggleNote('topic-12')">📝 Ghi chú</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="topic-card">
-                        <div class="topic-header" onclick="toggleTopic(this)">
-                            <div class="topic-icon">🔐</div>
-                            <div class="topic-meta">
-                                <div class="topic-name">Authentication State Reuse</div>
-                                <div class="topic-desc">storage_state · login một lần · tái sử dụng session an toàn</div>
-                            </div>
-                            <div class="topic-toggle">▼</div>
-                            <span class="note-dot" id="note-dot-auth-state"></span>
-                        </div>
-                        <div class="topic-body">
-                            <div class="theory-section">
-                                <div class="section-label">Kiến thức quan trọng</div>
-                                <p>Trong dự án thật, việc login qua UI ở mọi test rất chậm và dễ tạo flaky. Kỹ thuật nên học sớm là <strong>login một lần, lưu auth state, rồi dùng lại cho các test đã xác thực</strong>.</p>
-                                <div class="code-block">
-                                    <div class="code-header">
-                                        <span class="code-lang python">Python</span>
-                                        <span class="code-filename">conftest.py</span>
-                                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
-                                    </div>
-                                    <pre><span class="imp">import</span> pytest
-<span class="imp">from</span> pathlib <span class="imp">import</span> Path
-
-AUTH_STATE = <span class="cls">Path</span>(<span class="str">".auth/user.json"</span>)
-
-<span class="dec">@pytest.fixture(scope="session")</span>
-<span class="kw">def</span> <span class="fn">auth_state</span>(browser):
-    AUTH_STATE.parent.<span class="fn">mkdir</span>(exist_ok=<span class="kw">True</span>)
-    context = browser.<span class="fn">new_context</span>()
-    page = context.<span class="fn">new_page</span>()
-
-    page.<span class="fn">goto</span>(<span class="str">"https://www.saucedemo.com"</span>)
-    page.locator(<span class="str">"#user-name"</span>).<span class="fn">fill</span>(<span class="str">"standard_user"</span>)
-    page.locator(<span class="str">"#password"</span>).<span class="fn">fill</span>(<span class="str">"secret_sauce"</span>)
-    page.locator(<span class="str">"#login-button"</span>).<span class="fn">click</span>()
-
-    context.<span class="fn">storage_state</span>(path=<span class="fn">str</span>(AUTH_STATE))
-    context.<span class="fn">close</span>()
-    <span class="kw">return</span> AUTH_STATE
-
-<span class="dec">@pytest.fixture</span>
-<span class="kw">def</span> <span class="fn">authenticated_page</span>(browser, auth_state):
-    context = browser.<span class="fn">new_context</span>(storage_state=<span class="fn">str</span>(auth_state))
-    page = context.<span class="fn">new_page</span>()
-    <span class="kw">yield</span> page
-    context.<span class="fn">close</span>()</pre>
-                                </div>
-                                <div class="tip-box info">
-                                    <span class="tip-icon">💡</span>
-                                    <div class="tip-content"><strong>Khi nào nên dùng:</strong> các flow sau đăng nhập như cart, checkout, account settings, admin dashboard. Test login riêng vẫn nên giữ để verify auth flow thật.</div>
-                                </div>
-                                <div class="tip-box warning">
-                                    <span class="tip-icon">⚠️</span>
-                                    <div class="tip-content"><strong>Lưu ý:</strong> mỗi role nên có state riêng, state cũ có thể hết hạn, và test nào thay đổi permission/session mạnh thì không nên dùng chung state mù quáng.</div>
-                                </div>
-                            </div>
-                            <div class="theory-section">
-                                <div class="section-label">Bài tập thực hành</div>
-                                <div class="exercises">
-                                    <div class="ex-item">
-                                        <input type="checkbox" class="ex-check" id="ex-auth-state-1"
-                                            onchange="onCheck(this)">
-                                        <label for="ex-auth-state-1" style="display:contents;cursor:pointer">
-                                            <div class="ex-text">
-                                                <div class="ex-title">Tạo file auth state từ login UI</div>
-                                                <div class="ex-desc">Viết fixture session login một lần và lưu
-                                                    <code>.auth/user.json</code>. Dùng lại file này cho 2 test đã xác
-                                                    thực.</div>
-                                            </div>
-                                        </label>
-                                    </div>
-                                    <div class="ex-item">
-                                        <input type="checkbox" class="ex-check" id="ex-auth-state-2"
-                                            onchange="onCheck(this)">
-                                        <label for="ex-auth-state-2" style="display:contents;cursor:pointer">
-                                            <div class="ex-text">
-                                                <div class="ex-title">Tách role state riêng</div>
-                                                <div class="ex-desc">Tạo ít nhất 2 state file: một cho standard user,
-                                                    một cho admin hoặc manager. So sánh test nào nên dùng state nào.</div>
-                                            </div>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- WEEK 12 -->
-                    <div class="week-block" id="p3-w12">
-                        <div class="week-label">Tuần 12 · Best Practices & Code Quality</div>
-
-                        <div class="topic-card">
-                            <div class="topic-header" onclick="toggleTopic(this)">
-                                <div class="topic-icon">🏆</div>
-                                <div class="topic-meta">
-                                    <div class="topic-name">Best Practices — Viết test như senior</div>
-                                    <div class="topic-desc">Test isolation · naming · no sleep · project structure chuẩn
-                                    </div>
-                                </div>
-                                <div class="topic-toggle">▼</div>
-                                <span class="note-dot" id="note-dot-18"></span>
-                            </div>
-                            <div class="topic-body">
-                                <div class="theory-section">
-                                    <div class="section-label">Những điều KHÔNG BAO GIỜ làm</div>
-                                    <div class="tip-box danger">
-                                        <span class="tip-icon">❌</span>
-                                        <div class="tip-content">
-                                            <strong>Danh sách đen:</strong><br>
-                                            • <code>time.sleep()</code> — dùng <code>expect().to_be_visible()</code>
-                                            thay thế<br>
-                                            • Locator fragile như <code>//div[3]/span[1]</code><br>
-                                            • Test phụ thuộc nhau (test B phải chạy sau test A)<br>
-                                            • Credentials hardcode trong test file — dùng <code>.env</code><br>
-                                            • Bắt <code>except Exception: pass</code> — che giấu lỗi thật
-                                        </div>
-                                    </div>
-
-                                    <div class="tip-box success">
-                                        <span class="tip-icon">✅</span>
-                                        <div class="tip-content">
-                                            <strong>Checklist test chất lượng:</strong><br>
-                                            • Mỗi test độc lập, chạy được riêng lẻ<br>
-                                            • Tên test rõ ràng:
-                                            <code>test_login_with_invalid_password_shows_error</code><br>
-                                            • Dùng <code>@pytest.fixture</code> cho setup/teardown<br>
-                                            • Một test chỉ kiểm tra một điều (Single responsibility)<br>
-                                            • Comment giải thích <em>tại sao</em> chứ không phải <em>làm gì</em>
-                                        </div>
-                                    </div>
-
-                                    <div class="code-block">
-                                        <div class="code-header">
-                                            <span class="code-lang python">Python</span>
-                                            <span class="code-filename">pytest.ini</span>
-                                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
-                                        </div>
-                                        <pre>[pytest]
-testpaths = tests
-addopts = -v --tb=short
-markers =
-    smoke: Các test quan trọng nhất, chạy nhanh
-    regression: Full regression suite
-    api: Test API thuần
-    ui: Test UI thuần</pre>
-                                    </div>
-
-                                    <div class="note-area" id="note-area-topic-13">
-                                        <textarea class="note-textarea" id="note-text-topic-13"
-                                            placeholder="Ghi chú của bạn về topic này... (tự động lưu)"></textarea>
-                                        <div class="note-footer">
-                                            <button class="note-clear-btn" onclick="clearNote('topic-13')">Xoá ghi
-                                                chú</button>
-                                            <span class="note-saved-msg" id="note-saved-topic-13">✓ Đã lưu</span>
-                                        </div>
-                                    </div>
-                                    <button class="note-toggle-btn" id="note-btn-topic-13"
-                                        onclick="toggleNote('topic-13')">📝 Ghi chú</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- MILESTONE 3 - CAPSTONE -->
-                    <div class="milestone-card p3" id="p3-milestone">
-                        <div class="milestone-label">Bài Tập Lớn · Phase 3 — Capstone Project</div>
-                        <div class="milestone-title">🎓 Full Automation Framework — Portfolio Project</div>
-                        <div class="milestone-desc">Xây dựng framework hoàn chỉnh cho 1 ứng dụng web thực tế (hoặc
-                            staging env công ty). Đây là portfolio để apply vị trí <strong>Automation Tester</strong>.
-                        </div>
-                        <ul class="checklist">
-                            <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check"
-                                    id="ml-13" onclick="event.stopPropagation()"> <span>Cấu trúc thư mục chuẩn:
-                                    <code>pages/</code>, <code>tests/</code>, <code>test_data/</code></span></li>
-                            <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check"
-                                    id="ml-14" onclick="event.stopPropagation()"> <span>Page Object Model cho tất cả các
-                                    trang</span></li>
-                            <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check"
-                                    id="ml-15" onclick="event.stopPropagation()"> <span>Test data từ JSON/CSV, cấu hình
-                                    từ <code>.env</code></span></li>
-                            <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check"
-                                    id="ml-16" onclick="event.stopPropagation()"> <span>Allure Report với steps,
-                                    screenshots đính kèm</span></li>
-                            <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check"
-                                    id="ml-17" onclick="event.stopPropagation()"> <span>CI/CD GitHub Actions: auto-run
-                                    trên push</span></li>
-                            <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check"
-                                    id="ml-18" onclick="event.stopPropagation()"> <span>API + UI tests kết hợp (API
-                                    setup, UI verify)</span></li>
-                            <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check"
-                                    id="ml-19" onclick="event.stopPropagation()"> <span>Ít nhất 20 test cases có
-                                    meaningful assertions</span></li>
-                            <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check"
-                                    id="ml-20" onclick="event.stopPropagation()"> <span><code>README.md</code> đầy đủ:
-                                    setup, run, view report</span></li>
-                        </ul>
+        <span class="kw">if</span> <span class="self">self</span>.x <= -<span class="cls">Floor</span>.width:
+            <span class="self">self</span>.x = <span class="num">0</span>   <span class="cmt"># reset khi bản đầu ra hết màn hình</span>
+        <span class="kw">if</span> isPlay:
+            <span class="self">self</span>.x -= <span class="cls">Floor</span>.SPEED  <span class="cmt"># chỉ di chuyển khi đang chơi</span></pre>
                     </div>
                 </div>
+                <div class="theory-section">
+                    <div class="section-label">Bài tập thực hành</div>
+                    <div class="exercises">
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p3-floor-1" onchange="onCheck(this)">
+                            <label for="ex-p3-floor-1" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Tạo Floor cuộn vô hạn</div>
+                                    <div class="ex-desc">Implement <code>Floor</code> class với kỹ thuật 3 bản tiling. Sàn phải cuộn liên tục không giật. Test: chạy 30 giây xem có gap không.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="note-area" id="note-area-p3-floor">
+                            <textarea class="note-textarea" id="note-text-p3-floor" placeholder="Ghi chú..." oninput="handleNoteInput(this)"></textarea>
+                            <div class="note-footer">
+                                <button class="note-clear-btn" onclick="clearNote('p3-floor')">Xoá ghi chú</button>
+                                <span class="note-saved-msg" id="note-saved-p3-floor">✓ Đã lưu</span>
+                            </div>
+                        </div>
+                        <button class="note-toggle-btn" id="note-btn-p3-floor" onclick="toggleNote('p3-floor')">📝 Ghi chú</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="topic-card">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <div class="topic-icon">🏗️</div>
+                <div class="topic-meta">
+                    <div class="topic-name">Pipe — Cột chướng ngại vật</div>
+                    <div class="topic-desc">randrange · tạo top/bottom pair · BLANK gap · di chuyển · tái tạo</div>
+                </div>
+                <div class="topic-toggle">▼</div>
+                <span class="note-dot"></span>
+            </div>
+            <div class="topic-body">
+                <div class="theory-section">
+                    <div class="section-label">Lý thuyết</div>
+                    <p>Mỗi cặp cột gồm 1 cột dưới (<code>bottom</code>) và 1 cột trên (<code>top</code> = lật ngược), cách nhau 1 khoảng <code>BLANK = 160px</code>. Project dùng danh sách 3 cặp cột, khi cặp đầu ra khỏi màn hình thì xóa và thêm cặp mới vào cuối.</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang python">Python</span>
+                            <span class="code-filename">Pipe.py</span>
+                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><span class="kw">class</span> <span class="cls">Pipe</span>:
+    WIDTH, HEIGHT = <span class="num">60</span>, <span class="num">360</span>
+    SF_COL_BOTTOM = transform.<span class="fn">scale</span>(image.<span class="fn">load</span>(<span class="str">'image/pipe.jpg'</span>), (WIDTH, HEIGHT))
+    SF_COL_TOP    = transform.<span class="fn">flip</span>(SF_COL_BOTTOM, <span class="kw">False</span>, <span class="kw">True</span>)  <span class="cmt"># lật dọc</span>
+    BLANK    = <span class="num">160</span>  <span class="cmt"># khoảng hở giữa 2 cột (px)</span>
+    DISTANCE = <span class="num">220</span>  <span class="cmt"># khoảng cách giữa 2 cặp cột</span>
+    SPEED    = <span class="num">2</span>
+
+    <span class="dec">@staticmethod</span>
+    <span class="kw">def</span> <span class="fn">createRectCol</span>(x, y):
+        <span class="kw">return</span> {
+            <span class="str">"pass"</span>:   <span class="kw">False</span>,          <span class="cmt"># đã qua bird chưa?</span>
+            <span class="str">"top"</span>:    <span class="cls">Pipe</span>.SF_COL_BOTTOM.<span class="fn">get_rect</span>(topleft=(x, y)),
+            <span class="str">"bottom"</span>: <span class="cls">Pipe</span>.SF_COL_TOP.<span class="fn">get_rect</span>(topleft=(x, y + <span class="cls">Pipe</span>.BLANK + <span class="cls">Pipe</span>.HEIGHT))
+        }
+
+    <span class="kw">def</span> <span class="fn">updateHandleGame</span>(<span class="self">self</span>, isPlay):
+        <span class="self">self</span>.<span class="fn">draw_cols</span>()
+        <span class="kw">if not</span> isPlay: <span class="kw">return</span>
+        <span class="kw">for</span> rCol <span class="kw">in</span> <span class="self">self</span>.__rCols:
+            rCol[<span class="str">"top"</span>].x    -= <span class="cls">Pipe</span>.SPEED   <span class="cmt"># di chuyển sang trái</span>
+            rCol[<span class="str">"bottom"</span>].x -= <span class="cls">Pipe</span>.SPEED
+        <span class="kw">if</span> <span class="self">self</span>.__rCols[<span class="num">0</span>][<span class="str">"top"</span>].x < -<span class="cls">Pipe</span>.WIDTH:  <span class="cmt"># cặp đầu ra ngoài</span>
+            <span class="self">self</span>.__rCols.<span class="fn">pop</span>(<span class="num">0</span>)                    <span class="cmt"># xóa đi</span>
+            x = <span class="self">self</span>.__rCols[<span class="num">1</span>][<span class="str">"top"</span>].x + <span class="cls">Pipe</span>.DISTANCE
+            <span class="self">self</span>.__rCols.<span class="fn">append</span>(<span class="cls">Pipe</span>.<span class="fn">createRectCol</span>(x, <span class="self">self</span>.<span class="fn">__randomYCol</span>()))</pre>
+                    </div>
+                </div>
+                <div class="theory-section">
+                    <div class="section-label">Bài tập thực hành</div>
+                    <div class="exercises">
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p3-pipe-1" onchange="onCheck(this)">
+                            <label for="ex-p3-pipe-1" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Tạo 3 cặp cột và di chuyển</div>
+                                    <div class="ex-desc">Implement <code>Pipe</code> class: sinh 3 cặp cột ngẫu nhiên, di chuyển sang trái 2px/frame. Khi cặp đầu biến mất → xóa và sinh cặp mới ở cuối.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="note-area" id="note-area-p3-pipe">
+                            <textarea class="note-textarea" id="note-text-p3-pipe" placeholder="Ghi chú..." oninput="handleNoteInput(this)"></textarea>
+                            <div class="note-footer">
+                                <button class="note-clear-btn" onclick="clearNote('p3-pipe')">Xoá ghi chú</button>
+                                <span class="note-saved-msg" id="note-saved-p3-pipe">✓ Đã lưu</span>
+                            </div>
+                        </div>
+                        <button class="note-toggle-btn" id="note-btn-p3-pipe" onclick="toggleNote('p3-pipe')">📝 Ghi chú</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="topic-card">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <div class="topic-icon">💥</div>
+                <div class="topic-meta">
+                    <div class="topic-name">Va chạm & Tính điểm</div>
+                    <div class="topic-desc">colliderect · boundary check · score khi vượt cột</div>
+                </div>
+                <div class="topic-toggle">▼</div>
+                <span class="note-dot"></span>
+            </div>
+            <div class="topic-body">
+                <div class="theory-section">
+                    <div class="section-label">Lý thuyết</div>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang python">Python</span>
+                            <span class="code-filename">Bird.py — Va chạm</span>
+                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><span class="kw">def</span> <span class="fn">isCollision</span>(<span class="self">self</span>, rCols):
+    <span class="cmt"># Va chạm sàn hoặc mép trên cửa sổ</span>
+    <span class="kw">if</span> <span class="self">self</span>.rect.y <= <span class="num">0</span> <span class="kw">or</span> <span class="self">self</span>.rect.y >= <span class="self">self</span>.screen.height - <span class="cls">Floor</span>.height:
+        <span class="kw">return</span> <span class="kw">True</span>
+    <span class="cmt"># Va chạm cột</span>
+    <span class="kw">for</span> rCol <span class="kw">in</span> rCols:
+        <span class="kw">if</span> <span class="self">self</span>.rect.<span class="fn">colliderect</span>(rCol[<span class="str">"bottom"</span>]) <span class="kw">or</span> <span class="self">self</span>.rect.<span class="fn">colliderect</span>(rCol[<span class="str">"top"</span>]):
+            <span class="kw">return</span> <span class="kw">True</span>
+    <span class="kw">return</span> <span class="kw">False</span></pre>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang python">Python</span>
+                            <span class="code-filename">Achievement.py — Tính điểm</span>
+                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><span class="kw">def</span> <span class="fn">computedScore</span>(<span class="self">self</span>, rCols, xBird, isSound):
+    <span class="kw">for</span> rCol <span class="kw">in</span> rCols:
+        <span class="cmt"># Khi cột đã qua Bird và chưa được tính điểm</span>
+        <span class="kw">if</span> rCol[<span class="str">"bottom"</span>].right < xBird <span class="kw">and not</span> rCol[<span class="str">"pass"</span>]:
+            <span class="kw">if</span> isSound:
+                <span class="cls">Achievement</span>.soundPass.<span class="fn">play</span>()
+            <span class="self">self</span>.score += <span class="num">1</span>
+            rCol[<span class="str">"pass"</span>] = <span class="kw">True</span>   <span class="cmt"># đánh dấu đã tính</span></pre>
+                    </div>
+                </div>
+                <div class="theory-section">
+                    <div class="section-label">Bài tập thực hành</div>
+                    <div class="exercises">
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p3-col-1" onchange="onCheck(this)">
+                            <label for="ex-p3-col-1" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Va chạm và game over</div>
+                                    <div class="ex-desc">Implement <code>isCollision()</code>. Kết hợp với <code>Control</code>: khi <code>bird.isCollision()</code> trả <code>True</code> → đặt <code>isPlay = False</code> → dừng bird và cột di chuyển.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p3-col-2" onchange="onCheck(this)">
+                            <label for="ex-p3-col-2" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Tính điểm và hiển thị</div>
+                                    <div class="ex-desc">Implement <code>computedScore()</code>: mỗi khi cột qua Bird thì <code>score += 1</code> và đánh dấu <code>pass = True</code>. Dùng <code>pygame.font.Font</code> render số điểm lên góc trên màn hình.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="note-area" id="note-area-p3-collision">
+                            <textarea class="note-textarea" id="note-text-p3-collision" placeholder="Ghi chú..." oninput="handleNoteInput(this)"></textarea>
+                            <div class="note-footer">
+                                <button class="note-clear-btn" onclick="clearNote('p3-collision')">Xoá ghi chú</button>
+                                <span class="note-saved-msg" id="note-saved-p3-collision">✓ Đã lưu</span>
+                            </div>
+                        </div>
+                        <button class="note-toggle-btn" id="note-btn-p3-collision" onclick="toggleNote('p3-collision')">📝 Ghi chú</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="topic-card">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <div class="topic-icon">🔊</div>
+                <div class="topic-meta">
+                    <div class="topic-name">pygame.mixer — Âm thanh</div>
+                    <div class="topic-desc">mixer.Sound · play · loops · pause · unpause · SFX</div>
+                </div>
+                <div class="topic-toggle">▼</div>
+                <span class="note-dot"></span>
+            </div>
+            <div class="topic-body">
+                <div class="theory-section">
+                    <div class="section-label">Lý thuyết</div>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang python">Python</span>
+                            <span class="code-filename">Âm thanh trong project</span>
+                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><span class="imp">from</span> pygame <span class="imp">import</span> mixer
+
+<span class="cmt"># Nhạc nền — phát vô hạn</span>
+nhacNen = mixer.<span class="fn">Sound</span>(<span class="str">'sound/nhacNen.mp3'</span>)
+nhacNen.<span class="fn">play</span>(loops=-<span class="num">1</span>)   <span class="cmt"># loops=-1 = lặp mãi</span>
+
+<span class="cmt"># SFX — phát một lần</span>
+soundJump      = mixer.<span class="fn">Sound</span>(<span class="str">'sound/nhay.mp3'</span>)
+soundCollision = mixer.<span class="fn">Sound</span>(<span class="str">'sound/vacham.mp3'</span>)
+soundDie       = mixer.<span class="fn">Sound</span>(<span class="str">'sound/thua.mp3'</span>)
+soundPass      = mixer.<span class="fn">Sound</span>(<span class="str">'sound/congdiem.mp3'</span>)
+
+soundJump.<span class="fn">play</span>()    <span class="cmt"># phát khi bird nhảy</span>
+
+<span class="cmt"># Bật/tắt âm thanh</span>
+mixer.<span class="fn">pause</span>()    <span class="cmt"># tạm dừng tất cả âm thanh đang chạy</span>
+mixer.<span class="fn">unpause</span>() <span class="cmt"># tiếp tục</span></pre>
+                    </div>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Hàm</th><th>Tác dụng</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>mixer.Sound(path)</code></td><td>Load file âm thanh, trả về Sound object</td></tr>
+                            <tr><td><code>sound.play(loops=0)</code></td><td>Phát âm thanh. <code>loops=0</code> = 1 lần, <code>loops=-1</code> = vô hạn</td></tr>
+                            <tr><td><code>mixer.pause()</code></td><td>Tạm dừng TẤT CẢ channel đang phát</td></tr>
+                            <tr><td><code>mixer.unpause()</code></td><td>Tiếp tục từ chỗ dừng</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="theory-section">
+                    <div class="section-label">Bài tập thực hành</div>
+                    <div class="exercises">
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p3-sound-1" onchange="onCheck(this)">
+                            <label for="ex-p3-sound-1" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Tích hợp 5 file âm thanh</div>
+                                    <div class="ex-desc">Thêm nhạc nền (vô hạn), SFX nhảy, va chạm, thua, cộng điểm. Thêm nút mute: click → <code>mixer.pause()</code>, click lại → <code>mixer.unpause()</code>.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="note-area" id="note-area-p3-sound">
+                            <textarea class="note-textarea" id="note-text-p3-sound" placeholder="Ghi chú..." oninput="handleNoteInput(this)"></textarea>
+                            <div class="note-footer">
+                                <button class="note-clear-btn" onclick="clearNote('p3-sound')">Xoá ghi chú</button>
+                                <span class="note-saved-msg" id="note-saved-p3-sound">✓ Đã lưu</span>
+                            </div>
+                        </div>
+                        <button class="note-toggle-btn" id="note-btn-p3-sound" onclick="toggleNote('p3-sound')">📝 Ghi chú</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════ WEEK 10 ═══════════════════════════════ -->
+    <div class="week-block" id="p3-w10">
+        <div class="week-label">Tuần 10 · UI, Menu, Game Over & Bảng xếp hạng</div>
+
+        <div class="topic-card">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <div class="topic-icon">🔤</div>
+                <div class="topic-meta">
+                    <div class="topic-name">pygame.font & pygame.draw — Text và UI</div>
+                    <div class="topic-desc">font.Font · render · Button class · Input class · draw.line</div>
+                </div>
+                <div class="topic-toggle">▼</div>
+                <span class="note-dot"></span>
+            </div>
+            <div class="topic-body">
+                <div class="theory-section">
+                    <div class="section-label">Lý thuyết</div>
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang python">Python</span>
+                            <span class="code-filename">Utilitie.py — Font và Button</span>
+                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><span class="imp">from</span> pygame <span class="imp">import</span> font, draw
+
+font.<span class="fn">init</span>()  <span class="cmt"># bắt buộc trước khi dùng font</span>
+
+<span class="cmt"># Render text thành Surface</span>
+<span class="dec">@staticmethod</span>
+<span class="kw">def</span> <span class="fn">surfaceFont</span>(path_font, size_font, title, color):
+    use_font = font.<span class="fn">Font</span>(path_font, size_font)
+    surface  = use_font.<span class="fn">render</span>(title, <span class="kw">True</span>, color)  <span class="cmt"># True = antialias</span>
+    <span class="kw">return</span> surface
+
+<span class="cmt"># Ví dụ: hiển thị điểm</span>
+sf_score = Utilitie.<span class="fn">surfaceFont</span>(<span class="str">'font/font-nomal.ttf'</span>, <span class="num">40</span>, <span class="fn">str</span>(<span class="self">self</span>.score), (<span class="num">0</span>, <span class="num">0</span>, <span class="num">0</span>))
+window.<span class="fn">blit</span>(sf_score, (<span class="num">26</span>, <span class="num">26</span>))
+
+<span class="cmt"># Button — kiểm tra click chuột</span>
+<span class="kw">class</span> <span class="cls">Button</span>:
+    <span class="kw">def</span> <span class="fn">checkClick</span>(<span class="self">self</span>, pos):
+        x_pos, y_pos = pos
+        <span class="kw">return</span> (x_pos <span class="kw">in</span> <span class="fn">range</span>(<span class="self">self</span>.rect.left, <span class="self">self</span>.rect.right) <span class="kw">and</span>
+                y_pos <span class="kw">in</span> <span class="fn">range</span>(<span class="self">self</span>.rect.top,  <span class="self">self</span>.rect.bottom))
+
+<span class="cmt"># Input — ô nhập text với cursor</span>
+<span class="kw">class</span> <span class="cls">Input</span>:
+    <span class="kw">def</span> <span class="fn">handleEvent</span>(<span class="self">self</span>, event):
+        <span class="kw">if</span> <span class="self">self</span>.select <span class="kw">and</span> event.type == KEYDOWN:
+            <span class="self">self</span>.text = <span class="self">self</span>.text[:-<span class="num">1</span>]         <span class="cmt"># bỏ cursor '_' hiện tại</span>
+            <span class="kw">if</span> event.key == K_BACKSPACE:
+                <span class="self">self</span>.text = <span class="self">self</span>.text[:-<span class="num">1</span>] + <span class="str">'_'</span>  <span class="cmt"># xóa ký tự + thêm cursor</span>
+            <span class="kw">elif</span> event.unicode.<span class="fn">isalpha</span>():
+                <span class="self">self</span>.text += event.unicode + <span class="str">'_'</span>    <span class="cmt"># gõ chữ + cursor</span>
+
+    <span class="kw">def</span> <span class="fn">draw</span>(<span class="self">self</span>):
+        draw.<span class="fn">line</span>(<span class="self">self</span>.screen.window, <span class="self">self</span>.color,
+                   (<span class="self">self</span>.x, <span class="self">self</span>.y), (<span class="self">self</span>.x + <span class="self">self</span>.width, <span class="self">self</span>.y), <span class="self">self</span>.border)</pre>
+                    </div>
+
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>Hàm</th><th>Tác dụng</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>font.Font(path, size)</code></td><td>Tạo font từ file .ttf với kích thước chỉ định</td></tr>
+                            <tr><td><code>font.render(text, aa, color)</code></td><td>Render text thành Surface. <code>aa=True</code> = smooth edges</td></tr>
+                            <tr><td><code>draw.line(surface, color, start, end, width)</code></td><td>Vẽ đường thẳng (dùng cho underline ô input)</td></tr>
+                            <tr><td><code>event.unicode</code></td><td>Ký tự Unicode của phím được nhấn (dùng cho input text)</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="theory-section">
+                    <div class="section-label">Bài tập thực hành</div>
+                    <div class="exercises">
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p3-ui-1" onchange="onCheck(this)">
+                            <label for="ex-p3-ui-1" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Tạo Button và Input class</div>
+                                    <div class="ex-desc">Implement <code>Button.checkClick(pos)</code> và <code>Input</code> cho phép nhập tên. Input phải có cursor <code>_</code>, xử lý Backspace và Enter để xác nhận.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="note-area" id="note-area-p3-ui">
+                            <textarea class="note-textarea" id="note-text-p3-ui" placeholder="Ghi chú..." oninput="handleNoteInput(this)"></textarea>
+                            <div class="note-footer">
+                                <button class="note-clear-btn" onclick="clearNote('p3-ui')">Xoá ghi chú</button>
+                                <span class="note-saved-msg" id="note-saved-p3-ui">✓ Đã lưu</span>
+                            </div>
+                        </div>
+                        <button class="note-toggle-btn" id="note-btn-p3-ui" onclick="toggleNote('p3-ui')">📝 Ghi chú</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="topic-card">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <div class="topic-icon">🎬</div>
+                <div class="topic-meta">
+                    <div class="topic-name">Game State & Animation màn hình Game Over</div>
+                    <div class="topic-desc">State machine · isPlay flag · slide-in animation · interpolation</div>
+                </div>
+                <div class="topic-toggle">▼</div>
+                <span class="note-dot"></span>
+            </div>
+            <div class="topic-body">
+                <div class="theory-section">
+                    <div class="section-label">Lý thuyết — State Machine đơn giản</div>
+                    <p>Game có 3 trạng thái: <strong>Start → Playing → GameOver</strong>. Trong project, flag <code>isPlay</code> và 3 method riêng biệt (<code>startGame</code>, <code>handlGame</code>, <code>finishGame</code>) đảm nhận từng state.</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang python">Python</span>
+                            <span class="code-filename">Control.py — finishGame animation</span>
+                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><span class="kw">def</span> <span class="fn">finishGame</span>(<span class="self">self</span>):
+    <span class="cmt"># Các biến theo dõi vị trí animation</span>
+    start_y_table  = <span class="num">700</span>  <span class="cmt"># bảng điểm bắt đầu ngoài màn hình (dưới)</span>
+    end_y_table    = <span class="num">170</span>  <span class="cmt"># vị trí đích của bảng điểm</span>
+    y_start_go     = <span class="num">0</span>    <span class="cmt"># game over title từ trên xuống</span>
+    y_end_go       = <span class="num">100</span>
+
+    <span class="kw">while</span> <span class="kw">True</span>:
+        <span class="self">self</span>.clock.<span class="fn">tick</span>(<span class="num">60</span>)
+        <span class="kw">for</span> sub <span class="kw">in</span> pygame.event.<span class="fn">get</span>():
+            <span class="kw">if</span> <span class="self">self</span>.staticView.btnReplayFinish.<span class="fn">checkClick</span>(pygame.mouse.<span class="fn">get_pos</span>()):
+                <span class="self">self</span>.<span class="fn">resetGame</span>()
+                <span class="self">self</span>.<span class="fn">handlGame</span>()
+
+        <span class="cmt"># Animate game over title rơi xuống</span>
+        y_drawn_go = <span class="fn">min</span>(y_start_go, y_end_go)
+        window.<span class="fn">blit</span>(sf_game_over, (centerx_go, y_drawn_go))
+        y_start_go += <span class="num">20</span>   <span class="cmt"># di chuyển 20px/frame cho đến khi chạm y_end_go</span>
+
+        <span class="cmt"># Animate bảng điểm trượt lên từ dưới</span>
+        y_drawn_table = <span class="fn">max</span>(start_y_table, end_y_table)
+        window.<span class="fn">blit</span>(sf_table, (centerx_table, y_drawn_table))
+        start_y_table -= <span class="num">30</span></pre>
+                    </div>
+
+                    <div class="tip-box info">
+                        <span class="tip-icon">💡</span>
+                        <div class="tip-content">
+                            <strong>Kỹ thuật animation đơn giản:</strong> Biến <code>y</code> bắt đầu ngoài màn hình, mỗi frame tăng/giảm một lượng cố định. Dùng <code>min()</code>/<code>max()</code> để clamp tại vị trí đích. Không cần thư viện animation phức tạp.
+                        </div>
+                    </div>
+                </div>
+                <div class="theory-section">
+                    <div class="section-label">Bài tập thực hành</div>
+                    <div class="exercises">
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p3-state-1" onchange="onCheck(this)">
+                            <label for="ex-p3-state-1" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Implement 3 màn hình: Start, Play, Game Over</div>
+                                    <div class="ex-desc">Tạo <code>startGame()</code> với vòng loop riêng, <code>handlGame()</code> với logic chính, <code>finishGame()</code> với animation. Nối 3 màn hình lại: click Start → play, va chạm → game over, click Replay → play lại.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p3-state-2" onchange="onCheck(this)">
+                            <label for="ex-p3-state-2" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Animation slide-in cho màn hình Game Over</div>
+                                    <div class="ex-desc">Bảng điểm trượt lên từ dưới (<code>y -= 30</code>/frame), "Game Over" rơi xuống từ trên (<code>y += 20</code>/frame), điểm trượt từ trái/phải vào. Dùng <code>min()</code>/<code>max()</code> để clamp.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="note-area" id="note-area-p3-state">
+                            <textarea class="note-textarea" id="note-text-p3-state" placeholder="Ghi chú..." oninput="handleNoteInput(this)"></textarea>
+                            <div class="note-footer">
+                                <button class="note-clear-btn" onclick="clearNote('p3-state')">Xoá ghi chú</button>
+                                <span class="note-saved-msg" id="note-saved-p3-state">✓ Đã lưu</span>
+                            </div>
+                        </div>
+                        <button class="note-toggle-btn" id="note-btn-p3-state" onclick="toggleNote('p3-state')">📝 Ghi chú</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="topic-card">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <div class="topic-icon">🏆</div>
+                <div class="topic-meta">
+                    <div class="topic-name">Bảng xếp hạng & File I/O</div>
+                    <div class="topic-desc">open · readlines · sort · writelines · Top 5 logic</div>
+                </div>
+                <div class="topic-toggle">▼</div>
+                <span class="note-dot"></span>
+            </div>
+            <div class="topic-body">
+                <div class="theory-section">
+                    <div class="section-label">Lý thuyết</div>
+                    <p>Bảng xếp hạng lưu Top 5 vào file <code>top.txt</code>, mỗi dòng là <code>tên-điểm</code>. Mỗi khi game kết thúc, nếu điểm mới vào Top 5 thì cập nhật file.</p>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-lang python">Python</span>
+                            <span class="code-filename">Achievement.py — Đọc/ghi bảng xếp hạng</span>
+                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre><span class="kw">def</span> <span class="fn">readFileTop</span>(<span class="self">self</span>):
+    file_top = <span class="fn">open</span>(<span class="str">'top.txt'</span>, <span class="str">'r'</span>)
+    <span class="kw">for</span> line <span class="kw">in</span> file_top:
+        name, score = line.<span class="fn">rstrip</span>().<span class="fn">split</span>(<span class="str">'-'</span>)
+        <span class="self">self</span>.top_5_user.<span class="fn">append</span>(<span class="fn">dict</span>(name=name, core=<span class="fn">int</span>(score)))
+    file_top.<span class="fn">close</span>()
+
+<span class="kw">def</span> <span class="fn">handleDie</span>(<span class="self">self</span>):
+    <span class="cmt"># Chỉ lưu nếu điểm mới vào Top 5</span>
+    <span class="kw">if</span> <span class="self">self</span>.name <span class="kw">and</span> <span class="self">self</span>.score > <span class="self">self</span>.top_5_user[<span class="num">4</span>][<span class="str">"core"</span>]:
+        <span class="self">self</span>.top_5_user.<span class="fn">append</span>(<span class="fn">dict</span>(name=<span class="self">self</span>.name, core=<span class="self">self</span>.score))
+        <span class="self">self</span>.top_5_user.<span class="fn">sort</span>(key=<span class="kw">lambda</span> u: u[<span class="str">"core"</span>], reverse=<span class="kw">True</span>)
+        <span class="self">self</span>.top_5_user.<span class="fn">pop</span>()   <span class="cmt"># giữ đúng 5 người</span>
+        <span class="self">self</span>.<span class="fn">writeFileTop</span>()
+
+<span class="kw">def</span> <span class="fn">writeFileTop</span>(<span class="self">self</span>):
+    file = <span class="fn">open</span>(<span class="str">'top.txt'</span>, <span class="str">'w'</span>)
+    temp = [x[<span class="str">'name'</span>] + <span class="str">'-'</span> + <span class="fn">str</span>(x[<span class="str">'core'</span>]) + <span class="str">'\n'</span> <span class="kw">for</span> x <span class="kw">in</span> <span class="self">self</span>.top_5_user]
+    file.<span class="fn">writelines</span>(temp)
+    file.<span class="fn">close</span>()</pre>
+                    </div>
+                </div>
+                <div class="theory-section">
+                    <div class="section-label">Bài tập thực hành</div>
+                    <div class="exercises">
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p3-file-1" onchange="onCheck(this)">
+                            <label for="ex-p3-file-1" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Implement Achievement class đầy đủ</div>
+                                    <div class="ex-desc">Đọc <code>top.txt</code> khi khởi động, cập nhật khi game over, hiển thị Top 5 trong màn hình Ranking. Tạo file <code>top.txt</code> với 5 dòng mặc định: <code>---0</code> nếu chưa có ai.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p3-file-2" onchange="onCheck(this)">
+                            <label for="ex-p3-file-2" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Màn hình Ranking với bảng xếp hạng</div>
+                                    <div class="ex-desc">Tạo màn hình riêng hiển thị Top 5 với ảnh huy chương (rank 1,2,3,4,5). Có nút Back để quay về màn hình Start.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="note-area" id="note-area-p3-file">
+                            <textarea class="note-textarea" id="note-text-p3-file" placeholder="Ghi chú..." oninput="handleNoteInput(this)"></textarea>
+                            <div class="note-footer">
+                                <button class="note-clear-btn" onclick="clearNote('p3-file')">Xoá ghi chú</button>
+                                <span class="note-saved-msg" id="note-saved-p3-file">✓ Đã lưu</span>
+                            </div>
+                        </div>
+                        <button class="note-toggle-btn" id="note-btn-p3-file" onclick="toggleNote('p3-file')">📝 Ghi chú</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════ MILESTONE ═══════════════════════════════ -->
+    <div class="milestone-card p3" id="p3-milestone">
+        <div class="milestone-label">Bài Tập Lớn · Phase 3 — Capstone Project</div>
+        <div class="milestone-title">🎮 Hoàn thiện game Flappy Bird</div>
+        <div class="milestone-desc">
+            Build lại game Flappy Bird hoàn chỉnh từ đầu theo lộ trình 16 bước dưới đây. Không copy — hiểu rồi tự gõ lại từng dòng. Khi xong bạn sẽ có một sản phẩm thật để portfolio.
+        </div>
+
+        <div style="margin: 1.2rem 0 0.8rem; font-weight:600; font-size:0.9rem; color:var(--p3)">Lộ trình code — 16 bước</div>
+        <ul class="checklist">
+            <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check" id="ml-p3-1" onclick="event.stopPropagation()"> <span><strong>Bước 1:</strong> Tạo <code>Screen</code> class — cửa sổ 500×700, game loop, thoát bằng QUIT</span></li>
+            <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check" id="ml-p3-2" onclick="event.stopPropagation()"> <span><strong>Bước 2:</strong> Load và vẽ background — <code>pygame.image.load</code>, scale, blit mỗi frame</span></li>
+            <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check" id="ml-p3-3" onclick="event.stopPropagation()"> <span><strong>Bước 3:</strong> Tạo <code>Utilitie</code> class — <code>surfaceSize</code>, <code>surfaceScale</code>, <code>surfaceFont</code></span></li>
+            <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check" id="ml-p3-4" onclick="event.stopPropagation()"> <span><strong>Bước 4:</strong> <code>Floor</code> class — tiling 3 bản, cuộn liên tục, dừng khi <code>isPlay=False</code></span></li>
+            <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check" id="ml-p3-5" onclick="event.stopPropagation()"> <span><strong>Bước 5:</strong> <code>Bird</code> class — load 17 frame, hiển thị tại vị trí cố định (không có physics)</span></li>
+            <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check" id="ml-p3-6" onclick="event.stopPropagation()"> <span><strong>Bước 6:</strong> Bird animation — USEREVENT + set_timer(16ms), vòng qua 17 frame</span></li>
+            <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check" id="ml-p3-7" onclick="event.stopPropagation()"> <span><strong>Bước 7:</strong> Bird physics — trọng lực GRAVITY=0.25, nhảy bằng click/Space (movement=-5)</span></li>
+            <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check" id="ml-p3-8" onclick="event.stopPropagation()"> <span><strong>Bước 8:</strong> <code>Pipe</code> class — 3 cặp cột ngẫu nhiên, di chuyển, tái tạo khi ra ngoài</span></li>
+            <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check" id="ml-p3-9" onclick="event.stopPropagation()"> <span><strong>Bước 9:</strong> Va chạm — <code>colliderect</code> + boundary check → <code>isPlay=False</code></span></li>
+            <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check" id="ml-p3-10" onclick="event.stopPropagation()"> <span><strong>Bước 10:</strong> Âm thanh — nhạc nền loops=-1, SFX nhảy/va chạm/thua/điểm</span></li>
+            <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check" id="ml-p3-11" onclick="event.stopPropagation()"> <span><strong>Bước 11:</strong> <code>Achievement</code> — tính điểm khi vượt cột, hiển thị điểm lên màn hình</span></li>
+            <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check" id="ml-p3-12" onclick="event.stopPropagation()"> <span><strong>Bước 12:</strong> <code>Button</code> + <code>Input</code> class — checkClick, nhập tên, cursor, Backspace</span></li>
+            <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check" id="ml-p3-13" onclick="event.stopPropagation()"> <span><strong>Bước 13:</strong> Màn hình Start — background, title, input tên, nút Start, nút Ranking, nút Mute</span></li>
+            <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check" id="ml-p3-14" onclick="event.stopPropagation()"> <span><strong>Bước 14:</strong> Màn hình Game Over — animation slide-in bảng điểm, nút Replay, nút Home</span></li>
+            <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check" id="ml-p3-15" onclick="event.stopPropagation()"> <span><strong>Bước 15:</strong> File I/O — đọc/ghi <code>top.txt</code>, cập nhật Top 5, màn hình Ranking</span></li>
+            <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check" id="ml-p3-16" onclick="event.stopPropagation()"> <span><strong>Bước 16:</strong> <code>Control</code> class — kết nối tất cả, 3 vòng loop state machine, reset game</span></li>
+        </ul>
+    </div>
+</div>
