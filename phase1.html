@@ -41,18 +41,18 @@
                             <button class="code-copy" onclick="copyCode(this)">Copy</button>
                         </div>
                         <pre><span class="cmt"># Các kiểu dữ liệu cơ bản</span>
-name     = <span class="str">"Selenium"</span>       <span class="cmt"># str  — chuỗi</span>
-version  = <span class="num">3</span>               <span class="cmt"># int  — số nguyên</span>
-speed    = <span class="num">0.5</span>             <span class="cmt"># float — số thực</span>
-is_pass  = <span class="kw">True</span>            <span class="cmt"># bool — True / False</span>
+name     = <span class="str">"Alice"</span>          <span class="cmt"># str  — chuỗi</span>
+age      = <span class="num">25</span>              <span class="cmt"># int  — số nguyên</span>
+height   = <span class="num">1.65</span>            <span class="cmt"># float — số thực</span>
+is_adult = <span class="kw">True</span>            <span class="cmt"># bool — True / False</span>
 
 <span class="cmt"># Kiểm tra kiểu</span>
 <span class="fn">print</span>(<span class="fn">type</span>(name))         <span class="cmt"># &lt;class 'str'&gt;</span>
 
 <span class="cmt"># f-string — cách ghép chuỗi hiện đại nhất</span>
-result = <span class="str">f"Test <span class="dec">{name}</span> v<span class="dec">{version}</span> — Pass: <span class="dec">{is_pass}</span>"</span>
+result = <span class="str">f"<span class="dec">{name}</span>, <span class="dec">{age}</span> tuổi, cao <span class="dec">{height}</span>m — adult: <span class="dec">{is_adult}</span>"</span>
 <span class="fn">print</span>(result)
-<span class="cmt"># → Test Selenium v3 — Pass: True</span>
+<span class="cmt"># → Alice, 25 tuổi, cao 1.65m — adult: True</span>
 
 <span class="cmt"># Ép kiểu (Type casting)</span>
 score_str = <span class="str">"95"</span>
@@ -62,9 +62,7 @@ score_f   = <span class="fn">float</span>(score_str)   <span class="cmt"># str �
 
                     <div class="tip-box info">
                         <span class="tip-icon">💡</span>
-                        <div class="tip-content"><strong>Quan trọng với QC:</strong> Khi đọc dữ liệu từ
-                            file CSV hay form web, mọi thứ đều là <code>str</code>. Bạn cần ép kiểu thủ
-                            công trước khi so sánh số.</div>
+                        <div class="tip-content"><strong>Lưu ý thực tế:</strong> Khi đọc dữ liệu từ file CSV, database hay API, mọi thứ thường về dạng <code>str</code>. Nhớ ép kiểu (<code>int()</code>, <code>float()</code>) trước khi thực hiện phép tính hay so sánh số.</div>
                     </div>
 
                     <p><strong>Operators (Toán tử)</strong> — 3 loại thường dùng nhất:</p>
@@ -180,17 +178,17 @@ status = <span class="str">"PASS"</span> <span class="kw">if</span> score >= <sp
                                 <button class="code-copy" onclick="copyCode(this)">Copy</button>
                             </div>
                             <pre><span class="cmt"># for loop — lặp qua từng phần tử</span>
-test_cases = [<span class="str">"TC001"</span>, <span class="str">"TC002"</span>, <span class="str">"TC003"</span>]
-<span class="kw">for</span> tc <span class="kw">in</span> test_cases:
-    <span class="fn">print</span>(<span class="str">f"Running <span class="dec">{tc}</span>"</span>)
+items = [<span class="str">"P001"</span>, <span class="str">"P002"</span>, <span class="str">"P003"</span>]
+<span class="kw">for</span> item <span class="kw">in</span> items:
+    <span class="fn">print</span>(<span class="str">f"Processing <span class="dec">{item}</span>"</span>)
 
 <span class="cmt"># range() — lặp n lần</span>
 <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">1</span>, <span class="num">6</span>):   <span class="cmt"># 1, 2, 3, 4, 5</span>
     <span class="fn">print</span>(<span class="str">f"Attempt <span class="dec">{i}</span>"</span>)
 
 <span class="cmt"># enumerate() — lấy cả index lẫn giá trị</span>
-<span class="kw">for</span> idx, tc <span class="kw">in</span> <span class="fn">enumerate</span>(test_cases, start=<span class="num">1</span>):
-    <span class="fn">print</span>(<span class="str">f"[<span class="dec">{idx}</span>] <span class="dec">{tc}</span>"</span>)
+<span class="kw">for</span> idx, item <span class="kw">in</span> <span class="fn">enumerate</span>(items, start=<span class="num">1</span>):
+    <span class="fn">print</span>(<span class="str">f"[<span class="dec">{idx}</span>] <span class="dec">{item}</span>"</span>)
 
 <span class="cmt"># while loop + break/continue</span>
 retries = <span class="num">0</span>
@@ -260,7 +258,7 @@ retries = <span class="num">0</span>
         <div class="topic-body">
             <div class="theory-section">
                 <div class="section-label">Kiến thức quan trọng</div>
-                <p>Khi học Python để làm automation, rất nhiều bạn chỉ tập trung viết code chạy được mà quên mất môi trường và chất lượng code. Trong dự án thật, <strong>virtualenv</strong>, <strong>type hints</strong> và các lệnh check như <code>ruff</code>, <code>mypy</code> giúp bạn tránh lỗi môi trường và lỗi logic từ rất sớm.</p>
+                <p>Khi viết Python cho dự án thật, rất nhiều người chỉ tập trung viết code chạy được mà quên mất môi trường và chất lượng code. <strong>Virtualenv</strong>, <strong>type hints</strong> và các lệnh check như <code>ruff</code>, <code>mypy</code> giúp bạn tránh lỗi môi trường và lỗi logic từ rất sớm.</p>
 
                 <div class="code-block">
                     <div class="code-header">
@@ -417,14 +415,14 @@ tests.remove(<span class="str">"search"</span>)   <span class="cmt"># xoá theo 
 
 <span class="cmt">## DICTIONARY ##</span>
 tc = {
-    <span class="str">"id"</span>: <span class="str">"TC001"</span>,
-    <span class="str">"name"</span>: <span class="str">"Login with valid credentials"</span>,
-    <span class="str">"status"</span>: <span class="str">"PASS"</span>,
-    <span class="str">"module"</span>: <span class="str">"auth"</span>
+    <span class="str">"id"</span>: <span class="str">"P001"</span>,
+    <span class="str">"name"</span>: <span class="str">"Laptop Gaming"</span>,
+    <span class="str">"price"</span>: <span class="num">25_000_000</span>,
+    <span class="str">"category"</span>: <span class="str">"electronics"</span>
 }
-<span class="fn">print</span>(tc[<span class="str">"name"</span>])           <span class="cmt"># truy cập bằng key</span>
-<span class="fn">print</span>(tc.get(<span class="str">"priority"</span>, <span class="str">"medium"</span>))  <span class="cmt"># default nếu key không tồn tại</span>
-tc[<span class="str">"priority"</span>] = <span class="str">"high"</span>    <span class="cmt"># thêm/cập nhật key</span>
+<span class="fn">print</span>(tc[<span class="str">"name"</span>])             <span class="cmt"># truy cập bằng key</span>
+<span class="fn">print</span>(tc.get(<span class="str">"discount"</span>, <span class="num">0</span>))    <span class="cmt"># default nếu key không tồn tại</span>
+tc[<span class="str">"discount"</span>] = <span class="num">10</span>           <span class="cmt"># thêm/cập nhật key</span>
 
 <span class="kw">for</span> key, value <span class="kw">in</span> tc.items():
     <span class="fn">print</span>(<span class="str">f"  <span class="dec">{key}</span>: <span class="dec">{value}</span>"</span>)
@@ -441,10 +439,8 @@ names  = [t[<span class="str">"name"</span>].upper() <span class="kw">for</span>
                             <input type="checkbox" class="ex-check" id="ex-5" onchange="onCheck(this)">
                             <label for="ex-5" style="display:contents;cursor:pointer">
                                 <div class="ex-text">
-                                    <div class="ex-title">Quản lý danh sách test case</div>
-                                    <div class="ex-desc">Tạo list chứa 5 dict test case (id,
-                                        name, status). Viết code: đếm PASS/FAIL, lọc ra các TC
-                                        thuộc module "auth", in ra theo định dạng đẹp.</div>
+                                    <div class="ex-title">Quản lý danh sách sản phẩm</div>
+                                    <div class="ex-desc">Tạo list chứa 5 dict sản phẩm (id, name, price, category). Viết code: tìm sản phẩm rẻ nhất/đắt nhất, lọc sản phẩm theo category, in danh sách theo định dạng đẹp.</div>
                                 </div>
                             </label>
                         </div>
@@ -452,10 +448,8 @@ names  = [t[<span class="str">"name"</span>].upper() <span class="kw">for</span>
                             <input type="checkbox" class="ex-check" id="ex-6" onchange="onCheck(this)">
                             <label for="ex-6" style="display:contents;cursor:pointer">
                                 <div class="ex-text">
-                                    <div class="ex-title">Group test case theo module</div>
-                                    <div class="ex-desc">Từ list test case ở bài 1, tạo dict
-                                        <code>{"auth": [...], "checkout": [...]}</code> — gom
-                                        test case theo module bằng vòng lặp.
+                                    <div class="ex-title">Group sản phẩm theo category</div>
+                                    <div class="ex-desc">Từ list sản phẩm ở bài 1, tạo dict <code>{"electronics": [...], "clothing": [...]}</code> — gom sản phẩm theo category bằng vòng lặp. Tính tổng giá trị từng nhóm.
                                     </div>
                                 </div>
                             </label>
@@ -492,9 +486,7 @@ names  = [t[<span class="str">"name"</span>].upper() <span class="kw">for</span>
             <div class="topic-body">
                 <div class="theory-section">
                     <div class="section-label">Lý thuyết</div>
-                    <p>Function giúp bạn <strong>tái sử dụng code</strong> và tách logic
-                        ra thành các đơn vị nhỏ có thể test độc lập — đây là nền tảng để
-                        hiểu Page Object Model sau này.</p>
+                    <p>Function giúp bạn <strong>tái sử dụng code</strong> và tách logic ra thành các đơn vị nhỏ có thể test độc lập. Đây là kỹ năng cốt lõi để viết code sạch, dễ đọc và dễ bảo trì.</p>
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-lang python">Python</span>
@@ -517,11 +509,11 @@ tc1 = <span class="fn">create_test_case</span>(<span class="str">"Login test"</s
 tc2 = <span class="fn">create_test_case</span>(<span class="str">"Checkout"</span>, <span class="str">"PASS"</span>)   <span class="cmt"># override status</span>
 
 <span class="cmt"># *args — nhận nhiều positional arguments</span>
-<span class="kw">def</span> <span class="fn">run_tests</span>(*test_names):
-    <span class="kw">for</span> name <span class="kw">in</span> test_names:
-        <span class="fn">print</span>(<span class="str">f"Running: <span class="dec">{name}</span>"</span>)
+<span class="kw">def</span> <span class="fn">process_items</span>(*item_names):
+    <span class="kw">for</span> name <span class="kw">in</span> item_names:
+        <span class="fn">print</span>(<span class="str">f"Processing: <span class="dec">{name}</span>"</span>)
 
-<span class="fn">run_tests</span>(<span class="str">"TC001"</span>, <span class="str">"TC002"</span>, <span class="str">"TC003"</span>)
+<span class="fn">process_items</span>(<span class="str">"P001"</span>, <span class="str">"P002"</span>, <span class="str">"P003"</span>)
 
 <span class="cmt"># **kwargs — nhận nhiều keyword arguments</span>
 <span class="kw">def</span> <span class="fn">log_result</span>(**kwargs):
@@ -552,11 +544,8 @@ tc2 = <span class="fn">create_test_case</span>(<span class="str">"Checkout"</spa
                             <input type="checkbox" class="ex-check" id="ex-8" onchange="onCheck(this)">
                             <label for="ex-8" style="display:contents;cursor:pointer">
                                 <div class="ex-text">
-                                    <div class="ex-title">Hàm tính điểm test suite</div>
-                                    <div class="ex-desc">Viết
-                                        <code>summarize_suite(*results)</code> nhận
-                                        nhiều status ("PASS"/"FAIL"/"SKIP"), trả về dict
-                                        <code>{"total": n, "passed": n, "rate": n%}</code>.
+                                    <div class="ex-title">Hàm tính điểm trung bình</div>
+                                    <div class="ex-desc">Viết <code>summarize_scores(*scores)</code> nhận nhiều điểm số (0–10), trả về dict <code>{"total": n, "average": x, "max": y, "min": z, "passed": n}</code> (passed: điểm >= 5).
                                     </div>
                                 </div>
                             </label>
@@ -944,9 +933,7 @@ APP_NAME = <span class="str">"MyApp"</span>  <span class="cmt"># tồn tại đ�
         <div class="topic-body">
             <div class="theory-section">
                 <div class="section-label">Lý thuyết</div>
-                <p>Trong automation testing, bạn sẽ <strong>liên tục đọc test
-                        data từ file</strong> (CSV/JSON) và ghi kết quả ra file
-                    báo cáo. Đây là kỹ năng cốt lõi.</p>
+                <p>Trong thực tế, bạn sẽ thường xuyên <strong>đọc dữ liệu từ file</strong> (CSV/JSON) và ghi kết quả ra file. Đây là kỹ năng cốt lõi của bất kỳ chương trình Python nào xử lý dữ liệu.</p>
                 <div class="tip-box info">
                     <span class="tip-icon">💡</span>
                     <div class="tip-content"><strong>Giải thích
@@ -979,8 +966,8 @@ APP_NAME = <span class="str">"MyApp"</span>  <span class="cmt"># tồn tại đ�
 
 <span class="cmt">## GHI JSON ##</span>
 results = [
-    {<span class="str">"id"</span>: <span class="str">"TC001"</span>, <span class="str">"status"</span>: <span class="str">"PASS"</span>, <span class="str">"duration"</span>: <span class="num">1.23</span>},
-    {<span class="str">"id"</span>: <span class="str">"TC002"</span>, <span class="str">"status"</span>: <span class="str">"FAIL"</span>, <span class="str">"duration"</span>: <span class="num">2.01</span>},
+    {<span class="str">"id"</span>: <span class="str">"P001"</span>, <span class="str">"name"</span>: <span class="str">"Laptop"</span>, <span class="str">"price"</span>: <span class="num">25_000_000</span>},
+    {<span class="str">"id"</span>: <span class="str">"P002"</span>, <span class="str">"name"</span>: <span class="str">"Phone"</span>,  <span class="str">"price"</span>: <span class="num">8_000_000</span>},
 ]
 <span class="kw">with</span> <span class="fn">open</span>(<span class="str">"report.json"</span>, <span class="str">"w"</span>, encoding=<span class="str">"utf-8"</span>) <span class="kw">as</span> f:
     json.<span class="fn">dump</span>(results, f, indent=<span class="num">2</span>, ensure_ascii=<span class="kw">False</span>)
@@ -988,7 +975,7 @@ results = [
 <span class="cmt">## ĐỌC JSON ##</span>
 <span class="kw">with</span> <span class="fn">open</span>(<span class="str">"report.json"</span>, <span class="str">"r"</span>) <span class="kw">as</span> f:
     data = json.<span class="fn">load</span>(f)    <span class="cmt"># trả về list/dict Python</span>
-    <span class="fn">print</span>(data[<span class="num">0</span>][<span class="str">"status"</span>])</pre>
+    <span class="fn">print</span>(data[<span class="num">0</span>][<span class="str">"name"</span>])</pre>
                 </div>
                 <div class="tip-box info">
                     <span class="tip-icon">💡</span>
@@ -1033,12 +1020,8 @@ results = [
                         <input type="checkbox" class="ex-check" id="ex-9" onchange="onCheck(this)">
                         <label for="ex-9" style="display:contents;cursor:pointer">
                             <div class="ex-text">
-                                <div class="ex-title">Đọc test data từ CSV</div>
-                                <div class="ex-desc">Tạo file
-                                    <code>test_data.csv</code> có 5 bộ
-                                    username/password/expected. Đọc file, in ra
-                                    mỗi bộ theo format:
-                                    <code>[TC1] user: admin | expected: success</code>
+                                <div class="ex-title">Đọc danh sách sản phẩm từ CSV</div>
+                                <div class="ex-desc">Tạo file <code>products.csv</code> có 5 sản phẩm (id, name, price, category). Đọc file, in ra mỗi sản phẩm theo format: <code>[1] Laptop — 15,000,000đ (Electronics)</code>.
                                 </div>
                             </div>
                         </label>
@@ -1047,12 +1030,8 @@ results = [
                         <input type="checkbox" class="ex-check" id="ex-10" onchange="onCheck(this)">
                         <label for="ex-10" style="display:contents;cursor:pointer">
                             <div class="ex-text">
-                                <div class="ex-title">Ghi kết quả test ra JSON
-                                </div>
-                                <div class="ex-desc">Mô phỏng kết quả 5 test
-                                    case (tạo list dict), ghi ra
-                                    <code>report.json</code> với indent=2. Đọc
-                                    lại và in tổng PASS/FAIL.
+                                <div class="ex-title">Ghi danh sách học sinh ra JSON</div>
+                                <div class="ex-desc">Tạo list 5 học sinh (name, age, scores), ghi ra <code>students.json</code> với indent=2. Đọc lại, tính điểm trung bình từng người và in kết quả xếp loại.
                                 </div>
                             </div>
                         </label>
@@ -1170,11 +1149,11 @@ except json.JSONDecodeError:
 
                         <h4>5. Custom Exception</h4>
                         <p>Python cho phép tự tạo loại lỗi riêng.</p>
-                        <pre><code>class TestDataError(Exception):
+                        <pre><code>class DataError(Exception):
     pass
 </code></pre>
                         <p><strong>Ở đây:</strong></p>
-                        <pre><code>TestDataError
+                        <pre><code>DataError
      ↓
 kế thừa
      ↓
@@ -1184,7 +1163,7 @@ Exception
 
                         <h4>6. raise (ném lỗi)</h4>
                         <p><code>raise</code> dùng để tự tạo exception.</p>
-                        <pre><code>raise TestDataError("Thiếu username")
+                        <pre><code>raise DataError("Thiếu username")
 </code></pre>
                         <p><strong>Ý nghĩa:</strong></p>
                         <ul>
@@ -1196,9 +1175,9 @@ Exception
                         </ul>
 
                         <h4>7. Ví dụ trong code của cậu</h4>
-                        <pre><code>def load_test_user(data):
+                        <pre><code>def load_user(data):
     if "username" not in data:
-        raise TestDataError(f"Thiếu field 'username' trong: {data}")
+        raise DataError(f"Thiếu trường 'username' trong: {data}")
 
     return data["username"]
 </code></pre>
@@ -1208,7 +1187,7 @@ Exception
                             <li>↓</li>
                             <li>nếu không tồn tại</li>
                             <li>↓</li>
-                            <li>raise TestDataError</li>
+                            <li>raise DataError</li>
                             <li>↓</li>
                             <li>dừng hàm</li>
                         </ul>
@@ -1216,8 +1195,8 @@ Exception
 
                         <h4>8. Cách bắt Custom Exception</h4>
                         <pre><code>try:
-    user = load_test_user(data)
-except TestDataError as e:
+    user = load_user(data)
+except DataError as e:
     print("Lỗi dữ liệu:", e)
 </code></pre>
                         <p><strong>Output:</strong> Lỗi dữ liệu: Thiếu field username</p>
@@ -1230,7 +1209,7 @@ except TestDataError as e:
                         <p><strong>Ví dụ:</strong></p>
                         <ul>
                             <li>ValidationError</li>
-                            <li>TestDataError</li>
+                            <li>DataError</li>
                             <li>APIError</li>
                             <li>AuthError</li>
                         </ul>
@@ -1247,12 +1226,12 @@ except:
                         <h4>10. Ví dụ hoàn chỉnh</h4>
                         <pre><code>import json
 
-class TestDataError(Exception):
+class DataError(Exception):
     pass
 
-def load_test_user(data):
+def load_user(data):
     if "username" not in data:
-        raise TestDataError("Thiếu username")
+        raise DataError("Thiếu username")
 
     return data["username"]
 
@@ -1321,13 +1300,13 @@ finally:
     <span class="fn">print</span>(<span class="str">"Luôn chạy dòng này dù có lỗi hay không"</span>)
 
 <span class="cmt"># Custom Exception — đặt tên lỗi rõ ràng</span>
-<span class="kw">class</span> <span class="cls">TestDataError</span>(<span class="cls">Exception</span>):
+<span class="kw">class</span> <span class="cls">DataError</span>(<span class="cls">Exception</span>):
     <span class="str">"""Lỗi khi dữ liệu test không hợp lệ"""</span>
     <span class="kw">pass</span>
 
-<span class="kw">def</span> <span class="fn">load_test_user</span>(data):
+<span class="kw">def</span> <span class="fn">load_user</span>(data):
     <span class="kw">if</span> <span class="str">"username"</span> <span class="kw">not</span> <span class="kw">in</span> data:
-        <span class="kw">raise</span> <span class="cls">TestDataError</span>(<span class="str">f"Thiếu field 'username' trong: <span class="dec">{data}</span>"</span>)
+        <span class="kw">raise</span> <span class="cls">DataError</span>(<span class="str">f"Thiếu trường 'username' trong: <span class="dec">{data}</span>"</span>)
     <span class="kw">return</span> data[<span class="str">"username"</span>]</pre>
                     </div>
                 </div>
@@ -1358,7 +1337,7 @@ finally:
                                     <div class="ex-desc">Tạo class
                                         <code>ValidationError(Exception)</code>.
                                         Viết hàm
-                                        <code>validate_test_data(row)</code>
+                                        <code>validate_data(row)</code>
                                         kiểm tra các field bắt buộc, raise lỗi
                                         tùy chỉnh nếu thiếu.
                                     </div>
@@ -1403,9 +1382,7 @@ finally:
         <div class="topic-body">
             <div class="theory-section">
                 <div class="section-label">Lý thuyết</div>
-                <p>Trong automation testing, bạn sẽ <strong>liên tục đọc test
-                        data từ file</strong> (CSV/JSON) và ghi kết quả ra file
-                    báo cáo. Đây là kỹ năng cốt lõi.</p>
+                <p>Trong thực tế, bạn sẽ thường xuyên <strong>đọc dữ liệu từ file</strong> (CSV/JSON) và ghi kết quả ra file. Đây là kỹ năng cốt lõi của bất kỳ chương trình Python nào xử lý dữ liệu.</p>
                 <div class="tip-box info">
                     <span class="tip-icon">💡</span>
                     <div class="tip-content"><strong>Giải thích
@@ -1438,8 +1415,8 @@ finally:
 
 <span class="cmt">## GHI JSON ##</span>
 results = [
-    {<span class="str">"id"</span>: <span class="str">"TC001"</span>, <span class="str">"status"</span>: <span class="str">"PASS"</span>, <span class="str">"duration"</span>: <span class="num">1.23</span>},
-    {<span class="str">"id"</span>: <span class="str">"TC002"</span>, <span class="str">"status"</span>: <span class="str">"FAIL"</span>, <span class="str">"duration"</span>: <span class="num">2.01</span>},
+    {<span class="str">"id"</span>: <span class="str">"P001"</span>, <span class="str">"name"</span>: <span class="str">"Laptop"</span>, <span class="str">"price"</span>: <span class="num">25_000_000</span>},
+    {<span class="str">"id"</span>: <span class="str">"P002"</span>, <span class="str">"name"</span>: <span class="str">"Phone"</span>,  <span class="str">"price"</span>: <span class="num">8_000_000</span>},
 ]
 <span class="kw">with</span> <span class="fn">open</span>(<span class="str">"report.json"</span>, <span class="str">"w"</span>, encoding=<span class="str">"utf-8"</span>) <span class="kw">as</span> f:
     json.<span class="fn">dump</span>(results, f, indent=<span class="num">2</span>, ensure_ascii=<span class="kw">False</span>)
@@ -1447,7 +1424,7 @@ results = [
 <span class="cmt">## ĐỌC JSON ##</span>
 <span class="kw">with</span> <span class="fn">open</span>(<span class="str">"report.json"</span>, <span class="str">"r"</span>) <span class="kw">as</span> f:
     data = json.<span class="fn">load</span>(f)    <span class="cmt"># trả về list/dict Python</span>
-    <span class="fn">print</span>(data[<span class="num">0</span>][<span class="str">"status"</span>])</pre>
+    <span class="fn">print</span>(data[<span class="num">0</span>][<span class="str">"name"</span>])</pre>
                 </div>
                 <div class="tip-box info">
                     <span class="tip-icon">💡</span>
@@ -1492,12 +1469,8 @@ results = [
                         <input type="checkbox" class="ex-check" id="ex-9" onchange="onCheck(this)">
                         <label for="ex-9" style="display:contents;cursor:pointer">
                             <div class="ex-text">
-                                <div class="ex-title">Đọc test data từ CSV</div>
-                                <div class="ex-desc">Tạo file
-                                    <code>test_data.csv</code> có 5 bộ
-                                    username/password/expected. Đọc file, in ra
-                                    mỗi bộ theo format:
-                                    <code>[TC1] user: admin | expected: success</code>
+                                <div class="ex-title">Đọc danh sách sản phẩm từ CSV</div>
+                                <div class="ex-desc">Tạo file <code>products.csv</code> có 5 sản phẩm (id, name, price, category). Đọc file, in ra mỗi sản phẩm theo format: <code>[1] Laptop — 15,000,000đ (Electronics)</code>.
                                 </div>
                             </div>
                         </label>
@@ -1506,12 +1479,8 @@ results = [
                         <input type="checkbox" class="ex-check" id="ex-10" onchange="onCheck(this)">
                         <label for="ex-10" style="display:contents;cursor:pointer">
                             <div class="ex-text">
-                                <div class="ex-title">Ghi kết quả test ra JSON
-                                </div>
-                                <div class="ex-desc">Mô phỏng kết quả 5 test
-                                    case (tạo list dict), ghi ra
-                                    <code>report.json</code> với indent=2. Đọc
-                                    lại và in tổng PASS/FAIL.
+                                <div class="ex-title">Ghi danh sách học sinh ra JSON</div>
+                                <div class="ex-desc">Tạo list 5 học sinh (name, age, scores), ghi ra <code>students.json</code> với indent=2. Đọc lại, tính điểm trung bình từng người và in kết quả xếp loại.
                                 </div>
                             </div>
                         </label>
@@ -1660,13 +1629,13 @@ results = [
     <span class="fn">print</span>(<span class="str">"Luôn chạy dòng này dù có lỗi hay không"</span>)
 
 <span class="cmt"># Custom Exception — đặt tên lỗi rõ ràng</span>
-<span class="kw">class</span> <span class="cls">TestDataError</span>(<span class="cls">Exception</span>):
+<span class="kw">class</span> <span class="cls">DataError</span>(<span class="cls">Exception</span>):
     <span class="str">"""Lỗi khi dữ liệu test không hợp lệ"""</span>
     <span class="kw">pass</span>
 
-<span class="kw">def</span> <span class="fn">load_test_user</span>(data):
+<span class="kw">def</span> <span class="fn">load_user</span>(data):
     <span class="kw">if</span> <span class="str">"username"</span> <span class="kw">not</span> <span class="kw">in</span> data:
-        <span class="kw">raise</span> <span class="cls">TestDataError</span>(<span class="str">f"Thiếu field 'username' trong: <span class="dec">{data}</span>"</span>)
+        <span class="kw">raise</span> <span class="cls">DataError</span>(<span class="str">f"Thiếu trường 'username' trong: <span class="dec">{data}</span>"</span>)
     <span class="kw">return</span> data[<span class="str">"username"</span>]</pre>
                     </div>
 
@@ -1682,7 +1651,7 @@ results = [
                                     style="font-size:11px; font-weight:700; color:var(--p1); text-transform:uppercase; letter-spacing:0.07em; margin-bottom:0.5rem;">
                                     Kế thừa từ Exception</div>
                                 <code
-                                    style="font-size:12px; color:var(--text); background:var(--code-bg); padding:0.4rem 0.7rem; border-radius:5px; display:block; line-height:1.7;">class TestDataError(Exception):<br>&nbsp;&nbsp;&nbsp;&nbsp;pass</code>
+                                    style="font-size:12px; color:var(--text); background:var(--code-bg); padding:0.4rem 0.7rem; border-radius:5px; display:block; line-height:1.7;">class DataError(Exception):<br>&nbsp;&nbsp;&nbsp;&nbsp;pass</code>
                             </div>
                             <div
                                 style="flex:1; min-width:220px; background:var(--p3l); border:1px solid var(--note-border); border-radius:8px; padding:0.9rem 1rem;">
@@ -1690,7 +1659,7 @@ results = [
                                     style="font-size:11px; font-weight:700; color:var(--p3); text-transform:uppercase; letter-spacing:0.07em; margin-bottom:0.5rem;">
                                     Ném lỗi với raise</div>
                                 <code
-                                    style="font-size:12px; color:var(--text); background:var(--code-bg); padding:0.4rem 0.7rem; border-radius:5px; display:block; line-height:1.7;">raise TestDataError("Thiếu username")</code>
+                                    style="font-size:12px; color:var(--text); background:var(--code-bg); padding:0.4rem 0.7rem; border-radius:5px; display:block; line-height:1.7;">raise DataError("Thiếu username")</code>
                             </div>
                             <div
                                 style="flex:1; min-width:220px; background:var(--p2l); border:1px solid var(--p2b); border-radius:8px; padding:0.9rem 1rem;">
@@ -1698,12 +1667,12 @@ results = [
                                     style="font-size:11px; font-weight:700; color:var(--p2); text-transform:uppercase; letter-spacing:0.07em; margin-bottom:0.5rem;">
                                     Bắt lỗi tùy chỉnh</div>
                                 <code
-                                    style="font-size:12px; color:var(--text); background:var(--code-bg); padding:0.4rem 0.7rem; border-radius:5px; display:block; line-height:1.7;">except TestDataError as e:<br>&nbsp;&nbsp;&nbsp;&nbsp;print("Lỗi:", e)</code>
+                                    style="font-size:12px; color:var(--text); background:var(--code-bg); padding:0.4rem 0.7rem; border-radius:5px; display:block; line-height:1.7;">except DataError as e:<br>&nbsp;&nbsp;&nbsp;&nbsp;print("Lỗi:", e)</code>
                             </div>
                         </div>
                         <div style="margin-top:0.75rem; font-size:13px; color:var(--text2);">Dùng custom exception khi
                             muốn phân loại lỗi rõ ràng theo domain: <code>ValidationError</code>,
-                            <code>TestDataError</code>, <code>APIError</code>, <code>AuthError</code>…
+                            <code>DataError</code>, <code>APIError</code>, <code>AuthError</code>…
                         </div>
                     </div>
 
@@ -1824,7 +1793,7 @@ results = [
                                 <div class="ex-text">
                                     <div class="ex-title">Custom ValidationError</div>
                                     <div class="ex-desc">Tạo class <code>ValidationError(Exception)</code>. Viết hàm
-                                        <code>validate_test_data(row)</code> kiểm tra các field bắt buộc, raise lỗi tùy
+                                        <code>validate_data(row)</code> kiểm tra các field bắt buộc, raise lỗi tùy
                                         chỉnh nếu thiếu.
                                     </div>
                                 </div>
@@ -1856,222 +1825,336 @@ results = [
         <div class="topic-header" onclick="toggleTopic(this)">
             <div class="topic-icon">🏗️</div>
             <div class="topic-meta">
-                <div class="topic-name">Class, Object & Inheritance
-                </div>
-                <div class="topic-desc">__init__ · self · attributes &
-                    methods · kế thừa</div>
+                <div class="topic-name">4 Tính chất OOP — Lập Trình Hướng Đối Tượng</div>
+                <div class="topic-desc">Class · Object · Encapsulation · Inheritance · Polymorphism · Abstraction</div>
             </div>
             <div class="topic-toggle">▼</div>
             <span class="note-dot" id="note-dot-7"></span>
         </div>
         <div class="topic-body">
+
+            <!-- INTRO -->
             <div class="theory-section">
-                <div class="section-label">Lý thuyết — Tại sao OOP quan
-                    trọng với QC?</div>
-                <p>OOP là nền tảng của <strong>Page Object Model
-                        (POM)</strong> — pattern bắt buộc khi làm
-                    automation. Mỗi trang web sẽ là một class. Khi bạn
-                    hiểu OOP, việc học POM chỉ là áp dụng.</p>
+                <div class="section-label">OOP là gì và 4 tính chất cốt lõi</div>
+                <p><strong>OOP (Object-Oriented Programming)</strong> là cách tổ chức code theo "đối tượng" — mỗi đối tượng kết hợp <strong>dữ liệu</strong> (attribute) và <strong>hành động</strong> (method) thành một đơn vị. OOP giúp code dễ đọc, dễ mở rộng và tái sử dụng hơn so với viết tuần tự.</p>
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Tính chất</th><th>Ý nghĩa</th><th>Từ khóa Python</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Encapsulation</strong><br><small style="color:var(--text3)">Đóng gói</small></td>
+                            <td>Gói data + method vào class, kiểm soát truy cập từ bên ngoài</td>
+                            <td><code>_attr</code>, <code>__attr</code>, <code>@property</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Inheritance</strong><br><small style="color:var(--text3)">Kế thừa</small></td>
+                            <td>Class con nhận toàn bộ attribute và method của class cha</td>
+                            <td><code>class B(A):</code>, <code>super()</code></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Polymorphism</strong><br><small style="color:var(--text3)">Đa hình</small></td>
+                            <td>Cùng tên method, hành vi khác nhau tuỳ từng class cụ thể</td>
+                            <td>Method overriding, duck typing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Abstraction</strong><br><small style="color:var(--text3)">Trừu tượng hóa</small></td>
+                            <td>Định nghĩa interface bắt buộc, ẩn chi tiết implement</td>
+                            <td><code>ABC</code>, <code>@abstractmethod</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- CLASS & OBJECT BASICS -->
+            <div class="theory-section">
+                <div class="section-label">Class & Object — Nền tảng</div>
+                <p>Class là <strong>bản thiết kế</strong>. Object (instance) là <strong>thực thể cụ thể</strong> tạo từ bản thiết kế đó. Một class có thể tạo nhiều object, mỗi object có data riêng của nó.</p>
                 <div class="code-block">
                     <div class="code-header">
                         <span class="code-lang python">Python</span>
-                        <span class="code-filename">oop_basics.py</span>
+                        <span class="code-filename">animal.py</span>
                         <button class="code-copy" onclick="copyCode(this)">Copy</button>
                     </div>
-                    <pre><span class="cmt"># Khai báo class</span>
-<span class="kw">class</span> <span class="cls">TestCase</span>:
-    <span class="cmt"># __init__ chạy khi tạo object mới</span>
-    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="self">self</span>, tc_id, name, module):
-        <span class="self">self</span>.tc_id   = tc_id    <span class="cmt"># instance attribute</span>
+                    <pre><span class="kw">class</span> <span class="cls">Animal</span>:
+    <span class="cmt"># Class attribute — dùng chung cho tất cả object</span>
+    kingdom = <span class="str">"Animalia"</span>
+    count   = <span class="num">0</span>
+
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="self">self</span>, name: <span class="fn">str</span>, species: <span class="fn">str</span>, age: <span class="fn">int</span>):
+        <span class="cmt"># Instance attribute — riêng của từng object</span>
         <span class="self">self</span>.name    = name
-        <span class="self">self</span>.module  = module
-        <span class="self">self</span>.status  = <span class="str">"PENDING"</span>  <span class="cmt"># giá trị mặc định</span>
-        <span class="self">self</span>.duration = <span class="kw">None</span>
+        <span class="self">self</span>.species = species
+        <span class="self">self</span>.age     = age
+        <span class="cls">Animal</span>.count += <span class="num">1</span>   <span class="cmt"># tăng bộ đếm chung</span>
 
-    <span class="kw">def</span> <span class="fn">mark_pass</span>(<span class="self">self</span>, duration=<span class="num">0.0</span>):
-        <span class="self">self</span>.status   = <span class="str">"PASS"</span>
-        <span class="self">self</span>.duration = duration
+    <span class="kw">def</span> <span class="fn">describe</span>(<span class="self">self</span>) -> <span class="fn">str</span>:
+        <span class="kw">return</span> <span class="str">f"<span class="dec">{self.name}</span> là <span class="dec">{self.species}</span>, <span class="dec">{self.age}</span> tuổi"</span>
 
-    <span class="kw">def</span> <span class="fn">mark_fail</span>(<span class="self">self</span>, reason=<span class="str">""</span>):
-        <span class="self">self</span>.status = <span class="str">"FAIL"</span>
-        <span class="self">self</span>.reason = reason
+    <span class="kw">def</span> <span class="fn">birthday</span>(<span class="self">self</span>):
+        <span class="self">self</span>.age += <span class="num">1</span>
+        <span class="fn">print</span>(<span class="str">f"<span class="dec">{self.name}</span> vừa sinh nhật! Giờ <span class="dec">{self.age}</span> tuổi."</span>)
 
-    <span class="kw">def</span> <span class="fn">__repr__</span>(<span class="self">self</span>):
-        <span class="kw">return</span> <span class="str">f"&lt;TC <span class="dec">{self.tc_id}</span> | <span class="dec">{self.status}</span>&gt;"</span>
+    <span class="kw">def</span> <span class="fn">__str__</span>(<span class="self">self</span>):       <span class="cmt"># print(obj) gọi cái này</span>
+        <span class="kw">return</span> <span class="self">self</span>.<span class="fn">describe</span>()
+
+    <span class="kw">def</span> <span class="fn">__repr__</span>(<span class="self">self</span>):      <span class="cmt"># repr(obj) — debug friendly</span>
+        <span class="kw">return</span> <span class="str">f"Animal(name=<span class="dec">{self.name!r}</span>, species=<span class="dec">{self.species!r}</span>)"</span>
 
 
 <span class="cmt"># Tạo object (instance)</span>
-tc1 = <span class="cls">TestCase</span>(<span class="str">"TC001"</span>, <span class="str">"Login valid user"</span>, <span class="str">"auth"</span>)
-tc1.<span class="fn">mark_pass</span>(<span class="num">1.5</span>)
-<span class="fn">print</span>(tc1)   <span class="cmt"># &lt;TC TC001 | PASS&gt;</span>
+dog  = <span class="cls">Animal</span>(<span class="str">"Rex"</span>,   <span class="str">"Chó Golden"</span>, <span class="num">3</span>)
+cat  = <span class="cls">Animal</span>(<span class="str">"Luna"</span>,  <span class="str">"Mèo Anh"</span>,   <span class="num">2</span>)
 
-
-<span class="cmt"># Kế thừa (Inheritance)</span>
-<span class="kw">class</span> <span class="cls">TestSuite</span>(<span class="cls">TestCase</span>):   <span class="cmt"># kế thừa từ TestCase</span>
-    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="self">self</span>, suite_id, name):
-        <span class="fn">super</span>().<span class="fn">__init__</span>(suite_id, name, module=<span class="str">"suite"</span>)
-        <span class="self">self</span>.test_cases = []
-
-    <span class="kw">def</span> <span class="fn">add_test</span>(<span class="self">self</span>, tc: <span class="cls">TestCase</span>):
-        <span class="self">self</span>.test_cases.<span class="fn">append</span>(tc)
-
-    <span class="kw">def</span> <span class="fn">report</span>(<span class="self">self</span>):
-        total  = <span class="fn">len</span>(<span class="self">self</span>.test_cases)
-        passed = <span class="fn">sum</span>(<span class="num">1</span> <span class="kw">for</span> t <span class="kw">in</span> <span class="self">self</span>.test_cases <span class="kw">if</span> t.status == <span class="str">"PASS"</span>)
-        <span class="fn">print</span>(<span class="str">f"Suite: <span class="dec">{self.name}</span> — <span class="dec">{passed}</span>/<span class="dec">{total}</span> passed"</span>)</pre>
+<span class="fn">print</span>(dog)              <span class="cmt"># Rex là Chó Golden, 3 tuổi</span>
+<span class="fn">print</span>(<span class="cls">Animal</span>.count)     <span class="cmt"># 2</span>
+<span class="fn">print</span>(dog.kingdom)      <span class="cmt"># Animalia (class attribute)</span>
+dog.<span class="fn">birthday</span>()          <span class="cmt"># Rex vừa sinh nhật! Giờ 4 tuổi.</span>
+<span class="fn">print</span>(cat.age)          <span class="cmt"># 2 — cat không bị ảnh hưởng</span></pre>
                 </div>
-            </div>
-            <!-- THEORY BLOCK 2: self là gì -->
-            <div class="theory-section">
-                <div class="section-label">self là gì — giải thích thật đơn giản</div>
-                <p>Đây là câu hỏi mà hầu hết người mới đều thắc mắc. Python không tự biết method đang chạy cho
-                    <em>object nào</em> — nên bạn phải truyền object đó vào thủ công. Tên <code>self</code> chỉ là quy
-                    ước, bạn đặt tên khác cũng được (nhưng đừng làm vậy).
-                </p>
-                <div class="code-block">
-                    <div class="code-header">
-                        <span class="code-lang python">Python</span>
-                        <span class="code-filename">self_explained.py</span>
-                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
-                    </div>
-                    <pre><span class="cmt"># Khi bạn gọi:</span>
-tc1.<span class="fn">mark_pass</span>(<span class="num">1.5</span>)
 
-<span class="cmt"># Python ngầm dịch thành:</span>
-<span class="cls">TestCase</span>.<span class="fn">mark_pass</span>(tc1, <span class="num">1.5</span>)
-<span class="cmt"># → self chính là tc1 bên trong method!</span>
-
-<span class="cmt"># Nếu không có self, method không biết</span>
-<span class="cmt"># đang chỉnh status của tc1 hay tc2:</span>
-tc1 = <span class="cls">TestCase</span>(<span class="str">"TC001"</span>, <span class="str">"Login"</span>, <span class="str">"auth"</span>)
-tc2 = <span class="cls">TestCase</span>(<span class="str">"TC002"</span>, <span class="str">"Logout"</span>, <span class="str">"auth"</span>)
-
-tc1.<span class="fn">mark_pass</span>()   <span class="cmt"># self = tc1  → chỉ tc1.status đổi</span>
-tc2.<span class="fn">mark_fail</span>()   <span class="cmt"># self = tc2  → chỉ tc2.status đổi</span>
-
-<span class="fn">print</span>(tc1.status)  <span class="cmt"># PASS</span>
-<span class="fn">print</span>(tc2.status)  <span class="cmt"># FAIL</span></pre>
-                </div>
                 <div class="tip-box info">
                     <span class="tip-icon">💡</span>
-                    <div class="tip-content"><strong>Quy tắc nhớ:</strong> Mỗi method muốn truy cập data của chính
-                        object đó thì phải có <code>self</code> làm tham số đầu tiên. Không có <code>self</code> →
-                        method không biết mình đang làm việc với object nào.</div>
-                </div>
-            </div>
-
-            <!-- THEORY BLOCK 3: Class attribute vs Instance attribute -->
-            <div class="theory-section">
-                <div class="section-label">Class attribute vs Instance attribute</div>
-                <p>Hai loại attribute này hoạt động rất khác nhau — nhầm lẫn chỗ này sẽ gây bug khó tìm. <strong>Class
-                        attribute</strong> được chia sẻ chung cho tất cả object. <strong>Instance attribute</strong>
-                    thuộc riêng từng object, khai báo bên trong <code>__init__</code> qua <code>self</code>.</p>
-                <div class="code-block">
-                    <div class="code-header">
-                        <span class="code-lang python">Python</span>
-                        <span class="code-filename">class_vs_instance_attr.py</span>
-                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    <div class="tip-content">
+                        <strong>self là gì?</strong> Python không tự biết method đang chạy cho <em>object nào</em> — nên bạn phải truyền object đó vào. <code>dog.birthday()</code> Python ngầm dịch thành <code>Animal.birthday(dog)</code>. <code>self</code> chính là <code>dog</code> bên trong method. Tên "self" chỉ là quy ước, có thể đặt tên khác nhưng đừng làm vậy.
                     </div>
-                    <pre><span class="kw">class</span> <span class="cls">TestCase</span>:
-    <span class="cmt"># Class attribute — dùng chung, khai báo ngoài __init__</span>
-    category = <span class="str">"functional"</span>
-    count    = <span class="num">0</span>   <span class="cmt"># đếm tổng số TC đã tạo</span>
-
-    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="self">self</span>, tc_id, name):
-        <span class="cmt"># Instance attribute — riêng của từng object</span>
-        <span class="self">self</span>.tc_id  = tc_id
-        <span class="self">self</span>.name   = name
-        <span class="self">self</span>.status = <span class="str">"PENDING"</span>
-        <span class="cls">TestCase</span>.count += <span class="num">1</span>   <span class="cmt"># tăng bộ đếm chung</span>
-
-
-tc1 = <span class="cls">TestCase</span>(<span class="str">"TC001"</span>, <span class="str">"Login"</span>)
-tc2 = <span class="cls">TestCase</span>(<span class="str">"TC002"</span>, <span class="str">"Logout"</span>)
-
-<span class="cmt"># Class attribute — truy cập qua tên class hoặc object</span>
-<span class="fn">print</span>(<span class="cls">TestCase</span>.category)   <span class="cmt"># functional</span>
-<span class="fn">print</span>(tc1.category)        <span class="cmt"># functional (kế thừa từ class)</span>
-<span class="fn">print</span>(<span class="cls">TestCase</span>.count)      <span class="cmt"># 2  (tc1 + tc2)</span>
-
-<span class="cmt"># Instance attribute — riêng từng object</span>
-<span class="fn">print</span>(tc1.tc_id)            <span class="cmt"># TC001</span>
-<span class="fn">print</span>(tc2.tc_id)            <span class="cmt"># TC002</span>
-
-<span class="cmt"># ⚠️ Cẩn thận: gán qua object tạo instance attr mới,</span>
-<span class="cmt">#    không đổi class attr!</span>
-tc1.category = <span class="str">"regression"</span>   <span class="cmt"># tạo instance attr riêng cho tc1</span>
-<span class="fn">print</span>(tc1.category)            <span class="cmt"># regression (instance attr)</span>
-<span class="fn">print</span>(tc2.category)            <span class="cmt"># functional  (class attr gốc)</span>
-<span class="fn">print</span>(<span class="cls">TestCase</span>.category)      <span class="cmt"># functional  (không đổi)</span></pre>
                 </div>
                 <div class="tip-box warning">
                     <span class="tip-icon">⚠️</span>
-                    <div class="tip-content"><strong>Dễ nhầm:</strong> Nếu class attribute là <strong>mutable</strong>
-                        (list, dict), tất cả object dùng chung <em>cùng một object</em> đó. Thay đổi từ một object → ảnh
-                        hưởng hết. Luôn khai báo list/dict mặc định bên trong <code>__init__</code> qua
-                        <code>self</code> để tránh lỗi này.
-                    </div>
+                    <div class="tip-content"><strong>Class attribute mutable — cẩn thận!</strong> Nếu class attribute là list/dict, tất cả object dùng chung <em>cùng một object</em>. Luôn khai báo list/dict bên trong <code>__init__</code> qua <code>self</code> để tránh bug chia sẻ ngoài ý muốn.</div>
                 </div>
             </div>
 
-            <!-- THEORY BLOCK 4: Khi nào dùng kế thừa -->
+            <!-- ENCAPSULATION -->
             <div class="theory-section">
-                <div class="section-label">Kế thừa — is-a hay has-a?</div>
-                <p>Kế thừa chỉ hợp lý khi có quan hệ <strong>"is-a"</strong> (là một loại của). Dùng sai sẽ khiến code
-                    khó hiểu và khó sửa. Kiểm tra nhanh: đọc câu <em>"A là một B"</em> — nếu câu đó nghe tự nhiên thì kế
-                    thừa đúng, nếu nghe gượng thì dùng composition (has-a) thay vào.</p>
+                <div class="section-label">1. Encapsulation — Đóng gói</div>
+                <p>Đóng gói là việc <strong>che giấu data nội tại</strong> và chỉ cho phép truy cập qua các method được kiểm soát. Điều này ngăn code bên ngoài vô tình làm hỏng dữ liệu bên trong object.</p>
+
                 <div class="code-block">
                     <div class="code-header">
                         <span class="code-lang python">Python</span>
-                        <span class="code-filename">inheritance_vs_composition.py</span>
+                        <span class="code-filename">bank_account.py</span>
                         <button class="code-copy" onclick="copyCode(this)">Copy</button>
                     </div>
-                    <pre><span class="cmt"># ✅ is-a → dùng kế thừa hợp lý</span>
-<span class="cmt"># "AutomatedTestCase là một loại TestCase" → đúng</span>
-<span class="kw">class</span> <span class="cls">AutomatedTestCase</span>(<span class="cls">TestCase</span>):
-    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="self">self</span>, tc_id, name, script_path):
-        <span class="fn">super</span>().<span class="fn">__init__</span>(tc_id, name)
-        <span class="self">self</span>.script_path = script_path
+                    <pre><span class="kw">class</span> <span class="cls">BankAccount</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="self">self</span>, owner: <span class="fn">str</span>, balance: <span class="fn">float</span> = <span class="num">0</span>):
+        <span class="self">self</span>.owner    = owner          <span class="cmt"># public — ai cũng đọc/ghi được</span>
+        <span class="self">self</span>._balance = balance        <span class="cmt"># _protected — quy ước: không đụng từ ngoài</span>
+        <span class="self">self</span>.__log    = []             <span class="cmt"># __private — name mangling, khó truy cập hơn</span>
 
-    <span class="kw">def</span> <span class="fn">run</span>(<span class="self">self</span>):
-        <span class="fn">print</span>(<span class="str">f"Chạy script: <span class="dec">{self.script_path}</span>"</span>)
-        <span class="self">self</span>.<span class="fn">mark_pass</span>()   <span class="cmt"># dùng method kế thừa từ TestCase</span>
+    <span class="cmt"># @property — gọi như attribute, thực ra là method getter</span>
+    <span class="dec">@property</span>
+    <span class="kw">def</span> <span class="fn">balance</span>(<span class="self">self</span>) -> <span class="fn">float</span>:
+        <span class="kw">return</span> <span class="self">self</span>._balance
 
+    <span class="kw">def</span> <span class="fn">deposit</span>(<span class="self">self</span>, amount: <span class="fn">float</span>):
+        <span class="kw">if</span> amount <= <span class="num">0</span>:
+            <span class="kw">raise</span> <span class="cls">ValueError</span>(<span class="str">"Số tiền phải dương"</span>)
+        <span class="self">self</span>._balance += amount
+        <span class="self">self</span>.__log.<span class="fn">append</span>(<span class="str">f"+<span class="dec">{amount:,.0f}</span>"</span>)
 
-<span class="cmt"># ❌ has-a → KHÔNG nên kế thừa</span>
-<span class="cmt"># "TestSuite là một loại TestCase" → nghe sai!</span>
-<span class="cmt"># TestSuite CHỨA nhiều TestCase → dùng composition</span>
-<span class="kw">class</span> <span class="cls">TestSuite</span>:   <span class="cmt"># không kế thừa TestCase</span>
-    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="self">self</span>, name):
-        <span class="self">self</span>.name       = name
-        <span class="self">self</span>.test_cases = []   <span class="cmt"># has-a: chứa list TestCase</span>
+    <span class="kw">def</span> <span class="fn">withdraw</span>(<span class="self">self</span>, amount: <span class="fn">float</span>):
+        <span class="kw">if</span> amount > <span class="self">self</span>._balance:
+            <span class="kw">raise</span> <span class="cls">ValueError</span>(<span class="str">"Số dư không đủ"</span>)
+        <span class="self">self</span>._balance -= amount
+        <span class="self">self</span>.__log.<span class="fn">append</span>(<span class="str">f"-<span class="dec">{amount:,.0f}</span>"</span>)
 
-    <span class="kw">def</span> <span class="fn">add</span>(<span class="self">self</span>, tc: <span class="cls">TestCase</span>):
-        <span class="self">self</span>.test_cases.<span class="fn">append</span>(tc)
-
-    <span class="kw">def</span> <span class="fn">report</span>(<span class="self">self</span>):
-        total  = <span class="fn">len</span>(<span class="self">self</span>.test_cases)
-        passed = <span class="fn">sum</span>(<span class="num">1</span> <span class="kw">for</span> t <span class="kw">in</span> <span class="self">self</span>.test_cases <span class="kw">if</span> t.status == <span class="str">"PASS"</span>)
-        <span class="fn">print</span>(<span class="str">f"[<span class="dec">{self.name}</span>] <span class="dec">{passed}</span>/<span class="dec">{total}</span> passed"</span>)
+    <span class="kw">def</span> <span class="fn">history</span>(<span class="self">self</span>) -> <span class="fn">list</span>:
+        <span class="kw">return</span> <span class="self">self</span>.__log.<span class="fn">copy</span>()    <span class="cmt"># trả về bản copy, không lộ list gốc</span>
 
 
-<span class="cmt"># Kết hợp: tạo suite, thêm các TC vào</span>
-suite = <span class="cls">TestSuite</span>(<span class="str">"Smoke Test"</span>)
-tc_auto = <span class="cls">AutomatedTestCase</span>(<span class="str">"TC001"</span>, <span class="str">"Login"</span>, <span class="str">"tests/login.py"</span>)
-tc_auto.<span class="fn">run</span>()
-suite.<span class="fn">add</span>(tc_auto)
-suite.<span class="fn">report</span>()   <span class="cmt"># [Smoke Test] 1/1 passed</span></pre>
+acc = <span class="cls">BankAccount</span>(<span class="str">"Alice"</span>, <span class="num">1_000_000</span>)
+acc.<span class="fn">deposit</span>(<span class="num">500_000</span>)
+acc.<span class="fn">withdraw</span>(<span class="num">200_000</span>)
+<span class="fn">print</span>(acc.balance)     <span class="cmt"># 1300000 — dùng @property như attribute bình thường</span>
+<span class="fn">print</span>(acc.<span class="fn">history</span>())  <span class="cmt"># ['+500,000', '-200,000']</span>
+
+<span class="cmt"># acc.__log       → AttributeError  (name mangling bảo vệ)</span>
+<span class="cmt"># acc._balance = -999  → được về mặt kỹ thuật nhưng vi phạm quy ước</span></pre>
                 </div>
+
+                <table class="data-table">
+                    <thead><tr><th>Ký hiệu</th><th>Loại</th><th>Truy cập từ ngoài class</th></tr></thead>
+                    <tbody>
+                        <tr><td><code>name</code></td><td>Public</td><td>✅ Thoải mái</td></tr>
+                        <tr><td><code>_name</code></td><td>Protected (quy ước)</td><td>⚠️ Được, nhưng không nên</td></tr>
+                        <tr><td><code>__name</code></td><td>Private (name mangling)</td><td>❌ Dùng method/property thay thế</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- INHERITANCE -->
+            <div class="theory-section">
+                <div class="section-label">2. Inheritance — Kế thừa</div>
+                <p>Class con tự động có tất cả attribute và method của class cha. Dùng <code>super()</code> để gọi method cha. Class con có thể <strong>override</strong> (ghi đè) method cha để thay đổi hành vi.</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-lang python">Python</span>
+                        <span class="code-filename">inheritance.py</span>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><span class="kw">class</span> <span class="cls">Animal</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="self">self</span>, name: <span class="fn">str</span>, age: <span class="fn">int</span>):
+        <span class="self">self</span>.name = name
+        <span class="self">self</span>.age  = age
+
+    <span class="kw">def</span> <span class="fn">speak</span>(<span class="self">self</span>) -> <span class="fn">str</span>:
+        <span class="kw">return</span> <span class="str">"..."</span>
+
+    <span class="kw">def</span> <span class="fn">describe</span>(<span class="self">self</span>):
+        <span class="fn">print</span>(<span class="str">f"<span class="dec">{self.name}</span> (<span class="dec">{self.age}</span> tuổi): <span class="dec">{self.speak()}</span>"</span>)
+
+
+<span class="kw">class</span> <span class="cls">Dog</span>(<span class="cls">Animal</span>):          <span class="cmt"># Dog kế thừa Animal</span>
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="self">self</span>, name, age, breed: <span class="fn">str</span>):
+        <span class="fn">super</span>().<span class="fn">__init__</span>(name, age)  <span class="cmt"># gọi __init__ của Animal</span>
+        <span class="self">self</span>.breed = breed            <span class="cmt"># thêm attribute mới</span>
+
+    <span class="kw">def</span> <span class="fn">speak</span>(<span class="self">self</span>) -> <span class="fn">str</span>:     <span class="cmt"># override — ghi đè method cha</span>
+        <span class="kw">return</span> <span class="str">"Gâu gâu!"</span>
+
+    <span class="kw">def</span> <span class="fn">fetch</span>(<span class="self">self</span>):           <span class="cmt"># method riêng của Dog</span>
+        <span class="fn">print</span>(<span class="str">f"<span class="dec">{self.name}</span> đi nhặt bóng!"</span>)
+
+
+<span class="kw">class</span> <span class="cls">Cat</span>(<span class="cls">Animal</span>):
+    <span class="kw">def</span> <span class="fn">speak</span>(<span class="self">self</span>) -> <span class="fn">str</span>:
+        <span class="kw">return</span> <span class="str">"Meo~"</span>
+
+
+rex  = <span class="cls">Dog</span>(<span class="str">"Rex"</span>, <span class="num">3</span>, <span class="str">"Golden"</span>)
+luna = <span class="cls">Cat</span>(<span class="str">"Luna"</span>, <span class="num">2</span>)
+rex.<span class="fn">describe</span>()    <span class="cmt"># Rex (3 tuổi): Gâu gâu!</span>
+luna.<span class="fn">describe</span>()   <span class="cmt"># Luna (2 tuổi): Meo~</span>
+rex.<span class="fn">fetch</span>()       <span class="cmt"># Rex đi nhặt bóng!</span>
+
+<span class="cmt"># Dog kế thừa từ Animal → isinstance trả True cho cả 2</span>
+<span class="fn">print</span>(<span class="fn">isinstance</span>(rex, <span class="cls">Dog</span>))     <span class="cmt"># True</span>
+<span class="fn">print</span>(<span class="fn">isinstance</span>(rex, <span class="cls">Animal</span>))  <span class="cmt"># True</span>
+<span class="fn">print</span>(<span class="fn">issubclass</span>(<span class="cls">Dog</span>, <span class="cls">Animal</span>))  <span class="cmt"># True</span></pre>
+                </div>
+
                 <div class="tip-box info">
                     <span class="tip-icon">💡</span>
-                    <div class="tip-content"><strong>Liên hệ POM:</strong> Trong Page Object Model sau này, mỗi page sẽ
-                        kế thừa từ một <code>BasePage</code> (vì "LoginPage <em>là một loại</em> BasePage").
-                        <code>BasePage</code> chứa các method dùng chung như <code>find_element()</code>,
-                        <code>click()</code>. Đây chính là is-a thực tế trong automation.
-                    </div>
+                    <div class="tip-content"><strong>is-a hay has-a?</strong> Kế thừa chỉ hợp lý khi có quan hệ <strong>"là một loại của"</strong>. <em>"Dog là một loại Animal"</em> → đúng, kế thừa OK. <em>"AnimalShelter là một loại Animal"</em> → nghe sai → không kế thừa, thay bằng <strong>composition</strong>: <code>self.animals = []</code>.</div>
                 </div>
             </div>
 
+            <!-- POLYMORPHISM -->
+            <div class="theory-section">
+                <div class="section-label">3. Polymorphism — Đa hình</div>
+                <p>Đa hình cho phép xử lý nhiều loại object khác nhau <strong>theo cùng một interface</strong>. Code gọi <code>animal.speak()</code> mà không cần biết đó là Dog hay Cat — mỗi object tự biết cách phản hồi.</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-lang python">Python</span>
+                        <span class="code-filename">polymorphism.py</span>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><span class="kw">class</span> <span class="cls">Bird</span>(<span class="cls">Animal</span>):
+    <span class="kw">def</span> <span class="fn">speak</span>(<span class="self">self</span>) -> <span class="fn">str</span>:
+        <span class="kw">return</span> <span class="str">"Chip chip!"</span>
+
+
+<span class="cmt"># POLYMORPHISM — cùng method describe(), hành vi khác nhau</span>
+zoo = [
+    <span class="cls">Dog</span>(<span class="str">"Rex"</span>,    <span class="num">3</span>, <span class="str">"Golden"</span>),
+    <span class="cls">Cat</span>(<span class="str">"Luna"</span>,   <span class="num">2</span>),
+    <span class="cls">Bird</span>(<span class="str">"Tweety"</span>, <span class="num">1</span>),
+]
+
+<span class="kw">for</span> animal <span class="kw">in</span> zoo:
+    animal.<span class="fn">describe</span>()          <span class="cmt"># gọi cùng method, output khác nhau</span>
+<span class="cmt"># Rex (3 tuổi): Gâu gâu!</span>
+<span class="cmt"># Luna (2 tuổi): Meo~</span>
+<span class="cmt"># Tweety (1 tuổi): Chip chip!</span>
+
+<span class="cmt"># DUCK TYPING — Python không check type, chỉ cần object có method đúng tên</span>
+<span class="kw">class</span> <span class="cls">Robot</span>:                       <span class="cmt"># không kế thừa Animal</span>
+    name, age = <span class="str">"R2D2"</span>, <span class="num">5</span>
+    <span class="kw">def</span> <span class="fn">speak</span>(<span class="self">self</span>): <span class="kw">return</span> <span class="str">"Beep boop!"</span>
+    <span class="kw">def</span> <span class="fn">describe</span>(<span class="self">self</span>):
+        <span class="fn">print</span>(<span class="str">f"<span class="dec">{self.name}</span>: <span class="dec">{self.speak()}</span>"</span>)
+
+<span class="cmt"># Robot cũng chạy được trong loop — "nếu nó có describe(), thì dùng được"</span>
+<span class="kw">for</span> obj <span class="kw">in</span> zoo + [<span class="cls">Robot</span>()]:
+    obj.<span class="fn">describe</span>()    <span class="cmt"># duck typing: không cần kế thừa Animal</span></pre>
+                </div>
+            </div>
+
+            <!-- ABSTRACTION -->
+            <div class="theory-section">
+                <div class="section-label">4. Abstraction — Trừu tượng hóa</div>
+                <p>Abstraction định nghĩa <strong>interface bắt buộc</strong> mà tất cả class con phải implement. Python dùng module <code>abc</code>. Class abstract <strong>không thể tạo object trực tiếp</strong> — phải subclass rồi implement hết method abstract mới dùng được.</p>
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-lang python">Python</span>
+                        <span class="code-filename">abstraction.py</span>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><span class="imp">from</span> abc <span class="imp">import</span> ABC, abstractmethod
+
+<span class="kw">class</span> <span class="cls">Shape</span>(<span class="cls">ABC</span>):          <span class="cmt"># Abstract class — không tạo instance được</span>
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="self">self</span>, color: <span class="fn">str</span>):
+        <span class="self">self</span>.color = color
+
+    <span class="dec">@abstractmethod</span>
+    <span class="kw">def</span> <span class="fn">area</span>(<span class="self">self</span>) -> <span class="fn">float</span>:        <span class="cmt"># BẮT BUỘC class con phải implement</span>
+        <span class="kw">pass</span>
+
+    <span class="dec">@abstractmethod</span>
+    <span class="kw">def</span> <span class="fn">perimeter</span>(<span class="self">self</span>) -> <span class="fn">float</span>:
+        <span class="kw">pass</span>
+
+    <span class="kw">def</span> <span class="fn">describe</span>(<span class="self">self</span>):             <span class="cmt"># method thường — class con kế thừa luôn</span>
+        <span class="fn">print</span>(<span class="str">f"<span class="dec">{type(self).__name__}</span> màu <span class="dec">{self.color}</span>: "
+              f"diện tích=<span class="dec">{self.area():.2f}</span>, chu vi=<span class="dec">{self.perimeter():.2f}</span>"</span>)
+
+
+<span class="kw">class</span> <span class="cls">Circle</span>(<span class="cls">Shape</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="self">self</span>, color, radius: <span class="fn">float</span>):
+        <span class="fn">super</span>().<span class="fn">__init__</span>(color)
+        <span class="self">self</span>.radius = radius
+
+    <span class="kw">def</span> <span class="fn">area</span>(<span class="self">self</span>) -> <span class="fn">float</span>:
+        <span class="kw">return</span> <span class="num">3.14159</span> * <span class="self">self</span>.radius ** <span class="num">2</span>
+
+    <span class="kw">def</span> <span class="fn">perimeter</span>(<span class="self">self</span>) -> <span class="fn">float</span>:
+        <span class="kw">return</span> <span class="num">2</span> * <span class="num">3.14159</span> * <span class="self">self</span>.radius
+
+
+<span class="kw">class</span> <span class="cls">Rectangle</span>(<span class="cls">Shape</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="self">self</span>, color, w: <span class="fn">float</span>, h: <span class="fn">float</span>):
+        <span class="fn">super</span>().<span class="fn">__init__</span>(color)
+        <span class="self">self</span>.w, <span class="self">self</span>.h = w, h
+
+    <span class="kw">def</span> <span class="fn">area</span>(<span class="self">self</span>) -> <span class="fn">float</span>:      <span class="kw">return</span> <span class="self">self</span>.w * <span class="self">self</span>.h
+    <span class="kw">def</span> <span class="fn">perimeter</span>(<span class="self">self</span>) -> <span class="fn">float</span>: <span class="kw">return</span> <span class="num">2</span> * (<span class="self">self</span>.w + <span class="self">self</span>.h)
+
+
+<span class="cmt"># Shape()  → TypeError: Can't instantiate abstract class</span>
+shapes = [<span class="cls">Circle</span>(<span class="str">"đỏ"</span>, <span class="num">5</span>), <span class="cls">Rectangle</span>(<span class="str">"xanh"</span>, <span class="num">4</span>, <span class="num">6</span>)]
+<span class="kw">for</span> s <span class="kw">in</span> shapes:
+    s.<span class="fn">describe</span>()
+<span class="cmt"># Circle màu đỏ: diện tích=78.54, chu vi=31.42</span>
+<span class="cmt"># Rectangle màu xanh: diện tích=24.00, chu vi=20.00</span>
+
+<span class="cmt"># Polymorphism + Abstraction kết hợp</span>
+<span class="kw">def</span> <span class="fn">total_area</span>(shapes: <span class="fn">list</span>) -> <span class="fn">float</span>:
+    <span class="kw">return</span> <span class="fn">sum</span>(s.<span class="fn">area</span>() <span class="kw">for</span> s <span class="kw">in</span> shapes)  <span class="cmt"># không cần biết loại shape</span>
+
+<span class="fn">print</span>(<span class="fn">total_area</span>(shapes))   <span class="cmt"># 102.54</span></pre>
+                </div>
+
+                <div class="tip-box info">
+                    <span class="tip-icon">💡</span>
+                    <div class="tip-content"><strong>Khi nào dùng Abstraction?</strong> Khi muốn <strong>bắt buộc</strong> tất cả class con implement một số method nhất định — ví dụ mọi nguồn dữ liệu phải có <code>read()</code> và <code>write()</code>, mọi loại thanh toán phải có <code>process()</code>. Lỗi thiếu implement được phát hiện sớm ngay lúc <code>__init__</code>, không phải khi gọi method.</div>
+                </div>
+            </div>
+
+            <!-- EXERCISES -->
             <div class="theory-section">
                 <div class="section-label">Bài tập thực hành</div>
                 <div class="exercises">
@@ -2079,15 +2162,8 @@ suite.<span class="fn">report</span>()   <span class="cmt"># [Smoke Test] 1/1 pa
                         <input type="checkbox" class="ex-check" id="ex-13" onchange="onCheck(this)">
                         <label for="ex-13" style="display:contents;cursor:pointer">
                             <div class="ex-text">
-                                <div class="ex-title">Xây dựng class
-                                    TestCase đầy đủ</div>
-                                <div class="ex-desc">Tạo class
-                                    <code>TestCase</code> với id, name,
-                                    status. Thêm method
-                                    <code>to_dict()</code> trả về dict
-                                    và <code>__str__</code> in thông tin
-                                    đẹp.
-                                </div>
+                                <div class="ex-title">Xây dựng Animal hierarchy</div>
+                                <div class="ex-desc">Tạo class <code>Animal</code> với <code>name</code>, <code>age</code>, method <code>speak()</code> → <code>"..."</code>. Tạo 3 subclass <code>Dog</code>, <code>Cat</code>, <code>Bird</code> override <code>speak()</code>. Tạo list 5 con vật, dùng loop gọi <code>describe()</code> cho tất cả — đây chính là Polymorphism.</div>
                             </div>
                         </label>
                     </div>
@@ -2095,32 +2171,17 @@ suite.<span class="fn">report</span>()   <span class="cmt"># [Smoke Test] 1/1 pa
                         <input type="checkbox" class="ex-check" id="ex-14" onchange="onCheck(this)">
                         <label for="ex-14" style="display:contents;cursor:pointer">
                             <div class="ex-text">
-                                <div class="ex-title">Class TestSuite kế
-                                    thừa</div>
-                                <div class="ex-desc">Tạo
-                                    <code>TestSuite</code> chứa list
-                                    <code>TestCase</code>, method
-                                    <code>add(tc)</code>,
-                                    <code>report()</code> in tổng kết,
-                                    <code>export_json(path)</code> ghi
-                                    kết quả ra file.
-                                </div>
+                                <div class="ex-title">BankAccount với Encapsulation</div>
+                                <div class="ex-desc">Implement <code>BankAccount</code>: <code>_balance</code> private, expose qua <code>@property balance</code>. Method <code>deposit()</code> và <code>withdraw()</code> validate input. Thêm method <code>history()</code> trả về copy của log giao dịch — không lộ list gốc.</div>
                             </div>
                         </label>
                     </div>
-
                     <div class="ex-item">
                         <input type="checkbox" class="ex-check" id="ex-15" onchange="onCheck(this)">
                         <label for="ex-15" style="display:contents;cursor:pointer">
                             <div class="ex-text">
-                                <div class="ex-title">Class BugReport thực tế</div>
-                                <div class="ex-desc">Tạo class <code>BugReport</code> với <code>bug_id</code>,
-                                    <code>title</code>, <code>severity</code> (Low/Medium/High/Critical),
-                                    <code>status</code> (Open). Thêm method <code>escalate()</code> tự động tăng
-                                    severity lên một bậc, <code>resolve()</code> đổi status thành Closed, và
-                                    <code>to_dict()</code> trả về dict để export JSON. Tạo class attribute
-                                    <code>valid_severities</code> là list các mức hợp lệ.
-                                </div>
+                                <div class="ex-title">Abstract Shape system</div>
+                                <div class="ex-desc">Tạo abstract class <code>Shape</code> với <code>@abstractmethod area()</code> và <code>@abstractmethod perimeter()</code>. Implement 3 subclass: <code>Circle</code>, <code>Rectangle</code>, <code>Triangle</code>. Viết hàm <code>total_area(shapes)</code> nhận list Shape bất kỳ, trả về tổng diện tích.</div>
                             </div>
                         </label>
                     </div>
@@ -2141,6 +2202,7 @@ suite.<span class="fn">report</span>()   <span class="cmt"># [Smoke Test] 1/1 pa
                 </div>
             </div>
         </div>
+    </div>
 
         <!-- TOPIC: Algorithms & Problem Solving -->
         <div class="topic-card">
@@ -2243,8 +2305,8 @@ sorted_nums = [<span class="num">1</span>, <span class="num">3</span>, <span cla
                             <input type="checkbox" class="ex-check" id="ex-p1-algo-2" onchange="onCheck(this)">
                             <label for="ex-p1-algo-2" style="display:contents;cursor:pointer">
                                 <div class="ex-text">
-                                    <div class="ex-title">Sắp xếp test case theo priority</div>
-                                    <div class="ex-desc">Dùng <code>insertion_sort</code> để sort list dict test case theo <code>priority</code> (Critical → High → Medium → Low). So sánh với <code>sorted(cases, key=lambda x: x["priority"])</code>.</div>
+                                    <div class="ex-title">Sắp xếp sản phẩm theo giá</div>
+                                    <div class="ex-desc">Dùng <code>insertion_sort</code> để sắp xếp list dict sản phẩm theo <code>price</code> từ thấp đến cao. So sánh với <code>sorted(products, key=lambda x: x["price"])</code>.</div>
                                 </div>
                             </label>
                         </div>
@@ -2474,44 +2536,32 @@ gc.<span class="fn">collect</span>()   <span class="cmt"># chạy cycle detector
 <!-- MILESTONE 1 -->
 <div class="milestone-card p1" id="p1-milestone">
     <div class="milestone-label">Bài Tập Lớn · Phase 1</div>
-    <div class="milestone-title">Mini Test Manager CLI</div>
-    <div class="milestone-desc">Xây dựng tool chạy trên terminal:
-        đọc test cases từ CSV, cho phép filter theo status/module,
-        tính tỉ lệ pass/fail, ghi báo cáo ra file JSON. Áp dụng toàn
-        bộ kiến thức Phase 1.</div>
+    <div class="milestone-title">Mini Library Manager CLI</div>
+    <div class="milestone-desc">Xây dựng tool quản lý thư viện sách chạy trên terminal: đọc/ghi dữ liệu từ CSV và JSON, cho phép tìm kiếm và sắp xếp. Áp dụng toàn bộ kiến thức Phase 1.</div>
     <ul class="checklist">
         <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check" id="ml-1"
                 onclick="event.stopPropagation()">
-            <span>Đọc file
-                CSV chứa test cases (dùng
-                <code>csv.DictReader</code>)</span>
+            <span>Đọc file CSV chứa danh sách sách (dùng <code>csv.DictReader</code>)</span>
         </li>
         <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check" id="ml-2"
                 onclick="event.stopPropagation()">
-            <span>Class
-                <code>TestCase</code> và <code>TestSuite</code>
-                (OOP)</span>
+            <span>Class <code>Book</code> (OOP + Encapsulation) và class <code>Library</code> (composition)</span>
         </li>
         <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check" id="ml-3"
                 onclick="event.stopPropagation()">
-            <span>Filter theo
-                <code>--module</code> và <code>--status</code>
-                argument (dùng <code>sys.argv</code>)</span>
+            <span>Tìm kiếm sách theo tên (linear search) và theo năm (binary search trên list đã sort)</span>
         </li>
         <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check" id="ml-4"
                 onclick="event.stopPropagation()">
-            <span>Tính và in
-                tỉ lệ pass/fail với format đẹp</span>
+            <span>Sắp xếp sách theo giá hoặc năm xuất bản, in danh sách theo format đẹp</span>
         </li>
         <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check" id="ml-5"
                 onclick="event.stopPropagation()">
-            <span>Ghi báo cáo
-                JSON với timestamp</span>
+            <span>Ghi báo cáo thống kê ra JSON (tổng sách, giá TB, sách đắt nhất)</span>
         </li>
         <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check" id="ml-6"
                 onclick="event.stopPropagation()">
-            <span>Xử lý lỗi
-                khi file không tồn tại</span>
+            <span>Xử lý lỗi khi file không tồn tại (<code>FileNotFoundError</code>, <code>DataError</code>)</span>
         </li>
     </ul>
 </div>
