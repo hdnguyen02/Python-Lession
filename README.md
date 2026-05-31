@@ -1,322 +1,212 @@
-# 🚀 Lộ Trình Automation Test — Playwright + Python
+# 🐍 Lộ Trình Học Python Căn Bản
 
-> **Dành cho QC chưa biết Python** — Từ cú pháp cơ bản đến framework hoàn chỉnh sẵn sàng apply vị trí Automation Tester.
+> **Từ biến đến game thực chiến** — 13 tuần · 33 chủ đề · 75 bài tập · 3 milestones
 
-[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://python.org)
-[![Playwright](https://img.shields.io/badge/Playwright-1.40+-green.svg)](https://playwright.dev)
-[![pytest](https://img.shields.io/badge/pytest-7.0+-red.svg)](https://pytest.org)
+[![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://python.org)
+[![Pygame](https://img.shields.io/badge/Pygame-2.x-orange.svg)](https://pygame.org)
+
+---
 
 ## 📋 Tổng Quan
 
-Lộ trình học tập **3 tháng** với **12 tuần** chi tiết, bao gồm:
+Lộ trình học Python **3 tháng (13 tuần)** từ nền tảng đến dự án thực chiến:
 
-- **Phase 1**: Python Cơ Bản (Tuần 1-4)
-- **Phase 2**: Playwright Cơ Bản (Tuần 5-8)
-- **Phase 3**: Nâng Cao & Production-Ready (Tuần 9-12)
+| Phase | Nội dung | Tuần | Topics | Bài tập |
+|-------|----------|------|--------|---------|
+| **Phase 1** | Python Căn Bản | T1 – T7 | 14 | 29 |
+| **Phase 2** | Git & GitHub | T8 – T9 | 6 | 10 |
+| **Phase 3** | Project Flappy Bird | T10 – T13 | 13 | 36 |
 
-### 🎯 Mục Tiêu
+---
 
-- Nắm vững Python programming fundamentals
-- Thành thạo Playwright automation framework
-- Xây dựng framework testing production-ready
-- Portfolio project để apply vị trí Automation Tester
+## 📚 Lộ Trình Chi Tiết
 
-## 📚 Cấu Trúc Lộ Trình
+### Phase 1 · Python Căn Bản (Tuần 1–7)
 
-### Phase 1: Python Cơ Bản (4 tuần)
+| Tuần | Chủ đề | Nội dung chính |
+|------|--------|----------------|
+| 1–2 | Variables, Types & Loops | Data types, operators, if/elif/else, for/while, virtualenv |
+| 3–4 | Collections, Functions, Memory & Recursion | List/Dict/Tuple/Set, functions, scope, memory model, đệ quy |
+| 5 | File I/O & Exceptions | CSV/JSON, try/except, custom exceptions |
+| 6–7 | OOP, Algorithms & CS Foundations | 4 tính chất OOP, search/sort, Big O notation, execution model |
 
-| Tuần | Chủ Đề                   | Nội Dung Chính                                 |
-| ---- | ------------------------ | ---------------------------------------------- |
-| 1    | Variables, Types & Loops | Data types, operators, if/elif/else, for/while |
-| 2    | Collections & Functions  | List/Dict/Tuple/Set, functions, scope          |
-| 3    | File I/O & Exceptions    | CSV/JSON, try/except, file operations          |
-| 4    | OOP                      | Classes, inheritance, methods, properties      |
+**Milestone 1**: Mini Library Manager CLI — đọc/ghi CSV, OOP, tìm kiếm, sắp xếp
 
-**Milestone**: Mini Test Manager CLI tool
+---
 
-### Phase 2: Playwright Cơ Bản (4 tuần)
+### Phase 2 · Git & GitHub (Tuần 8–9)
 
-| Tuần | Chủ Đề               | Nội Dung Chính                          |
-| ---- | -------------------- | --------------------------------------- |
-| 5    | Setup & Locators     | Installation, first script, locators    |
-| 6    | Actions & Assertions | Click, fill, select, expect()           |
-| 7    | Waits & Network      | Auto-waiting, mocking, network handling |
-| 8    | pytest Framework     | Fixtures, parametrize, reporting        |
+| Tuần | Chủ đề | Nội dung chính |
+|------|--------|----------------|
+| 8 | Git cơ bản | init, add, commit, log, branch, merge, .gitignore |
+| 9 | GitHub | Remote, push, pull, clone, pull request |
 
-**Milestone**: E-commerce Test Suite
+**Milestone 2**: Đẩy project Phase 1 lên GitHub với history rõ ràng
 
-### Phase 3: Nâng Cao & Production-Ready (4 tuần)
+---
 
-| Tuần | Chủ Đề                | Nội Dung Chính                               |
-| ---- | --------------------- | -------------------------------------------- |
-| 9    | Page Object Model     | BasePage, POM pattern, locators tập trung    |
-| 10   | Reporting & Debugging | Allure reports, trace viewer, screenshots    |
-| 11   | API Testing & CI/CD   | Requests, GitHub Actions, parallel execution |
-| 12   | Best Practices        | Code quality, maintenance, scalability       |
+### Phase 3 · Project Thực Chiến — Flappy Bird (Tuần 10–13)
 
-**Milestone**: Full Automation Framework Portfolio Project
+| Tuần | Chủ đề | Nội dung chính |
+|------|--------|----------------|
+| 10 | Pygame & Game Loop | pygame.init, display, Clock, FPS, event loop |
+| 11 | Bird & Chuyển động | Surface/Rect, image/transform, gravity, animation, USEREVENT |
+| 12 | Pipe, Va chạm & Âm thanh | Floor tiling, Pipe random, colliderect, mixer.Sound |
+| 13 | Menu & Hoàn thiện | Font/draw, Button/Input, State machine, File I/O ranking |
+
+**Milestone 3**: Game Flappy Bird hoàn chỉnh — 16 bước từ cửa sổ trống đến game có bảng xếp hạng
+
+---
 
 ## 🚀 Bắt Đầu Học
 
-### 1. Mở Lộ Trình
+### 1. Mở lộ trình
 
 ```bash
-# Mở file index.html trong browser
-start index.html
-# hoặc double-click index.html
+# Double-click index.html
+# hoặc mở bằng Live Server trong VS Code
 ```
 
-### 2. Theo Dõi Tiến Độ
+Giao diện web tự động tải nội dung từng phase, có:
+- Theo dõi tiến độ theo từng bài tập (checkbox)
+- Ghi chú cá nhân lưu tự động vào localStorage
+- Search toàn bộ nội dung
+- Dark/Light mode
 
-- ✅ Check vào từng bài tập khi hoàn thành
-- 📝 Ghi chú cá nhân cho mỗi topic
-- 📊 Theo dõi progress tự động
-- 🎯 Hoàn thành milestone projects
-
-### 3. Thực Hành Code
-
-Mỗi tuần có:
-
-- 📖 Lý thuyết với code examples
-- 💻 Bài tập thực hành
-- 🎯 Mini-projects
-- 📋 Checklists
-
-## ⚡ Quick Start
-
-### 1. Clone & Setup
+### 2. Cài đặt môi trường Python
 
 ```bash
-# Clone repository (if applicable)
-git clone <repository-url>
-cd automation-roadmap
+# Tạo virtualenv
+python -m venv .venv
 
-# Install dependencies
+# Kích hoạt (Windows PowerShell)
+.venv\Scripts\Activate.ps1
+
+# Kích hoạt (macOS/Linux)
+source .venv/bin/activate
+
+# Cài dependencies
 pip install -r requirements.txt
-
-# Install Playwright browsers
-playwright install
 ```
 
-### 2. Run Demo
+### 3. Cài Pygame (cho Phase 3)
 
 ```bash
-# Run the demo script to see everything in action
-python demo.py
+pip install pygame
+
+# Kiểm tra cài đặt
+python -m pygame --version
 ```
 
-### 3. Open Roadmap
-
-```bash
-# Open the interactive roadmap
-start index.html
-```
-
-### 4. Run Example Tests
-
-```bash
-# Run the example test file
-pytest example_test.py -v --headed
-```
-
-## 🛠️ Setup Development Environment
-
-### Yêu Cầu Hệ Thống
-
-- **Python**: 3.8+
-- **OS**: Windows 10+, macOS 10.15+, Ubuntu 18.04+
-- **RAM**: 4GB+
-- **Disk**: 2GB free space
-
-### Cài Đặt Python
-
-```bash
-# Windows - Download từ python.org
-# macOS - dùng Homebrew
-brew install python
-
-# Ubuntu/Debian
-sudo apt update
-sudo apt install python3 python3-pip
-```
-
-### Cài Đặt Playwright
-
-```bash
-# Cài Playwright
-pip install playwright
-playwright install
-
-# Cài pytest và plugins
-pip install pytest-playwright pytest-html allure-pytest
-
-# Cài Allure (optional - for advanced reporting)
-# Download từ https://github.com/allure-framework/allure2/releases
-```
-
-### Verify Installation
-
-```bash
-# Check Python
-python --version
-# Python 3.8.0+
-
-# Check Playwright
-playwright --version
-# Version 1.40.0
-
-# Check pytest
-pytest --version
-# pytest 7.0.0
-
-# Test example file
-pytest example_test.py --collect-only
-# Should show available tests
-
-# Run demo script
-python demo.py
-# Should execute full testing workflow
-```
+---
 
 ## 📁 Cấu Trúc Project
 
 ```
-automation-roadmap/
-├── index.html              # Main roadmap interface
-├── styles.css              # Styling
-├── script.js               # JavaScript functionality
-├── phase1.html             # Python basics content
-├── phase2.html             # Playwright basics content
-├── phase3.html             # Advanced topics content
-├── example_test.py         # Example test file with best practices
-├── demo.py                 # Demo script to showcase testing workflow
-├── requirements.txt        # Python dependencies
-├── pytest.ini             # pytest configuration
-├── conftest.py            # pytest fixtures and setup
-├── .gitignore             # Git ignore rules
-├── README.md              # This file
-└── .vscode/               # VS Code configuration
-    ├── settings.json      # Editor and Python settings
-    ├── extensions.json    # Recommended extensions
-    ├── launch.json        # Debug configurations
-    └── tasks.json         # Build and test tasks
+lession-python/
+├── index.html          # Giao diện chính — mở file này để học
+├── styles.css          # Styling (dark/light theme)
+├── script.js           # Logic: progress tracking, search, notes
+│
+├── phase1.html         # Python Căn Bản (14 topics)
+├── phase2.html         # Git & GitHub (6 topics)
+├── phase3.html         # Flappy Bird Project (13 topics)
+│
+├── requirements.txt    # Python dependencies
+├── pytest.ini          # Cấu hình pytest (cho Phase 1 bài tập)
+├── conftest.py         # pytest fixtures
+├── example_test.py     # File test mẫu
+├── demo.py             # Script demo
+│
+└── README.md           # File này
 ```
-
-## 📄 Chi Tiết Project Files
-
-### Core Files
-
-- **`index.html`**: Giao diện chính với navigation và progress tracking
-- **`phase[1-3].html`**: Nội dung học tập cho từng phase
-- **`styles.css`**: Styling responsive với theme support
-- **`script.js`**: Dynamic loading, progress tracking, search
-
-### Development Files
-
-- **`example_test.py`**: File test mẫu với best practices (POM, fixtures, reporting)
-- **`demo.py`**: Script demo toàn bộ workflow testing
-- **`requirements.txt`**: Dependencies Python (Playwright, pytest, etc.)
-- **`pytest.ini`**: Cấu hình pytest (markers, reporting, browser settings)
-- **`conftest.py`**: Fixtures và setup chung cho pytest
-
-### Configuration Files
-
-- **`.vscode/settings.json`**: Cấu hình Python, testing, formatting
-- **`.vscode/extensions.json`**: Extensions VS Code khuyến nghị
-- **`.vscode/launch.json`**: Debug configurations cho Python và Playwright
-- **`.vscode/tasks.json`**: Tasks cho build, test, format code
-- **`.gitignore`**: Loại trừ files không cần thiết khỏi git
-
-## 🎯 Cách Sử Dung
-
-### Học Theo Tuần
-
-1. **Đọc lý thuyết** trong từng topic
-2. **Chạy code examples** để hiểu
-3. **Làm bài tập** để thực hành
-4. **Check vào checkbox** khi hoàn thành
-5. **Ghi chú** những gì cần nhớ
-
-### Milestone Projects
-
-- **Phase 1**: Xây dựng CLI tool quản lý test cases
-- **Phase 2**: Test suite cho e-commerce website
-- **Phase 3**: Full framework với POM, reporting, CI/CD
-
-### Tips Học Tập
-
-- ⏰ **Thời gian**: 10-15h/tuần
-- 🎯 **Tập trung**: Làm tuần tự, không skip
-- 💻 **Thực hành**: Code nhiều hơn đọc
-- 📝 **Ghi chú**: Note lại concepts quan trọng
-- 🔄 **Review**: Xem lại code cũ thường xuyên
-
-## 🏆 Kết Quả Đầu Ra
-
-Sau 3 tháng, bạn sẽ:
-
-- ✅ Nắm vững Python programming
-- ✅ Thành thạo Playwright automation
-- ✅ Xây dựng được test framework production-ready
-- ✅ Có portfolio project để apply job
-- ✅ Kiến thức nền tảng để học Selenium/Cypress
-
-## 💼 Career Path
-
-### Junior Automation Tester
-
-- ✅ Python basics
-- ✅ Playwright fundamentals
-- ✅ Basic framework structure
-- ✅ Simple test suites
-
-### Mid-level Automation Engineer
-
-- ✅ Advanced Python (OOP, design patterns)
-- ✅ POM, Page Factory patterns
-- ✅ CI/CD integration
-- ✅ API + UI testing
-- ✅ Performance testing basics
-
-### Senior Automation Architect
-
-- ✅ Framework design & architecture
-- ✅ Multi-browser, cross-platform testing
-- ✅ Test data management
-- ✅ Reporting & analytics
-- ✅ Team leadership & mentoring
-
-## 📞 Hỗ Trợ
-
-### Issues & Questions
-
-- 📧 Email: [your-email@example.com]
-- 💬 Discord: [discord-invite-link]
-- 📱 Telegram: [telegram-group]
-
-### Contributing
-
-Contributions welcome! Please:
-
-1. Fork the repository
-2. Create feature branch
-3. Commit changes
-4. Push to branch
-5. Create Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- **Playwright Team** for the amazing automation framework
-- **Python Community** for excellent documentation
-- **Open Source Contributors** for libraries and tools
 
 ---
 
-**🎯 Chúc bạn thành công trên con đường trở thành Automation Tester chuyên nghiệp!**
+## 🎯 Hướng Dẫn Sử Dụng
 
-_Built with ❤️ for Vietnamese QA community_</content>
-<parameter name="filePath">d:\Workspace\WorkSpace\auto\README.md
+### Cách học theo từng topic
+
+1. Đọc **lý thuyết** và đọc kỹ code examples
+2. Tự gõ lại code (không copy-paste) vào IDE
+3. Làm **bài tập thực hành** — mỗi bài có mô tả rõ
+4. **Check vào checkbox** khi hoàn thành từng bài
+5. Dùng **📝 Ghi chú** để note lại điều chưa hiểu
+6. Hoàn thành **milestone** cuối mỗi phase trước khi qua phase tiếp
+
+### Tips học hiệu quả
+
+| | Gợi ý |
+|--|-------|
+| ⏰ **Thời gian** | 8–12 giờ/tuần (1–2 giờ/ngày) |
+| 🎯 **Thứ tự** | Học tuần tự, không bỏ qua |
+| 💻 **Thực hành** | Code nhiều hơn đọc — tỷ lệ 70/30 |
+| 🔄 **Ôn tập** | Review bài cũ 10 phút trước mỗi buổi học |
+| 🐛 **Debug** | Đọc kỹ error message trước khi Google |
+
+---
+
+## ⚙️ Yêu Cầu Hệ Thống
+
+| | Yêu cầu |
+|--|---------|
+| **Python** | 3.10+ |
+| **Pygame** | 2.x (Phase 3) |
+| **Browser** | Chrome/Firefox/Edge (để mở index.html) |
+| **OS** | Windows 10+, macOS 12+, Ubuntu 20.04+ |
+| **RAM** | 4GB+ |
+
+---
+
+## 📊 Nội Dung Phase 1 Chi Tiết
+
+<details>
+<summary>Xem 14 chủ đề Phase 1</summary>
+
+1. Variables, Data Types & Operators
+2. Conditionals & Loops
+3. Virtualenv, Type Hints & Code Quality
+4. List, Dictionary, Tuple, Set
+5. Functions (*args, **kwargs, default params)
+6. Memory & References (id, is vs ==, mutable/immutable)
+7. Scope & Lifetime (LEGB rule, global, namespace)
+8. Recursion (base case, call stack, factorial, fibonacci)
+9. File I/O — CSV & JSON
+10. Exceptions & Error Handling (try/except/finally, custom exceptions)
+11. 4 Tính chất OOP (Encapsulation, Inheritance, Polymorphism, Abstraction)
+12. Algorithms & Problem Solving (Linear/Binary Search, Bubble/Insertion Sort)
+13. Complexity Analysis — Big O (O(1), O(n), O(log n), O(n²))
+14. Program Execution Model (Bytecode, Stack/Heap, Garbage Collection)
+
+</details>
+
+---
+
+## 📊 Nội Dung Phase 3 Chi Tiết
+
+<details>
+<summary>Xem 13 chủ đề Phase 3 + 16 bước milestone</summary>
+
+**Topics:**
+1. Tổng quan dự án Flappy Bird (7 class, kiến trúc)
+2. Pygame là gì? (SDL, modules, cài đặt)
+3. Cửa sổ game & Game Loop (display, Clock, FPS, event)
+4. Surface & Rect (blit, get_rect, colliderect)
+5. pygame.image & pygame.transform (load, scale, flip)
+6. Bird — Trọng lực, Nhảy & Animation (USEREVENT, set_timer)
+7. Floor — Sàn cuộn vô hạn (tiling, reset)
+8. Pipe — Cột chướng ngại vật (randrange, recycling)
+9. Va chạm & Tính điểm (colliderect, boundary check)
+10. pygame.mixer — Âm thanh (Sound, play, pause)
+11. pygame.font & pygame.draw (render text, Button, Input)
+12. Game State & Animation Game Over (state machine, slide-in)
+13. Bảng xếp hạng & File I/O (Top 5, đọc/ghi file)
+
+**Milestone — 16 bước build từ đầu:**
+Bước 1 → Screen class → Bước 8 → Pipe → Bước 12 → Game Over animation → Bước 16 → Control class hoàn chỉnh
+
+</details>
+
+---
+
+_Made with Python 🐍_
