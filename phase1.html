@@ -60,10 +60,7 @@ score_int = <span class="fn">int</span>(score_str)     <span class="cmt"># str �
 score_f   = <span class="fn">float</span>(score_str)   <span class="cmt"># str → float</span></pre>
                     </div>
 
-                    <div class="tip-box info">
-                        <span class="tip-icon">💡</span>
-                        <div class="tip-content"><strong>Lưu ý thực tế:</strong> Khi đọc dữ liệu từ file CSV, database hay API, mọi thứ thường về dạng <code>str</code>. Nhớ ép kiểu (<code>int()</code>, <code>float()</code>) trước khi thực hiện phép tính hay so sánh số.</div>
-                    </div>
+
 
                     <p><strong>Operators (Toán tử)</strong> — 3 loại thường dùng nhất:</p>
                     <div class="code-block">
@@ -114,19 +111,45 @@ is_active = <span class="kw">False</span>
                                         phân.</div>
                                 </div>
                             </label>
-
-                            <div class="note-area" id="note-area-topic-1">
-                                <textarea class="note-textarea" id="note-text-topic-1"
-                                    placeholder="Ghi chú của bạn về topic này... (tự động lưu)"></textarea>
-                                <div class="note-footer">
-                                    <button class="note-clear-btn" onclick="clearNote('topic-1')">Xoá
-                                        ghi chú</button>
-                                    <span class="note-saved-msg" id="note-saved-topic-1">✓ Đã lưu</span>
-                                </div>
-                            </div>
-                            <button class="note-toggle-btn" id="note-btn-topic-1" onclick="toggleNote('topic-1')">📝 Ghi
-                                chú</button>
                         </div>
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-1c" onchange="onCheck(this)">
+                            <label for="ex-1c" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Đổi giây sang giờ:phút:giây</div>
+                                    <div class="ex-desc">Nhập số giây (ví dụ: <code>3725</code>), tính và in ra <code>1 giờ 2 phút 5 giây</code>. Dùng <code>//</code> và <code>%</code>.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-1d" onchange="onCheck(this)">
+                            <label for="ex-1d" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Tính giảm giá</div>
+                                    <div class="ex-desc">Nhập giá gốc và phần trăm giảm, in ra: giá sau giảm, số tiền tiết kiệm, và thông điệp <code>"Tiết kiệm được 150,000đ (30%)"</code> dùng f-string.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-1e" onchange="onCheck(this)">
+                            <label for="ex-1e" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Phân tích chuỗi tên</div>
+                                    <div class="ex-desc">Nhập họ tên đầy đủ (ví dụ: <code>"nguyễn văn a"</code>), in ra: viết hoa toàn bộ, đếm số ký tự (không tính khoảng trắng), đếm số từ, và in tên (từ cuối).</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="note-area" id="note-area-topic-1">
+                            <textarea class="note-textarea" id="note-text-topic-1"
+                                placeholder="Ghi chú của bạn về topic này... (tự động lưu)"></textarea>
+                            <div class="note-footer">
+                                <button class="note-clear-btn" onclick="clearNote('topic-1')">Xoá
+                                    ghi chú</button>
+                                <span class="note-saved-msg" id="note-saved-topic-1">✓ Đã lưu</span>
+                            </div>
+                        </div>
+                        <button class="note-toggle-btn" id="note-btn-topic-1" onclick="toggleNote('topic-1')">📝 Ghi
+                            chú</button>
                     </div>
                 </div>
             </div>
@@ -227,7 +250,34 @@ retries = <span class="num">0</span>
                                 </label>
                             </div>
 
-                            <div class="note-area" id="note-area-topic-2">
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-3c" onchange="onCheck(this)">
+                            <label for="ex-3c" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">FizzBuzz</div>
+                                    <div class="ex-desc">In các số từ 1 đến 30: số chia hết 3 in <code>"Fizz"</code>, chia hết 5 in <code>"Buzz"</code>, chia hết cả hai in <code>"FizzBuzz"</code>, còn lại in số bình thường.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-3d" onchange="onCheck(this)">
+                            <label for="ex-3d" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Tìm số lớn nhất không dùng max()</div>
+                                    <div class="ex-desc">Cho list <code>[34, 7, 23, 32, 5, 62]</code>, dùng vòng lặp for và biến <code>largest</code> để tìm số lớn nhất và vị trí của nó. Không dùng hàm <code>max()</code>.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-3e" onchange="onCheck(this)">
+                            <label for="ex-3e" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">In tam giác sao</div>
+                                    <div class="ex-desc">Nhập số hàng <code>n</code>, in tam giác sao căn phải (hàng 1: 1 sao, hàng n: n sao). Ví dụ n=4:<br><code>&nbsp;&nbsp;&nbsp;*</code><br><code>&nbsp;&nbsp;**</code><br><code>&nbsp;***</code><br><code>****</code></div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="note-area" id="note-area-topic-2">
                                 <textarea class="note-textarea" id="note-text-topic-2"
                                     placeholder="Ghi chú của bạn về topic này... (tự động lưu)"></textarea>
                                 <div class="note-footer">
@@ -239,99 +289,6 @@ retries = <span class="num">0</span>
                             <button class="note-toggle-btn" id="note-btn-topic-2" onclick="toggleNote('topic-2')">📝 Ghi
                                 chú</button>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="topic-card">
-        <div class="topic-header" onclick="toggleTopic(this)">
-            <div class="topic-icon">🛡️</div>
-            <div class="topic-meta">
-                <div class="topic-name">Virtualenv, Type Hints & Code Quality Basics</div>
-                <div class="topic-desc">venv · pip freeze · typing · ruff · mypy · lệnh chuẩn</div>
-            </div>
-            <div class="topic-toggle">▼</div>
-            <span class="note-dot" id="note-dot-python-quality"></span>
-        </div>
-        <div class="topic-body">
-            <div class="theory-section">
-                <div class="section-label">Kiến thức quan trọng</div>
-                <p>Khi viết Python cho dự án thật, rất nhiều người chỉ tập trung viết code chạy được mà quên mất môi trường và chất lượng code. <strong>Virtualenv</strong>, <strong>type hints</strong> và các lệnh check như <code>ruff</code>, <code>mypy</code> giúp bạn tránh lỗi môi trường và lỗi logic từ rất sớm.</p>
-
-                <div class="code-block">
-                    <div class="code-header">
-                        <span class="code-lang bash">Bash</span>
-                        <span class="code-filename">setup-python-env</span>
-                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
-                    </div>
-                    <pre><span class="cmt"># Tạo môi trường ảo riêng cho project</span>
-python -m venv .venv
-
-<span class="cmt"># Windows PowerShell</span>
-.venv\Scripts\Activate.ps1
-
-<span class="cmt"># Cài package</span>
-pip install -r requirements.txt
-
-<span class="cmt"># Chốt lại dependency hiện tại</span>
-pip freeze &gt; requirements.txt</pre>
-                </div>
-
-                <div class="code-block">
-                    <div class="code-header">
-                        <span class="code-lang python">Python</span>
-                        <span class="code-filename">type_hints_example.py</span>
-                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
-                    </div>
-                    <pre><span class="imp">from</span> typing <span class="imp">import</span> Literal
-
-<span class="kw">def</span> <span class="fn">calc_pass_rate</span>(passed: <span class="fn">int</span>, total: <span class="fn">int</span>) -> <span class="fn">float</span>:
-    <span class="kw">return</span> passed / total
-
-<span class="kw">def</span> <span class="fn">mark_status</span>(status: Literal[<span class="str">"passed"</span>, <span class="str">"failed"</span>, <span class="str">"blocked"</span>]) -> <span class="fn">str</span>:
-    <span class="kw">return</span> <span class="str">f"Current status: <span class="dec">{status}</span>"</span></pre>
-                </div>
-
-                <div class="code-block">
-                    <div class="code-header">
-                        <span class="code-lang bash">Bash</span>
-                        <span class="code-filename">quality-check</span>
-                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
-                    </div>
-                    <pre><span class="cmt"># Format + lint + type check</span>
-ruff check .
-mypy .
-pytest -v</pre>
-                </div>
-
-                <div class="tip-box warning">
-                    <span class="tip-icon">⚠️</span>
-                    <div class="tip-content"><strong>Điểm rất nên tập sớm:</strong> dù Python là dynamic, hãy dùng type hints cho function quan trọng như parser dữ liệu, helper API, page methods và utils. Điều này là “bản Python” tương đương với việc bật strict mode ở TypeScript.</div>
-                </div>
-            </div>
-
-            <div class="theory-section">
-                <div class="section-label">Bài tập thực hành</div>
-                <div class="exercises">
-                    <div class="ex-item">
-                        <input type="checkbox" class="ex-check" id="ex-python-quality-1" onchange="onCheck(this)">
-                        <label for="ex-python-quality-1" style="display:contents;cursor:pointer">
-                            <div class="ex-text">
-                                <div class="ex-title">Tạo virtualenv và cài dependency</div>
-                                <div class="ex-desc">Tạo <code>.venv</code>, activate môi trường và cài package từ <code>requirements.txt</code>. Ghi chú lại sự khác nhau giữa cài global và cài trong virtualenv.</div>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="ex-item">
-                        <input type="checkbox" class="ex-check" id="ex-python-quality-2" onchange="onCheck(this)">
-                        <label for="ex-python-quality-2" style="display:contents;cursor:pointer">
-                            <div class="ex-text">
-                                <div class="ex-title">Thêm type hints cho 3 function</div>
-                                <div class="ex-desc">Chọn 3 hàm nhỏ trong project học của bạn, thêm type hints cho input/output rồi chạy <code>mypy</code> để xem cảnh báo gì xuất hiện.</div>
-                            </div>
-                        </label>
                     </div>
                 </div>
             </div>
@@ -440,7 +397,9 @@ names  = [t[<span class="str">"name"</span>].upper() <span class="kw">for</span>
                             <label for="ex-5" style="display:contents;cursor:pointer">
                                 <div class="ex-text">
                                     <div class="ex-title">Quản lý danh sách sản phẩm</div>
-                                    <div class="ex-desc">Tạo list chứa 5 dict sản phẩm (id, name, price, category). Viết code: tìm sản phẩm rẻ nhất/đắt nhất, lọc sản phẩm theo category, in danh sách theo định dạng đẹp.</div>
+                                    <div class="ex-desc">Tạo list chứa 5 dict sản phẩm (id, name, price, category). Viết
+                                        code: tìm sản phẩm rẻ nhất/đắt nhất, lọc sản phẩm theo category, in danh sách
+                                        theo định dạng đẹp.</div>
                                 </div>
                             </label>
                         </div>
@@ -449,13 +408,42 @@ names  = [t[<span class="str">"name"</span>].upper() <span class="kw">for</span>
                             <label for="ex-6" style="display:contents;cursor:pointer">
                                 <div class="ex-text">
                                     <div class="ex-title">Group sản phẩm theo category</div>
-                                    <div class="ex-desc">Từ list sản phẩm ở bài 1, tạo dict <code>{"electronics": [...], "clothing": [...]}</code> — gom sản phẩm theo category bằng vòng lặp. Tính tổng giá trị từng nhóm.
+                                    <div class="ex-desc">Từ list sản phẩm ở bài 1, tạo dict
+                                        <code>{"electronics": [...], "clothing": [...]}</code> — gom sản phẩm theo
+                                        category bằng vòng lặp. Tính tổng giá trị từng nhóm.
                                     </div>
                                 </div>
                             </label>
                         </div>
                     </div>
 
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-5c" onchange="onCheck(this)">
+                            <label for="ex-5c" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Đảo ngược list không dùng reverse()</div>
+                                    <div class="ex-desc">Viết 2 cách đảo ngược list <code>[1, 2, 3, 4, 5]</code>: dùng slice <code>[::-1]</code> và dùng vòng lặp <code>for</code> swap từ hai đầu. In ra list gốc để chứng minh cách nào tạo list mới, cách nào sửa tại chỗ.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-5d" onchange="onCheck(this)">
+                            <label for="ex-5d" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Tìm phần tử chung 2 list</div>
+                                    <div class="ex-desc">Cho <code>a = [1, 3, 5, 7, 9]</code> và <code>b = [3, 6, 9, 12]</code>. Tìm: phần tử chung (intersection), phần tử chỉ có ở a, phần tử chỉ có ở b. Dùng <code>set</code> và in kết quả.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-5e" onchange="onCheck(this)">
+                            <label for="ex-5e" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Dict comprehension lọc sản phẩm</div>
+                                    <div class="ex-desc">Từ list sản phẩm (id, name, price), dùng dict comprehension tạo <code>{name: price}</code> chỉ gồm sản phẩm có giá trên 5 triệu. Sau đó sắp xếp theo giá giảm dần bằng <code>sorted(..., key=...)</code>.</div>
+                                </div>
+                            </label>
+                        </div>
                     <div class="note-area" id="note-area-topic-3">
                         <textarea class="note-textarea" id="note-text-topic-3"
                             placeholder="Ghi chú của bạn về topic này..." oninput="autoSaveNote('topic-3')"></textarea>
@@ -486,7 +474,8 @@ names  = [t[<span class="str">"name"</span>].upper() <span class="kw">for</span>
             <div class="topic-body">
                 <div class="theory-section">
                     <div class="section-label">Lý thuyết</div>
-                    <p>Function giúp bạn <strong>tái sử dụng code</strong> và tách logic ra thành các đơn vị nhỏ có thể test độc lập. Đây là kỹ năng cốt lõi để viết code sạch, dễ đọc và dễ bảo trì.</p>
+                    <p>Function giúp bạn <strong>tái sử dụng code</strong> và tách logic ra thành các đơn vị nhỏ có thể
+                        test độc lập. Đây là kỹ năng cốt lõi để viết code sạch, dễ đọc và dễ bảo trì.</p>
                     <div class="code-block">
                         <div class="code-header">
                             <span class="code-lang python">Python</span>
@@ -545,12 +534,42 @@ tc2 = <span class="fn">create_test_case</span>(<span class="str">"Checkout"</spa
                             <label for="ex-8" style="display:contents;cursor:pointer">
                                 <div class="ex-text">
                                     <div class="ex-title">Hàm tính điểm trung bình</div>
-                                    <div class="ex-desc">Viết <code>summarize_scores(*scores)</code> nhận nhiều điểm số (0–10), trả về dict <code>{"total": n, "average": x, "max": y, "min": z, "passed": n}</code> (passed: điểm >= 5).
+                                    <div class="ex-desc">Viết <code>summarize_scores(*scores)</code> nhận nhiều điểm số
+                                        (0–10), trả về dict
+                                        <code>{"total": n, "average": x, "max": y, "min": z, "passed": n}</code>
+                                        (passed: điểm >= 5).
                                     </div>
                                 </div>
                             </label>
                         </div>
 
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-7c" onchange="onCheck(this)">
+                            <label for="ex-7c" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Hàm *args — tính tổng và tích</div>
+                                    <div class="ex-desc">Viết <code>calc(*numbers)</code> trả về dict <code>{"sum": ..., "product": ..., "count": ...}</code>. Test với 2, 3, 5 số khác nhau. Xử lý trường hợp gọi không có tham số nào.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-7d" onchange="onCheck(this)">
+                            <label for="ex-7d" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Hàm **kwargs tạo thẻ sản phẩm</div>
+                                    <div class="ex-desc">Viết <code>create_product(name, price, **extras)</code> in ra thẻ sản phẩm. <code>extras</code> có thể gồm <code>category</code>, <code>discount</code>, <code>stock</code>. In đúng các field có trong <code>extras</code>, bỏ qua field không có.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-7e" onchange="onCheck(this)">
+                            <label for="ex-7e" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Lambda + sorted sắp xếp linh hoạt</div>
+                                    <div class="ex-desc">Cho list sản phẩm (dict với name, price, stock). Dùng <code>sorted(..., key=lambda x: ...)</code> để sắp xếp theo: (1) giá tăng dần, (2) tên A-Z, (3) giá giảm dần. In 3 kết quả.</div>
+                                </div>
+                            </label>
+                        </div>
                         <div class="note-area" id="note-area-topic-4">
                             <textarea class="note-textarea" id="note-text-topic-4"
                                 placeholder="Ghi chú của bạn về topic này... (tự động lưu)"></textarea>
@@ -582,7 +601,9 @@ tc2 = <span class="fn">create_test_case</span>(<span class="str">"Checkout"</spa
             <div class="topic-body">
                 <div class="theory-section">
                     <div class="section-label">Lý thuyết — Python lưu biến thế nào trong bộ nhớ?</div>
-                    <p>Trong Python, <strong>biến không chứa giá trị</strong> — biến chứa <strong>reference</strong> (địa chỉ tham chiếu) đến một object trên heap. Khi bạn viết <code>a = [1, 2, 3]</code>, Python tạo object list trên heap và <code>a</code> trỏ đến nó.</p>
+                    <p>Trong Python, <strong>biến không chứa giá trị</strong> — biến chứa <strong>reference</strong>
+                        (địa chỉ tham chiếu) đến một object trên heap. Khi bạn viết <code>a = [1, 2, 3]</code>, Python
+                        tạo object list trên heap và <code>a</code> trỏ đến nó.</p>
 
                     <div class="code-block">
                         <div class="code-header">
@@ -611,10 +632,22 @@ b.<span class="fn">append</span>(<span class="num">4</span>)
 
                     <p><strong>Mutable vs Immutable:</strong></p>
                     <table class="data-table">
-                        <thead><tr><th>Mutable (thay đổi được)</th><th>Immutable (không thay đổi)</th></tr></thead>
+                        <thead>
+                            <tr>
+                                <th>Mutable (thay đổi được)</th>
+                                <th>Immutable (không thay đổi)</th>
+                            </tr>
+                        </thead>
                         <tbody>
-                            <tr><td><code>list</code>, <code>dict</code>, <code>set</code></td><td><code>int</code>, <code>float</code>, <code>str</code>, <code>tuple</code>, <code>bool</code></td></tr>
-                            <tr><td>Thay đổi in-place → ảnh hưởng tất cả reference</td><td>Mỗi thay đổi tạo object mới, không ảnh hưởng gì</td></tr>
+                            <tr>
+                                <td><code>list</code>, <code>dict</code>, <code>set</code></td>
+                                <td><code>int</code>, <code>float</code>, <code>str</code>, <code>tuple</code>,
+                                    <code>bool</code></td>
+                            </tr>
+                            <tr>
+                                <td>Thay đổi in-place → ảnh hưởng tất cả reference</td>
+                                <td>Mỗi thay đổi tạo object mới, không ảnh hưởng gì</td>
+                            </tr>
                         </tbody>
                     </table>
 
@@ -652,7 +685,10 @@ deep     = copy.<span class="fn">deepcopy</span>(original)  <span class="cmt"># 
 
                     <div class="tip-box info">
                         <span class="tip-icon">💡</span>
-                        <div class="tip-content"><strong>Quy tắc thực hành:</strong> Khi truyền list/dict vào hàm mà không muốn hàm sửa list gốc, hãy truyền <code>lst.copy()</code> hoặc dùng <code>copy.deepcopy()</code> nếu có nested objects. Không nên dùng default argument là list: <code>def f(x=[])</code> — list đó được chia sẻ giữa các lần gọi!</div>
+                        <div class="tip-content"><strong>Quy tắc thực hành:</strong> Khi truyền list/dict vào hàm mà
+                            không muốn hàm sửa list gốc, hãy truyền <code>lst.copy()</code> hoặc dùng
+                            <code>copy.deepcopy()</code> nếu có nested objects. Không nên dùng default argument là list:
+                            <code>def f(x=[])</code> — list đó được chia sẻ giữa các lần gọi!</div>
                     </div>
                 </div>
                 <div class="theory-section">
@@ -663,7 +699,10 @@ deep     = copy.<span class="fn">deepcopy</span>(original)  <span class="cmt"># 
                             <label for="ex-p1-mem-1" style="display:contents;cursor:pointer">
                                 <div class="ex-text">
                                     <div class="ex-title">Thí nghiệm is vs ==</div>
-                                    <div class="ex-desc">Tạo các cặp biến: số nguyên nhỏ (<code>a = 5; b = 5</code>), số lớn (<code>a = 1000; b = 1000</code>), list. Dùng <code>is</code>, <code>==</code> và <code>id()</code> để quan sát khi nào Python dùng chung object (integer caching).</div>
+                                    <div class="ex-desc">Tạo các cặp biến: số nguyên nhỏ (<code>a = 5; b = 5</code>), số
+                                        lớn (<code>a = 1000; b = 1000</code>), list. Dùng <code>is</code>,
+                                        <code>==</code> và <code>id()</code> để quan sát khi nào Python dùng chung
+                                        object (integer caching).</div>
                                 </div>
                             </label>
                         </div>
@@ -672,18 +711,40 @@ deep     = copy.<span class="fn">deepcopy</span>(original)  <span class="cmt"># 
                             <label for="ex-p1-mem-2" style="display:contents;cursor:pointer">
                                 <div class="ex-text">
                                     <div class="ex-title">Hàm không sửa list gốc</div>
-                                    <div class="ex-desc">Viết hàm <code>remove_duplicates(lst)</code> trả về list mới không có trùng lặp, <strong>không sửa</strong> list gốc. Kiểm tra bằng <code>id()</code> rằng list gốc vẫn giữ nguyên.</div>
+                                    <div class="ex-desc">Viết hàm <code>remove_duplicates(lst)</code> trả về list mới
+                                        không có trùng lặp, <strong>không sửa</strong> list gốc. Kiểm tra bằng
+                                        <code>id()</code> rằng list gốc vẫn giữ nguyên.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p1-mem-3" onchange="onCheck(this)">
+                            <label for="ex-p1-mem-3" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Bẫy mutable default argument</div>
+                                    <div class="ex-desc">Chạy đoạn sau và giải thích kết quả: <code>def add(x, lst=[]): lst.append(x); return lst</code>. Gọi <code>add(1)</code>, <code>add(2)</code>, <code>add(3)</code> — tại sao list cứ dài ra? Viết lại hàm cho đúng.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p1-mem-4" onchange="onCheck(this)">
+                            <label for="ex-p1-mem-4" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Shallow copy vs deep copy</div>
+                                    <div class="ex-desc">Tạo <code>original = [[1, 2], [3, 4]]</code>. Dùng <code>copy.copy()</code> tạo shallow copy và <code>copy.deepcopy()</code> tạo deep copy. Sửa phần tử bên trong mỗi bản sao và quan sát ảnh hưởng đến <code>original</code>.</div>
                                 </div>
                             </label>
                         </div>
                         <div class="note-area" id="note-area-p1-memory">
-                            <textarea class="note-textarea" id="note-text-p1-memory" placeholder="Ghi chú..." oninput="handleNoteInput(this)"></textarea>
+                            <textarea class="note-textarea" id="note-text-p1-memory" placeholder="Ghi chú..."
+                                oninput="handleNoteInput(this)"></textarea>
                             <div class="note-footer">
                                 <button class="note-clear-btn" onclick="clearNote('p1-memory')">Xoá ghi chú</button>
                                 <span class="note-saved-msg" id="note-saved-p1-memory">✓ Đã lưu</span>
                             </div>
                         </div>
-                        <button class="note-toggle-btn" id="note-btn-p1-memory" onclick="toggleNote('p1-memory')">📝 Ghi chú</button>
+                        <button class="note-toggle-btn" id="note-btn-p1-memory" onclick="toggleNote('p1-memory')">📝 Ghi
+                            chú</button>
                     </div>
                 </div>
             </div>
@@ -703,7 +764,9 @@ deep     = copy.<span class="fn">deepcopy</span>(original)  <span class="cmt"># 
             <div class="topic-body">
                 <div class="theory-section">
                     <div class="section-label">Lý thuyết — Python tìm kiếm biến theo thứ tự nào?</div>
-                    <p>Khi Python gặp một tên biến, nó tìm theo quy tắc <strong>LEGB</strong>: <strong>L</strong>ocal → <strong>E</strong>nclosing → <strong>G</strong>lobal → <strong>B</strong>uilt-in. Tìm thấy ở tầng nào thì dùng tầng đó, không tìm tiếp.</p>
+                    <p>Khi Python gặp một tên biến, nó tìm theo quy tắc <strong>LEGB</strong>: <strong>L</strong>ocal →
+                        <strong>E</strong>nclosing → <strong>G</strong>lobal → <strong>B</strong>uilt-in. Tìm thấy ở
+                        tầng nào thì dùng tầng đó, không tìm tiếp.</p>
 
                     <div class="code-block">
                         <div class="code-header">
@@ -764,7 +827,9 @@ APP_NAME = <span class="str">"MyApp"</span>  <span class="cmt"># tồn tại đ�
 
                     <div class="tip-box warning">
                         <span class="tip-icon">⚠️</span>
-                        <div class="tip-content"><strong>Hạn chế dùng <code>global</code>:</strong> Biến global khiến code khó test và khó debug vì bất kỳ hàm nào cũng có thể thay đổi nó. Thay vào đó, hãy truyền biến qua parameter và nhận lại qua return value.</div>
+                        <div class="tip-content"><strong>Hạn chế dùng <code>global</code>:</strong> Biến global khiến
+                            code khó test và khó debug vì bất kỳ hàm nào cũng có thể thay đổi nó. Thay vào đó, hãy
+                            truyền biến qua parameter và nhận lại qua return value.</div>
                     </div>
                 </div>
                 <div class="theory-section">
@@ -775,7 +840,9 @@ APP_NAME = <span class="str">"MyApp"</span>  <span class="cmt"># tồn tại đ�
                             <label for="ex-p1-scope-1" style="display:contents;cursor:pointer">
                                 <div class="ex-text">
                                     <div class="ex-title">Truy vết LEGB</div>
-                                    <div class="ex-desc">Viết code có 3 tầng hàm lồng nhau, mỗi tầng có biến <code>msg</code>. Dùng <code>print</code> và <code>id()</code> để xác nhận Python lấy biến từ scope nào ở mỗi tầng.</div>
+                                    <div class="ex-desc">Viết code có 3 tầng hàm lồng nhau, mỗi tầng có biến
+                                        <code>msg</code>. Dùng <code>print</code> và <code>id()</code> để xác nhận
+                                        Python lấy biến từ scope nào ở mỗi tầng.</div>
                                 </div>
                             </label>
                         </div>
@@ -784,18 +851,40 @@ APP_NAME = <span class="str">"MyApp"</span>  <span class="cmt"># tồn tại đ�
                             <label for="ex-p1-scope-2" style="display:contents;cursor:pointer">
                                 <div class="ex-text">
                                     <div class="ex-title">Refactor bỏ global</div>
-                                    <div class="ex-desc">Cho đoạn code dùng <code>global counter</code>, viết lại thành class <code>Counter</code> với method <code>increment()</code> và <code>get()</code>. So sánh khả năng test của 2 cách.</div>
+                                    <div class="ex-desc">Cho đoạn code dùng <code>global counter</code>, viết lại thành
+                                        class <code>Counter</code> với method <code>increment()</code> và
+                                        <code>get()</code>. So sánh khả năng test của 2 cách.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p1-scope-3" onchange="onCheck(this)">
+                            <label for="ex-p1-scope-3" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Counter bằng closure (nonlocal)</div>
+                                    <div class="ex-desc">Viết hàm <code>make_counter()</code> trả về hàm <code>count()</code>. Mỗi lần gọi <code>count()</code> tăng số đếm lên 1 và trả về giá trị hiện tại. Dùng <code>nonlocal</code>. Tạo 2 counter độc lập để chứng minh không chia sẻ state.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p1-scope-4" onchange="onCheck(this)">
+                            <label for="ex-p1-scope-4" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Hàm tạo ra hàm (make_adder)</div>
+                                    <div class="ex-desc">Viết <code>make_adder(n)</code> trả về một hàm mới cộng thêm <code>n</code>. Tạo <code>add5 = make_adder(5)</code> và <code>add10 = make_adder(10)</code>. Gọi thử và in kết quả. Giải thích tại sao mỗi hàm trả về "nhớ" giá trị <code>n</code> riêng.</div>
                                 </div>
                             </label>
                         </div>
                         <div class="note-area" id="note-area-p1-scope">
-                            <textarea class="note-textarea" id="note-text-p1-scope" placeholder="Ghi chú..." oninput="handleNoteInput(this)"></textarea>
+                            <textarea class="note-textarea" id="note-text-p1-scope" placeholder="Ghi chú..."
+                                oninput="handleNoteInput(this)"></textarea>
                             <div class="note-footer">
                                 <button class="note-clear-btn" onclick="clearNote('p1-scope')">Xoá ghi chú</button>
                                 <span class="note-saved-msg" id="note-saved-p1-scope">✓ Đã lưu</span>
                             </div>
                         </div>
-                        <button class="note-toggle-btn" id="note-btn-p1-scope" onclick="toggleNote('p1-scope')">📝 Ghi chú</button>
+                        <button class="note-toggle-btn" id="note-btn-p1-scope" onclick="toggleNote('p1-scope')">📝 Ghi
+                            chú</button>
                     </div>
                 </div>
             </div>
@@ -815,7 +904,10 @@ APP_NAME = <span class="str">"MyApp"</span>  <span class="cmt"># tồn tại đ�
             <div class="topic-body">
                 <div class="theory-section">
                     <div class="section-label">Lý thuyết</div>
-                    <p><strong>Recursion</strong> là khi một hàm tự gọi chính nó. Mỗi hàm đệ quy phải có 2 phần: <strong>Base case</strong> (điều kiện dừng, không gọi đệ quy nữa) và <strong>Recursive case</strong> (gọi lại hàm với input nhỏ hơn). Thiếu base case → chạy mãi mãi → <code>RecursionError</code>.</p>
+                    <p><strong>Recursion</strong> là khi một hàm tự gọi chính nó. Mỗi hàm đệ quy phải có 2 phần:
+                        <strong>Base case</strong> (điều kiện dừng, không gọi đệ quy nữa) và <strong>Recursive
+                            case</strong> (gọi lại hàm với input nhỏ hơn). Thiếu base case → chạy mãi mãi →
+                        <code>RecursionError</code>.</p>
 
                     <div class="code-block">
                         <div class="code-header">
@@ -877,7 +969,9 @@ APP_NAME = <span class="str">"MyApp"</span>  <span class="cmt"># tồn tại đ�
 
                     <div class="tip-box warning">
                         <span class="tip-icon">⚠️</span>
-                        <div class="tip-content"><strong>Khi nào KHÔNG nên dùng recursion:</strong> Fibonacci đệ quy là ví dụ kinh điển về recursion kém hiệu quả — <code>fib(40)</code> gọi hàm hơn 300 triệu lần! Nếu cần performance, dùng loop + memo hoặc <code>@functools.lru_cache</code>.</div>
+                        <div class="tip-content"><strong>Khi nào KHÔNG nên dùng recursion:</strong> Fibonacci đệ quy là
+                            ví dụ kinh điển về recursion kém hiệu quả — <code>fib(40)</code> gọi hàm hơn 300 triệu lần!
+                            Nếu cần performance, dùng loop + memo hoặc <code>@functools.lru_cache</code>.</div>
                     </div>
                 </div>
                 <div class="theory-section">
@@ -888,7 +982,9 @@ APP_NAME = <span class="str">"MyApp"</span>  <span class="cmt"># tồn tại đ�
                             <label for="ex-p1-rec-1" style="display:contents;cursor:pointer">
                                 <div class="ex-text">
                                     <div class="ex-title">Tổng các số trong list lồng nhau</div>
-                                    <div class="ex-desc">Viết hàm <code>deep_sum(lst)</code> tính tổng tất cả số trong list có thể lồng nhau: <code>deep_sum([1, [2, [3, 4]], 5])</code> → <code>15</code>. Dùng <code>isinstance(x, list)</code> để kiểm tra.</div>
+                                    <div class="ex-desc">Viết hàm <code>deep_sum(lst)</code> tính tổng tất cả số trong
+                                        list có thể lồng nhau: <code>deep_sum([1, [2, [3, 4]], 5])</code> →
+                                        <code>15</code>. Dùng <code>isinstance(x, list)</code> để kiểm tra.</div>
                                 </div>
                             </label>
                         </div>
@@ -897,18 +993,40 @@ APP_NAME = <span class="str">"MyApp"</span>  <span class="cmt"># tồn tại đ�
                             <label for="ex-p1-rec-2" style="display:contents;cursor:pointer">
                                 <div class="ex-text">
                                     <div class="ex-title">Đảo ngược chuỗi bằng đệ quy</div>
-                                    <div class="ex-desc">Viết <code>reverse_str(s)</code> dùng đệ quy. Base case: string rỗng hoặc 1 ký tự. Recursive case: ký tự cuối + <code>reverse_str(s[:-1])</code>. So sánh với <code>s[::-1]</code>.</div>
+                                    <div class="ex-desc">Viết <code>reverse_str(s)</code> dùng đệ quy. Base case: string
+                                        rỗng hoặc 1 ký tự. Recursive case: ký tự cuối +
+                                        <code>reverse_str(s[:-1])</code>. So sánh với <code>s[::-1]</code>.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p1-rec-3" onchange="onCheck(this)">
+                            <label for="ex-p1-rec-3" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Fibonacci với dict cache</div>
+                                    <div class="ex-desc">Viết <code>fib_memo(n, cache={})</code> tính Fibonacci có nhớ kết quả. So sánh tốc độ với <code>fib(40)</code> thuần đệ quy (chạy thử và đo thời gian bằng <code>time.time()</code>). Giải thích tại sao nhanh hơn.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-p1-rec-4" onchange="onCheck(this)">
+                            <label for="ex-p1-rec-4" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">GCD bằng thuật toán Euclid</div>
+                                    <div class="ex-desc">Viết <code>gcd(a, b)</code> tính ước chung lớn nhất bằng đệ quy: nếu <code>b == 0</code> trả về <code>a</code>, ngược lại trả về <code>gcd(b, a % b)</code>. Test với <code>gcd(48, 18)</code> → <code>6</code>, <code>gcd(100, 75)</code> → <code>25</code>.</div>
                                 </div>
                             </label>
                         </div>
                         <div class="note-area" id="note-area-p1-recursion">
-                            <textarea class="note-textarea" id="note-text-p1-recursion" placeholder="Ghi chú..." oninput="handleNoteInput(this)"></textarea>
+                            <textarea class="note-textarea" id="note-text-p1-recursion" placeholder="Ghi chú..."
+                                oninput="handleNoteInput(this)"></textarea>
                             <div class="note-footer">
                                 <button class="note-clear-btn" onclick="clearNote('p1-recursion')">Xoá ghi chú</button>
                                 <span class="note-saved-msg" id="note-saved-p1-recursion">✓ Đã lưu</span>
                             </div>
                         </div>
-                        <button class="note-toggle-btn" id="note-btn-p1-recursion" onclick="toggleNote('p1-recursion')">📝 Ghi chú</button>
+                        <button class="note-toggle-btn" id="note-btn-p1-recursion"
+                            onclick="toggleNote('p1-recursion')">📝 Ghi chú</button>
                     </div>
                 </div>
             </div>
@@ -1382,84 +1500,63 @@ finally:
         <div class="topic-body">
             <div class="theory-section">
                 <div class="section-label">Lý thuyết</div>
-                <p>Trong thực tế, bạn sẽ thường xuyên <strong>đọc dữ liệu từ file</strong> (CSV/JSON) và ghi kết quả ra file. Đây là kỹ năng cốt lõi của bất kỳ chương trình Python nào xử lý dữ liệu.</p>
-                <div class="tip-box info">
-                    <span class="tip-icon">💡</span>
-                    <div class="tip-content"><strong>Giải thích
-                            <code>with open("test_data.csv", "r", encoding="utf-8") as f:</code></strong><br>
-                        Dùng để mở file <code>test_data.csv</code> ở chế độ đọc trong Python.<br>
-                        <code>"r"</code> chỉ định read mode (chỉ đọc dữ liệu từ file).<br>
-                        <code>encoding="utf-8"</code> xác định bảng mã ký tự UTF-8 để đọc đúng các ký tự, đặc biệt là
-                        tiếng Việt.<br>
-                        <code>as f</code> tạo một biến đại diện cho file object để thao tác với file trong khối lệnh bên
-                        dưới.<br>
-                        <code>with</code> là context manager, giúp tự động đóng file sau khi khối lệnh kết thúc, tránh
-                        quên <code>close()</code> và giúp quản lý tài nguyên an toàn hơn.
-                    </div>
-                </div>
+                <p>Trong game Flappy Bird (Phase 3), class <code>Achievement</code> dùng file <code>top.txt</code> để lưu bảng xếp hạng Top 5 — mỗi dòng có dạng <code>tên-điểm</code>. Mỗi khi game over, chương trình đọc file, cập nhật, rồi ghi lại. Đây là thao tác File I/O thực tế mà bạn sẽ tự viết.</p>
+
+                <table class="data-table">
+                    <thead>
+                        <tr><th>Mode</th><th>Ý nghĩa</th><th>Nếu file chưa tồn tại</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>'r'</code></td><td>Đọc (read)</td><td>Lỗi <code>FileNotFoundError</code></td></tr>
+                        <tr><td><code>'w'</code></td><td>Ghi đè (write)</td><td>Tạo file mới</td></tr>
+                        <tr><td><code>'a'</code></td><td>Ghi thêm (append)</td><td>Tạo file mới</td></tr>
+                    </tbody>
+                </table>
+
                 <div class="code-block">
                     <div class="code-header">
                         <span class="code-lang python">Python</span>
-                        <span class="code-filename">file_io.py</span>
+                        <span class="code-filename">Achievement.py — đọc top.txt (style phase 3)</span>
                         <button class="code-copy" onclick="copyCode(this)">Copy</button>
                     </div>
-                    <pre><span class="imp">import</span> csv
-<span class="imp">import</span> json
-
-<span class="cmt">## ĐỌC CSV ##</span>
-<span class="cmt"># test_data.csv có dạng: username,password,expected</span>
-<span class="kw">with</span> <span class="fn">open</span>(<span class="str">"test_data.csv"</span>, <span class="str">"r"</span>, encoding=<span class="str">"utf-8"</span>) <span class="kw">as</span> f:
-    reader = csv.<span class="fn">DictReader</span>(f)  <span class="cmt"># mỗi row là dict</span>
-    <span class="kw">for</span> row <span class="kw">in</span> reader:
-        <span class="fn">print</span>(row[<span class="str">"username"</span>], row[<span class="str">"expected"</span>])
-
-<span class="cmt">## GHI JSON ##</span>
-results = [
-    {<span class="str">"id"</span>: <span class="str">"P001"</span>, <span class="str">"name"</span>: <span class="str">"Laptop"</span>, <span class="str">"price"</span>: <span class="num">25_000_000</span>},
-    {<span class="str">"id"</span>: <span class="str">"P002"</span>, <span class="str">"name"</span>: <span class="str">"Phone"</span>,  <span class="str">"price"</span>: <span class="num">8_000_000</span>},
-]
-<span class="kw">with</span> <span class="fn">open</span>(<span class="str">"report.json"</span>, <span class="str">"w"</span>, encoding=<span class="str">"utf-8"</span>) <span class="kw">as</span> f:
-    json.<span class="fn">dump</span>(results, f, indent=<span class="num">2</span>, ensure_ascii=<span class="kw">False</span>)
-
-<span class="cmt">## ĐỌC JSON ##</span>
-<span class="kw">with</span> <span class="fn">open</span>(<span class="str">"report.json"</span>, <span class="str">"r"</span>) <span class="kw">as</span> f:
-    data = json.<span class="fn">load</span>(f)    <span class="cmt"># trả về list/dict Python</span>
-    <span class="fn">print</span>(data[<span class="num">0</span>][<span class="str">"name"</span>])</pre>
+                    <pre>top_5 = []
+file_top = <span class="fn">open</span>(<span class="str">'top.txt'</span>, <span class="str">'r'</span>)
+<span class="kw">for</span> line <span class="kw">in</span> file_top:
+    name, score = line.<span class="fn">rstrip</span>().<span class="fn">split</span>(<span class="str">'-'</span>)   <span class="cmt"># "Alice-42\n" → "Alice", "42"</span>
+    top_5.<span class="fn">append</span>(<span class="fn">dict</span>(name=name, score=<span class="fn">int</span>(score)))
+file_top.<span class="fn">close</span>()  <span class="cmt"># phải close thủ công nếu không dùng with</span></pre>
                 </div>
-                <div class="tip-box info">
-                    <span class="tip-icon">💡</span>
-                    <div class="tip-content"><strong>Giải thích: Ghi JSON ra file</strong><br>
-                        <code>open("report.json", "w", encoding="utf-8")</code> mở hoặc tạo file report.json ở chế độ
-                        ghi (write). Nếu file đã tồn tại, nội dung cũ sẽ bị ghi đè.<br>
-                        <code>with ... as f</code> sử dụng context manager để đảm bảo file được tự động đóng sau khi
-                        hoàn thành thao tác.<br>
-                        <code>json.dump()</code> dùng để chuyển đổi dữ liệu Python (dictionary, list, v.v.) sang định
-                        dạng JSON và ghi trực tiếp vào file.<br>
-                        <code>results</code> là dữ liệu cần ghi vào file.<br>
-                        <code>indent=2</code> giúp định dạng JSON dễ đọc hơn bằng cách thụt lề 2 khoảng trắng.<br>
-                        <code>ensure_ascii=False</code> cho phép ghi các ký tự Unicode (ví dụ tiếng Việt) thay vì chuyển
-                        chúng thành mã escape.
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-lang python">Python</span>
+                        <span class="code-filename">cách tốt hơn — with open() tự đóng file</span>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
                     </div>
+                    <pre>top_5 = []
+<span class="kw">with</span> <span class="fn">open</span>(<span class="str">'top.txt'</span>, <span class="str">'r'</span>) <span class="kw">as</span> f:
+    <span class="kw">for</span> line <span class="kw">in</span> f:
+        name, score = line.<span class="fn">rstrip</span>().<span class="fn">split</span>(<span class="str">'-'</span>)
+        top_5.<span class="fn">append</span>(<span class="fn">dict</span>(name=name, score=<span class="fn">int</span>(score)))
+<span class="cmt"># file tự đóng khi ra khỏi block with — không cần gọi close()</span></pre>
                 </div>
-                <div class="tip-box info">
-                    <span class="tip-icon">💡</span>
-                    <div class="tip-content"><strong>Giải thích: Đọc JSON từ file</strong><br>
-                        <code>open("report.json", "r")</code> mở file report.json ở chế độ đọc (read).<br>
-                        <code>with ... as f</code> sử dụng context manager để đảm bảo file được tự động đóng sau khi
-                        hoàn tất việc đọc.<br>
-                        <code>json.load(f)</code> đọc nội dung JSON từ file và chuyển đổi thành cấu trúc dữ liệu Python,
-                        thường là list hoặc dictionary.<br>
-                        <code>data[0]["status"]</code> truy cập vào phần tử đầu tiên của danh sách và lấy giá trị của
-                        key "status".
+
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-lang python">Python</span>
+                        <span class="code-filename">Achievement.py — ghi lại top.txt</span>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
                     </div>
+                    <pre><span class="kw">with</span> <span class="fn">open</span>(<span class="str">'top.txt'</span>, <span class="str">'w'</span>) <span class="kw">as</span> f:
+    lines = [x[<span class="str">'name'</span>] + <span class="str">'-'</span> + <span class="fn">str</span>(x[<span class="str">'score'</span>]) + <span class="str">'\n'</span>
+             <span class="kw">for</span> x <span class="kw">in</span> top_5]
+    f.<span class="fn">writelines</span>(lines)
+<span class="cmt"># 'w' ghi đè toàn bộ nội dung cũ — tạo file mới nếu chưa có</span></pre>
                 </div>
+
                 <div class="tip-box success">
                     <span class="tip-icon">✅</span>
-                    <div class="tip-content"><strong>Best practice:</strong>
-                        Luôn dùng <code>with open(...)</code> thay vì
-                        <code>f = open()</code>. <code>with</code> tự đóng file
-                        khi xong, kể cả khi có lỗi xảy ra.
-                    </div>
+                    <div class="tip-content"><strong>Best practice:</strong> Luôn dùng <code>with open(...)</code> thay vì <code>f = open() ... f.close()</code>. <code>with</code> tự đóng file khi ra khỏi block, kể cả khi có exception xảy ra giữa chừng.</div>
                 </div>
             </div>
             <div class="theory-section">
@@ -1469,9 +1566,8 @@ results = [
                         <input type="checkbox" class="ex-check" id="ex-9" onchange="onCheck(this)">
                         <label for="ex-9" style="display:contents;cursor:pointer">
                             <div class="ex-text">
-                                <div class="ex-title">Đọc danh sách sản phẩm từ CSV</div>
-                                <div class="ex-desc">Tạo file <code>products.csv</code> có 5 sản phẩm (id, name, price, category). Đọc file, in ra mỗi sản phẩm theo format: <code>[1] Laptop — 15,000,000đ (Electronics)</code>.
-                                </div>
+                                <div class="ex-title">Đọc và in bảng xếp hạng</div>
+                                <div class="ex-desc">Tạo file <code>top.txt</code> với 5 dòng dạng <code>tên-điểm</code> (ví dụ: <code>Alice-42</code>). Viết hàm <code>read_top()</code> đọc file và trả về list các dict <code>{"name": ..., "score": ...}</code>. In ra theo format: <code>#1 Alice — 42 điểm</code>.</div>
                             </div>
                         </label>
                     </div>
@@ -1479,9 +1575,17 @@ results = [
                         <input type="checkbox" class="ex-check" id="ex-10" onchange="onCheck(this)">
                         <label for="ex-10" style="display:contents;cursor:pointer">
                             <div class="ex-text">
-                                <div class="ex-title">Ghi danh sách học sinh ra JSON</div>
-                                <div class="ex-desc">Tạo list 5 học sinh (name, age, scores), ghi ra <code>students.json</code> với indent=2. Đọc lại, tính điểm trung bình từng người và in kết quả xếp loại.
-                                </div>
+                                <div class="ex-title">Cập nhật bảng xếp hạng</div>
+                                <div class="ex-desc">Viết hàm <code>add_score(name, score)</code>: đọc <code>top.txt</code>, thêm điểm mới vào list, sort giảm dần theo điểm, giữ tối đa 5 người, ghi lại ra file. Test với nhiều tên và điểm khác nhau.</div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="ex-item">
+                        <input type="checkbox" class="ex-check" id="ex-file-3" onchange="onCheck(this)">
+                        <label for="ex-file-3" style="display:contents;cursor:pointer">
+                            <div class="ex-text">
+                                <div class="ex-title">Thống kê top.txt</div>
+                                <div class="ex-desc">Đọc <code>top.txt</code>, tính và in: điểm cao nhất, điểm thấp nhất, điểm trung bình, và tên người đứng đầu. Xử lý trường hợp file chưa tồn tại bằng <code>try/except FileNotFoundError</code>.</div>
                             </div>
                         </label>
                     </div>
@@ -1800,6 +1904,33 @@ results = [
                             </label>
                         </div>
 
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-13" onchange="onCheck(this)">
+                            <label for="ex-13" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Hàm chia an toàn</div>
+                                    <div class="ex-desc">Viết <code>safe_divide(a, b)</code> bắt <code>ZeroDivisionError</code> và <code>TypeError</code>. Trả về kết quả nếu hợp lệ, trả về <code>None</code> kèm thông báo nếu lỗi. Test với nhiều loại input: số, chuỗi, zero.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-14" onchange="onCheck(this)">
+                            <label for="ex-14" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Đọc top.txt an toàn</div>
+                                    <div class="ex-desc">Viết <code>safe_read_top(path)</code> đọc <code>top.txt</code>, bắt <code>FileNotFoundError</code> (tạo file mới với 5 dòng mặc định <code>---0</code>) và <code>ValueError</code> (khi dòng sai định dạng, bỏ qua dòng đó). Luôn trả về list dù file lỗi.</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="ex-item">
+                            <input type="checkbox" class="ex-check" id="ex-15" onchange="onCheck(this)">
+                            <label for="ex-15" style="display:contents;cursor:pointer">
+                                <div class="ex-text">
+                                    <div class="ex-title">Custom ScoreError hierarchy</div>
+                                    <div class="ex-desc">Tạo class <code>ScoreError(Exception)</code> với 2 subclass: <code>NegativeScoreError</code> và <code>ScoreTooHighError</code>. Viết <code>validate_score(score)</code> raise đúng loại lỗi. Bắt từng loại riêng biệt trong <code>try/except</code>.</div>
+                                </div>
+                            </label>
+                        </div>
                         <div class="note-area" id="note-area-topic-6">
                             <textarea class="note-textarea" id="note-text-topic-6"
                                 placeholder="Ghi chú của bạn về topic này... (tự động lưu)"></textarea>
@@ -1835,14 +1966,21 @@ results = [
             <!-- INTRO -->
             <div class="theory-section">
                 <div class="section-label">OOP là gì và 4 tính chất cốt lõi</div>
-                <p><strong>OOP (Object-Oriented Programming)</strong> là cách tổ chức code theo "đối tượng" — mỗi đối tượng kết hợp <strong>dữ liệu</strong> (attribute) và <strong>hành động</strong> (method) thành một đơn vị. OOP giúp code dễ đọc, dễ mở rộng và tái sử dụng hơn so với viết tuần tự.</p>
+                <p><strong>OOP (Object-Oriented Programming)</strong> là cách tổ chức code theo "đối tượng" — mỗi đối
+                    tượng kết hợp <strong>dữ liệu</strong> (attribute) và <strong>hành động</strong> (method) thành một
+                    đơn vị. OOP giúp code dễ đọc, dễ mở rộng và tái sử dụng hơn so với viết tuần tự.</p>
                 <table class="data-table">
                     <thead>
-                        <tr><th>Tính chất</th><th>Ý nghĩa</th><th>Từ khóa Python</th></tr>
+                        <tr>
+                            <th>Tính chất</th>
+                            <th>Ý nghĩa</th>
+                            <th>Từ khóa Python</th>
+                        </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>Encapsulation</strong><br><small style="color:var(--text3)">Đóng gói</small></td>
+                            <td><strong>Encapsulation</strong><br><small style="color:var(--text3)">Đóng gói</small>
+                            </td>
                             <td>Gói data + method vào class, kiểm soát truy cập từ bên ngoài</td>
                             <td><code>_attr</code>, <code>__attr</code>, <code>@property</code></td>
                         </tr>
@@ -1857,7 +1995,8 @@ results = [
                             <td>Method overriding, duck typing</td>
                         </tr>
                         <tr>
-                            <td><strong>Abstraction</strong><br><small style="color:var(--text3)">Trừu tượng hóa</small></td>
+                            <td><strong>Abstraction</strong><br><small style="color:var(--text3)">Trừu tượng hóa</small>
+                            </td>
                             <td>Định nghĩa interface bắt buộc, ẩn chi tiết implement</td>
                             <td><code>ABC</code>, <code>@abstractmethod</code></td>
                         </tr>
@@ -1868,7 +2007,8 @@ results = [
             <!-- CLASS & OBJECT BASICS -->
             <div class="theory-section">
                 <div class="section-label">Class & Object — Nền tảng</div>
-                <p>Class là <strong>bản thiết kế</strong>. Object (instance) là <strong>thực thể cụ thể</strong> tạo từ bản thiết kế đó. Một class có thể tạo nhiều object, mỗi object có data riêng của nó.</p>
+                <p>Class là <strong>bản thiết kế</strong>. Object (instance) là <strong>thực thể cụ thể</strong> tạo từ
+                    bản thiết kế đó. Một class có thể tạo nhiều object, mỗi object có data riêng của nó.</p>
                 <div class="code-block">
                     <div class="code-header">
                         <span class="code-lang python">Python</span>
@@ -1915,19 +2055,25 @@ dog.<span class="fn">birthday</span>()          <span class="cmt"># Rex vừa si
                 <div class="tip-box info">
                     <span class="tip-icon">💡</span>
                     <div class="tip-content">
-                        <strong>self là gì?</strong> Python không tự biết method đang chạy cho <em>object nào</em> — nên bạn phải truyền object đó vào. <code>dog.birthday()</code> Python ngầm dịch thành <code>Animal.birthday(dog)</code>. <code>self</code> chính là <code>dog</code> bên trong method. Tên "self" chỉ là quy ước, có thể đặt tên khác nhưng đừng làm vậy.
+                        <strong>self là gì?</strong> Python không tự biết method đang chạy cho <em>object nào</em> — nên
+                        bạn phải truyền object đó vào. <code>dog.birthday()</code> Python ngầm dịch thành
+                        <code>Animal.birthday(dog)</code>. <code>self</code> chính là <code>dog</code> bên trong method.
+                        Tên "self" chỉ là quy ước, có thể đặt tên khác nhưng đừng làm vậy.
                     </div>
                 </div>
                 <div class="tip-box warning">
                     <span class="tip-icon">⚠️</span>
-                    <div class="tip-content"><strong>Class attribute mutable — cẩn thận!</strong> Nếu class attribute là list/dict, tất cả object dùng chung <em>cùng một object</em>. Luôn khai báo list/dict bên trong <code>__init__</code> qua <code>self</code> để tránh bug chia sẻ ngoài ý muốn.</div>
+                    <div class="tip-content"><strong>Class attribute mutable — cẩn thận!</strong> Nếu class attribute là
+                        list/dict, tất cả object dùng chung <em>cùng một object</em>. Luôn khai báo list/dict bên trong
+                        <code>__init__</code> qua <code>self</code> để tránh bug chia sẻ ngoài ý muốn.</div>
                 </div>
             </div>
 
             <!-- ENCAPSULATION -->
             <div class="theory-section">
                 <div class="section-label">1. Encapsulation — Đóng gói</div>
-                <p>Đóng gói là việc <strong>che giấu data nội tại</strong> và chỉ cho phép truy cập qua các method được kiểm soát. Điều này ngăn code bên ngoài vô tình làm hỏng dữ liệu bên trong object.</p>
+                <p>Đóng gói là việc <strong>che giấu data nội tại</strong> và chỉ cho phép truy cập qua các method được
+                    kiểm soát. Điều này ngăn code bên ngoài vô tình làm hỏng dữ liệu bên trong object.</p>
 
                 <div class="code-block">
                     <div class="code-header">
@@ -1973,11 +2119,29 @@ acc.<span class="fn">withdraw</span>(<span class="num">200_000</span>)
                 </div>
 
                 <table class="data-table">
-                    <thead><tr><th>Ký hiệu</th><th>Loại</th><th>Truy cập từ ngoài class</th></tr></thead>
+                    <thead>
+                        <tr>
+                            <th>Ký hiệu</th>
+                            <th>Loại</th>
+                            <th>Truy cập từ ngoài class</th>
+                        </tr>
+                    </thead>
                     <tbody>
-                        <tr><td><code>name</code></td><td>Public</td><td>✅ Thoải mái</td></tr>
-                        <tr><td><code>_name</code></td><td>Protected (quy ước)</td><td>⚠️ Được, nhưng không nên</td></tr>
-                        <tr><td><code>__name</code></td><td>Private (name mangling)</td><td>❌ Dùng method/property thay thế</td></tr>
+                        <tr>
+                            <td><code>name</code></td>
+                            <td>Public</td>
+                            <td>✅ Thoải mái</td>
+                        </tr>
+                        <tr>
+                            <td><code>_name</code></td>
+                            <td>Protected (quy ước)</td>
+                            <td>⚠️ Được, nhưng không nên</td>
+                        </tr>
+                        <tr>
+                            <td><code>__name</code></td>
+                            <td>Private (name mangling)</td>
+                            <td>❌ Dùng method/property thay thế</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -1985,7 +2149,8 @@ acc.<span class="fn">withdraw</span>(<span class="num">200_000</span>)
             <!-- INHERITANCE -->
             <div class="theory-section">
                 <div class="section-label">2. Inheritance — Kế thừa</div>
-                <p>Class con tự động có tất cả attribute và method của class cha. Dùng <code>super()</code> để gọi method cha. Class con có thể <strong>override</strong> (ghi đè) method cha để thay đổi hành vi.</p>
+                <p>Class con tự động có tất cả attribute và method của class cha. Dùng <code>super()</code> để gọi
+                    method cha. Class con có thể <strong>override</strong> (ghi đè) method cha để thay đổi hành vi.</p>
 
                 <div class="code-block">
                     <div class="code-header">
@@ -2036,14 +2201,19 @@ rex.<span class="fn">fetch</span>()       <span class="cmt"># Rex đi nhặt bó
 
                 <div class="tip-box info">
                     <span class="tip-icon">💡</span>
-                    <div class="tip-content"><strong>is-a hay has-a?</strong> Kế thừa chỉ hợp lý khi có quan hệ <strong>"là một loại của"</strong>. <em>"Dog là một loại Animal"</em> → đúng, kế thừa OK. <em>"AnimalShelter là một loại Animal"</em> → nghe sai → không kế thừa, thay bằng <strong>composition</strong>: <code>self.animals = []</code>.</div>
+                    <div class="tip-content"><strong>is-a hay has-a?</strong> Kế thừa chỉ hợp lý khi có quan hệ
+                        <strong>"là một loại của"</strong>. <em>"Dog là một loại Animal"</em> → đúng, kế thừa OK.
+                        <em>"AnimalShelter là một loại Animal"</em> → nghe sai → không kế thừa, thay bằng
+                        <strong>composition</strong>: <code>self.animals = []</code>.</div>
                 </div>
             </div>
 
             <!-- POLYMORPHISM -->
             <div class="theory-section">
                 <div class="section-label">3. Polymorphism — Đa hình</div>
-                <p>Đa hình cho phép xử lý nhiều loại object khác nhau <strong>theo cùng một interface</strong>. Code gọi <code>animal.speak()</code> mà không cần biết đó là Dog hay Cat — mỗi object tự biết cách phản hồi.</p>
+                <p>Đa hình cho phép xử lý nhiều loại object khác nhau <strong>theo cùng một interface</strong>. Code gọi
+                    <code>animal.speak()</code> mà không cần biết đó là Dog hay Cat — mỗi object tự biết cách phản hồi.
+                </p>
 
                 <div class="code-block">
                     <div class="code-header">
@@ -2085,7 +2255,9 @@ zoo = [
             <!-- ABSTRACTION -->
             <div class="theory-section">
                 <div class="section-label">4. Abstraction — Trừu tượng hóa</div>
-                <p>Abstraction định nghĩa <strong>interface bắt buộc</strong> mà tất cả class con phải implement. Python dùng module <code>abc</code>. Class abstract <strong>không thể tạo object trực tiếp</strong> — phải subclass rồi implement hết method abstract mới dùng được.</p>
+                <p>Abstraction định nghĩa <strong>interface bắt buộc</strong> mà tất cả class con phải implement. Python
+                    dùng module <code>abc</code>. Class abstract <strong>không thể tạo object trực tiếp</strong> — phải
+                    subclass rồi implement hết method abstract mới dùng được.</p>
 
                 <div class="code-block">
                     <div class="code-header">
@@ -2149,7 +2321,11 @@ shapes = [<span class="cls">Circle</span>(<span class="str">"đỏ"</span>, <spa
 
                 <div class="tip-box info">
                     <span class="tip-icon">💡</span>
-                    <div class="tip-content"><strong>Khi nào dùng Abstraction?</strong> Khi muốn <strong>bắt buộc</strong> tất cả class con implement một số method nhất định — ví dụ mọi nguồn dữ liệu phải có <code>read()</code> và <code>write()</code>, mọi loại thanh toán phải có <code>process()</code>. Lỗi thiếu implement được phát hiện sớm ngay lúc <code>__init__</code>, không phải khi gọi method.</div>
+                    <div class="tip-content"><strong>Khi nào dùng Abstraction?</strong> Khi muốn <strong>bắt
+                            buộc</strong> tất cả class con implement một số method nhất định — ví dụ mọi nguồn dữ liệu
+                        phải có <code>read()</code> và <code>write()</code>, mọi loại thanh toán phải có
+                        <code>process()</code>. Lỗi thiếu implement được phát hiện sớm ngay lúc <code>__init__</code>,
+                        không phải khi gọi method.</div>
                 </div>
             </div>
 
@@ -2162,7 +2338,11 @@ shapes = [<span class="cls">Circle</span>(<span class="str">"đỏ"</span>, <spa
                         <label for="ex-13" style="display:contents;cursor:pointer">
                             <div class="ex-text">
                                 <div class="ex-title">Xây dựng Animal hierarchy</div>
-                                <div class="ex-desc">Tạo class <code>Animal</code> với <code>name</code>, <code>age</code>, method <code>speak()</code> → <code>"..."</code>. Tạo 3 subclass <code>Dog</code>, <code>Cat</code>, <code>Bird</code> override <code>speak()</code>. Tạo list 5 con vật, dùng loop gọi <code>describe()</code> cho tất cả — đây chính là Polymorphism.</div>
+                                <div class="ex-desc">Tạo class <code>Animal</code> với <code>name</code>,
+                                    <code>age</code>, method <code>speak()</code> → <code>"..."</code>. Tạo 3 subclass
+                                    <code>Dog</code>, <code>Cat</code>, <code>Bird</code> override <code>speak()</code>.
+                                    Tạo list 5 con vật, dùng loop gọi <code>describe()</code> cho tất cả — đây chính là
+                                    Polymorphism.</div>
                             </div>
                         </label>
                     </div>
@@ -2171,7 +2351,10 @@ shapes = [<span class="cls">Circle</span>(<span class="str">"đỏ"</span>, <spa
                         <label for="ex-14" style="display:contents;cursor:pointer">
                             <div class="ex-text">
                                 <div class="ex-title">BankAccount với Encapsulation</div>
-                                <div class="ex-desc">Implement <code>BankAccount</code>: <code>_balance</code> private, expose qua <code>@property balance</code>. Method <code>deposit()</code> và <code>withdraw()</code> validate input. Thêm method <code>history()</code> trả về copy của log giao dịch — không lộ list gốc.</div>
+                                <div class="ex-desc">Implement <code>BankAccount</code>: <code>_balance</code> private,
+                                    expose qua <code>@property balance</code>. Method <code>deposit()</code> và
+                                    <code>withdraw()</code> validate input. Thêm method <code>history()</code> trả về
+                                    copy của log giao dịch — không lộ list gốc.</div>
                             </div>
                         </label>
                     </div>
@@ -2180,7 +2363,11 @@ shapes = [<span class="cls">Circle</span>(<span class="str">"đỏ"</span>, <spa
                         <label for="ex-15" style="display:contents;cursor:pointer">
                             <div class="ex-text">
                                 <div class="ex-title">Abstract Shape system</div>
-                                <div class="ex-desc">Tạo abstract class <code>Shape</code> với <code>@abstractmethod area()</code> và <code>@abstractmethod perimeter()</code>. Implement 3 subclass: <code>Circle</code>, <code>Rectangle</code>, <code>Triangle</code>. Viết hàm <code>total_area(shapes)</code> nhận list Shape bất kỳ, trả về tổng diện tích.</div>
+                                <div class="ex-desc">Tạo abstract class <code>Shape</code> với
+                                    <code>@abstractmethod area()</code> và <code>@abstractmethod perimeter()</code>.
+                                    Implement 3 subclass: <code>Circle</code>, <code>Rectangle</code>,
+                                    <code>Triangle</code>. Viết hàm <code>total_area(shapes)</code> nhận list Shape bất
+                                    kỳ, trả về tổng diện tích.</div>
                             </div>
                         </label>
                     </div>
@@ -2203,29 +2390,32 @@ shapes = [<span class="cls">Circle</span>(<span class="str">"đỏ"</span>, <spa
         </div>
     </div>
 
-        <!-- TOPIC: Algorithms & Problem Solving -->
-        <div class="topic-card">
-            <div class="topic-header" onclick="toggleTopic(this)">
-                <div class="topic-icon">🔍</div>
-                <div class="topic-meta">
-                    <div class="topic-name">Algorithms & Problem Solving</div>
-                    <div class="topic-desc">Linear Search · Binary Search · Bubble Sort · Insertion Sort · Problem Decomposition</div>
-                </div>
-                <div class="topic-toggle">▼</div>
-                <span class="note-dot"></span>
+    <!-- TOPIC: Algorithms & Problem Solving -->
+    <div class="topic-card">
+        <div class="topic-header" onclick="toggleTopic(this)">
+            <div class="topic-icon">🔍</div>
+            <div class="topic-meta">
+                <div class="topic-name">Algorithms & Problem Solving</div>
+                <div class="topic-desc">Linear Search · Binary Search · Bubble Sort · Insertion Sort · Problem
+                    Decomposition</div>
             </div>
-            <div class="topic-body">
-                <div class="theory-section">
-                    <div class="section-label">Lý thuyết — Thuật toán cơ bản</div>
-                    <p>Thuật toán là <strong>chuỗi bước có thứ tự</strong> để giải quyết vấn đề. Trước khi code, hãy chia vấn đề thành các bước nhỏ (<strong>Problem Decomposition</strong>). Bốn thuật toán dưới đây là nền tảng — hiểu chúng giúp bạn đọc và đánh giá code tốt hơn.</p>
+            <div class="topic-toggle">▼</div>
+            <span class="note-dot"></span>
+        </div>
+        <div class="topic-body">
+            <div class="theory-section">
+                <div class="section-label">Lý thuyết — Thuật toán cơ bản</div>
+                <p>Thuật toán là <strong>chuỗi bước có thứ tự</strong> để giải quyết vấn đề. Trước khi code, hãy chia
+                    vấn đề thành các bước nhỏ (<strong>Problem Decomposition</strong>). Bốn thuật toán dưới đây là nền
+                    tảng — hiểu chúng giúp bạn đọc và đánh giá code tốt hơn.</p>
 
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-lang python">Python</span>
-                            <span class="code-filename">search.py</span>
-                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
-                        </div>
-                        <pre><span class="cmt"># LINEAR SEARCH — duyệt từng phần tử O(n)</span>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-lang python">Python</span>
+                        <span class="code-filename">search.py</span>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><span class="cmt"># LINEAR SEARCH — duyệt từng phần tử O(n)</span>
 <span class="kw">def</span> <span class="fn">linear_search</span>(lst, target):
     <span class="kw">for</span> i, val <span class="kw">in</span> <span class="fn">enumerate</span>(lst):
         <span class="kw">if</span> val == target:
@@ -2247,15 +2437,15 @@ nums = [<span class="num">3</span>, <span class="num">7</span>, <span class="num
 
 sorted_nums = [<span class="num">1</span>, <span class="num">3</span>, <span class="num">5</span>, <span class="num">7</span>, <span class="num">9</span>, <span class="num">11</span>]
 <span class="fn">print</span>(<span class="fn">binary_search</span>(sorted_nums, <span class="num">7</span>))  <span class="cmt"># 3</span></pre>
-                    </div>
+                </div>
 
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-lang python">Python</span>
-                            <span class="code-filename">sorting.py</span>
-                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
-                        </div>
-                        <pre><span class="cmt"># BUBBLE SORT — đổi chỗ cặp liền kề, O(n²)</span>
+                <div class="code-block">
+                    <div class="code-header">
+                        <span class="code-lang python">Python</span>
+                        <span class="code-filename">sorting.py</span>
+                        <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    </div>
+                    <pre><span class="cmt"># BUBBLE SORT — đổi chỗ cặp liền kề, O(n²)</span>
 <span class="kw">def</span> <span class="fn">bubble_sort</span>(lst):
     n = <span class="fn">len</span>(lst)
     <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(n):
@@ -2281,262 +2471,61 @@ sorted_nums = [<span class="num">1</span>, <span class="num">3</span>, <span cla
 
 <span class="fn">print</span>(<span class="fn">insertion_sort</span>([<span class="num">5</span>, <span class="num">2</span>, <span class="num">4</span>, <span class="num">6</span>, <span class="num">1</span>]))
 <span class="cmt"># [1, 2, 4, 5, 6]</span></pre>
-                    </div>
-
-                    <div class="tip-box info">
-                        <span class="tip-icon">💡</span>
-                        <div class="tip-content"><strong>Tại sao học nếu đã có <code>sorted()</code>?</strong> Python built-in tốt hơn, nhưng hiểu thuật toán giúp bạn: (1) đọc code người khác, (2) giải bài toán tùy biến, (3) phỏng vấn kỹ thuật. Binary Search đặc biệt quan trọng — xuất hiện thường xuyên trong thực tế.</div>
-                    </div>
                 </div>
-                <div class="theory-section">
-                    <div class="section-label">Bài tập thực hành</div>
-                    <div class="exercises">
-                        <div class="ex-item">
-                            <input type="checkbox" class="ex-check" id="ex-p1-algo-1" onchange="onCheck(this)">
-                            <label for="ex-p1-algo-1" style="display:contents;cursor:pointer">
-                                <div class="ex-text">
-                                    <div class="ex-title">So sánh linear vs binary search</div>
-                                    <div class="ex-desc">Implement cả 2 hàm tìm kiếm. Thêm biến đếm <code>steps</code> vào từng hàm. Tìm cùng phần tử trong list 1.000 phần tử đã sắp xếp — so sánh số bước của 2 cách.</div>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="ex-item">
-                            <input type="checkbox" class="ex-check" id="ex-p1-algo-2" onchange="onCheck(this)">
-                            <label for="ex-p1-algo-2" style="display:contents;cursor:pointer">
-                                <div class="ex-text">
-                                    <div class="ex-title">Sắp xếp sản phẩm theo giá</div>
-                                    <div class="ex-desc">Dùng <code>insertion_sort</code> để sắp xếp list dict sản phẩm theo <code>price</code> từ thấp đến cao. So sánh với <code>sorted(products, key=lambda x: x["price"])</code>.</div>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="note-area" id="note-area-p1-algo">
-                            <textarea class="note-textarea" id="note-text-p1-algo" placeholder="Ghi chú..." oninput="handleNoteInput(this)"></textarea>
-                            <div class="note-footer">
-                                <button class="note-clear-btn" onclick="clearNote('p1-algo')">Xoá ghi chú</button>
-                                <span class="note-saved-msg" id="note-saved-p1-algo">✓ Đã lưu</span>
+
+                <div class="tip-box info">
+                    <span class="tip-icon">💡</span>
+                    <div class="tip-content"><strong>Tại sao học nếu đã có <code>sorted()</code>?</strong> Python
+                        built-in tốt hơn, nhưng hiểu thuật toán giúp bạn: (1) đọc code người khác, (2) giải bài toán tùy
+                        biến, (3) phỏng vấn kỹ thuật. Binary Search đặc biệt quan trọng — xuất hiện thường xuyên trong
+                        thực tế.</div>
+                </div>
+            </div>
+            <div class="theory-section">
+                <div class="section-label">Bài tập thực hành</div>
+                <div class="exercises">
+                    <div class="ex-item">
+                        <input type="checkbox" class="ex-check" id="ex-p1-algo-1" onchange="onCheck(this)">
+                        <label for="ex-p1-algo-1" style="display:contents;cursor:pointer">
+                            <div class="ex-text">
+                                <div class="ex-title">So sánh linear vs binary search</div>
+                                <div class="ex-desc">Implement cả 2 hàm tìm kiếm. Thêm biến đếm <code>steps</code> vào
+                                    từng hàm. Tìm cùng phần tử trong list 1.000 phần tử đã sắp xếp — so sánh số bước của
+                                    2 cách.</div>
                             </div>
-                        </div>
-                        <button class="note-toggle-btn" id="note-btn-p1-algo" onclick="toggleNote('p1-algo')">📝 Ghi chú</button>
+                        </label>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- TOPIC: Complexity Analysis -->
-        <div class="topic-card">
-            <div class="topic-header" onclick="toggleTopic(this)">
-                <div class="topic-icon">📈</div>
-                <div class="topic-meta">
-                    <div class="topic-name">Complexity Analysis — Big O</div>
-                    <div class="topic-desc">Big O Notation · O(1) · O(log n) · O(n) · O(n²) · Time vs Space</div>
-                </div>
-                <div class="topic-toggle">▼</div>
-                <span class="note-dot"></span>
-            </div>
-            <div class="topic-body">
-                <div class="theory-section">
-                    <div class="section-label">Lý thuyết</div>
-                    <p><strong>Big O Notation</strong> mô tả tốc độ tăng của thời gian chạy khi kích thước input <code>n</code> tăng lên. Nó bỏ qua hằng số, chỉ quan tâm hành vi khi <code>n</code> rất lớn.</p>
-
-                    <table class="data-table">
-                        <thead><tr><th>Ký hiệu</th><th>Tên</th><th>Ví dụ</th><th>n=1.000 tốn</th></tr></thead>
-                        <tbody>
-                            <tr><td><code>O(1)</code></td><td>Constant</td><td>dict[key], list[i]</td><td>1 bước</td></tr>
-                            <tr><td><code>O(log n)</code></td><td>Logarithmic</td><td>Binary Search</td><td>~10 bước</td></tr>
-                            <tr><td><code>O(n)</code></td><td>Linear</td><td>Linear Search, vòng lặp đơn</td><td>1.000 bước</td></tr>
-                            <tr><td><code>O(n log n)</code></td><td>Linearithmic</td><td><code>sorted()</code> (Timsort)</td><td>~10.000 bước</td></tr>
-                            <tr><td><code>O(n²)</code></td><td>Quadratic</td><td>Bubble Sort, 2 vòng lồng</td><td>1.000.000 bước</td></tr>
-                        </tbody>
-                    </table>
-
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-lang python">Python</span>
-                            <span class="code-filename">complexity.py</span>
-                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
-                        </div>
-                        <pre><span class="cmt"># O(1) — không phụ thuộc n</span>
-<span class="kw">def</span> <span class="fn">get_first</span>(lst):    <span class="kw">return</span> lst[<span class="num">0</span>]   <span class="cmt"># luôn 1 bước</span>
-<span class="kw">def</span> <span class="fn">lookup</span>(d, k):      <span class="kw">return</span> d[k]     <span class="cmt"># hash table → O(1)</span>
-
-<span class="cmt"># O(n) — tỷ lệ thuận với n</span>
-<span class="kw">def</span> <span class="fn">find_max</span>(lst):
-    max_val = lst[<span class="num">0</span>]
-    <span class="kw">for</span> x <span class="kw">in</span> lst:          <span class="cmt"># duyệt 1 lần</span>
-        <span class="kw">if</span> x > max_val: max_val = x
-    <span class="kw">return</span> max_val
-
-<span class="cmt"># O(n²) — 2 vòng lặp lồng nhau</span>
-<span class="kw">def</span> <span class="fn">has_dup_slow</span>(lst):
-    <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="fn">len</span>(lst)):
-        <span class="kw">for</span> j <span class="kw">in</span> <span class="fn">range</span>(i + <span class="num">1</span>, <span class="fn">len</span>(lst)):
-            <span class="kw">if</span> lst[i] == lst[j]: <span class="kw">return</span> <span class="kw">True</span>
-    <span class="kw">return</span> <span class="kw">False</span>
-
-<span class="cmt"># O(n) với set — trade-off: tốn thêm O(n) space</span>
-<span class="kw">def</span> <span class="fn">has_dup_fast</span>(lst):
-    <span class="kw">return</span> <span class="fn">len</span>(lst) != <span class="fn">len</span>(<span class="fn">set</span>(lst))
-
-<span class="cmt"># Đo thời gian thực tế</span>
-<span class="imp">import</span> time
-n = [i <span class="kw">for</span> i <span class="kw">in</span> <span class="fn">range</span>(<span class="num">10_000</span>)]
-t0 = time.<span class="fn">time</span>(); <span class="fn">has_dup_slow</span>(n); <span class="fn">print</span>(<span class="str">f"O(n²): {time.time()-t0:.3f}s"</span>)
-t0 = time.<span class="fn">time</span>(); <span class="fn">has_dup_fast</span>(n); <span class="fn">print</span>(<span class="str">f"O(n):  {time.time()-t0:.3f}s"</span>)</pre>
-                    </div>
-
-                    <div class="tip-box info">
-                        <span class="tip-icon">💡</span>
-                        <div class="tip-content"><strong>Quy tắc thực hành:</strong> Khi thấy code chậm, nhìn vào vòng lặp lồng nhau trước — thường là O(n²). Trong Python, <code>set</code>/<code>dict</code> lookup là O(1) nhờ hash table — ưu tiên hơn duyệt list khi cần kiểm tra tồn tại. Space complexity cũng quan trọng: đôi khi nên đánh đổi tốn memory để được thời gian nhanh hơn.</div>
-                    </div>
-                </div>
-                <div class="theory-section">
-                    <div class="section-label">Bài tập thực hành</div>
-                    <div class="exercises">
-                        <div class="ex-item">
-                            <input type="checkbox" class="ex-check" id="ex-p1-bigo-1" onchange="onCheck(this)">
-                            <label for="ex-p1-bigo-1" style="display:contents;cursor:pointer">
-                                <div class="ex-text">
-                                    <div class="ex-title">Phân tích Big O của 5 đoạn code</div>
-                                    <div class="ex-desc">Xác định Big O của: (1) vòng lặp đơn, (2) 2 vòng tuần tự, (3) 2 vòng lồng, (4) dict lookup, (5) <code>sorted()</code>. Giải thích tại sao 2 vòng tuần tự vẫn là O(n) chứ không phải O(2n).</div>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="ex-item">
-                            <input type="checkbox" class="ex-check" id="ex-p1-bigo-2" onchange="onCheck(this)">
-                            <label for="ex-p1-bigo-2" style="display:contents;cursor:pointer">
-                                <div class="ex-text">
-                                    <div class="ex-title">Tối ưu O(n²) → O(n)</div>
-                                    <div class="ex-desc">Viết <code>find_common(l1, l2)</code> 2 version: (1) double loop O(n²), (2) dùng set intersection O(n). Đo thời gian với 10.000 phần tử. Quan sát sự chênh lệch.</div>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="note-area" id="note-area-p1-complexity">
-                            <textarea class="note-textarea" id="note-text-p1-complexity" placeholder="Ghi chú..." oninput="handleNoteInput(this)"></textarea>
-                            <div class="note-footer">
-                                <button class="note-clear-btn" onclick="clearNote('p1-complexity')">Xoá ghi chú</button>
-                                <span class="note-saved-msg" id="note-saved-p1-complexity">✓ Đã lưu</span>
+                    <div class="ex-item">
+                        <input type="checkbox" class="ex-check" id="ex-p1-algo-2" onchange="onCheck(this)">
+                        <label for="ex-p1-algo-2" style="display:contents;cursor:pointer">
+                            <div class="ex-text">
+                                <div class="ex-title">Sắp xếp sản phẩm theo giá</div>
+                                <div class="ex-desc">Dùng <code>insertion_sort</code> để sắp xếp list dict sản phẩm theo
+                                    <code>price</code> từ thấp đến cao. So sánh với
+                                    <code>sorted(products, key=lambda x: x["price"])</code>.</div>
                             </div>
-                        </div>
-                        <button class="note-toggle-btn" id="note-btn-p1-complexity" onclick="toggleNote('p1-complexity')">📝 Ghi chú</button>
+                        </label>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- TOPIC: Program Execution Model -->
-        <div class="topic-card">
-            <div class="topic-header" onclick="toggleTopic(this)">
-                <div class="topic-icon">🖥️</div>
-                <div class="topic-meta">
-                    <div class="topic-name">Program Execution Model</div>
-                    <div class="topic-desc">Interpreter · Bytecode · CPython · Stack · Heap · Garbage Collection</div>
-                </div>
-                <div class="topic-toggle">▼</div>
-                <span class="note-dot"></span>
-            </div>
-            <div class="topic-body">
-                <div class="theory-section">
-                    <div class="section-label">Lý thuyết — Python chạy code thế nào?</div>
-                    <p>Hiểu mô hình thực thi giúp giải thích tại sao code chậm, tại sao có memory leak, tại sao một số lỗi chỉ xuất hiện lúc runtime. Đây là kiến thức nền tảng của mọi Python developer.</p>
-
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-lang text">Luồng thực thi Python</span>
-                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
+                    <div class="note-area" id="note-area-p1-algo">
+                        <textarea class="note-textarea" id="note-text-p1-algo" placeholder="Ghi chú..."
+                            oninput="handleNoteInput(this)"></textarea>
+                        <div class="note-footer">
+                            <button class="note-clear-btn" onclick="clearNote('p1-algo')">Xoá ghi chú</button>
+                            <span class="note-saved-msg" id="note-saved-p1-algo">✓ Đã lưu</span>
                         </div>
-                        <pre>Source code (.py)
-       ↓  Lexer + Parser  (kiểm tra cú pháp)
-  AST (Abstract Syntax Tree)
-       ↓  Compiler
-  Bytecode (.pyc)          ← lưu trong __pycache__/
-       ↓  CPython VM       (stack machine)
-    Kết quả</pre>
                     </div>
-
-                    <table class="data-table">
-                        <thead><tr><th></th><th>Call Stack</th><th>Heap</th></tr></thead>
-                        <tbody>
-                            <tr><td><strong>Lưu gì</strong></td><td>Stack frames (local vars, return address)</td><td>Objects (list, dict, class instances…)</td></tr>
-                            <tr><td><strong>Quản lý</strong></td><td>Tự động — Python tạo/xóa frame</td><td>Garbage Collector (GC)</td></tr>
-                            <tr><td><strong>Khi tràn</strong></td><td><code>RecursionError</code></td><td><code>MemoryError</code></td></tr>
-                        </tbody>
-                    </table>
-
-                    <div class="code-block">
-                        <div class="code-header">
-                            <span class="code-lang python">Python</span>
-                            <span class="code-filename">execution_model.py</span>
-                            <button class="code-copy" onclick="copyCode(this)">Copy</button>
-                        </div>
-                        <pre><span class="imp">import</span> dis, sys, gc
-
-<span class="cmt"># Xem bytecode của hàm</span>
-<span class="kw">def</span> <span class="fn">add</span>(a, b): <span class="kw">return</span> a + b
-dis.<span class="fn">dis</span>(add)
-<span class="cmt"># LOAD_FAST 'a'  → push a lên stack</span>
-<span class="cmt"># LOAD_FAST 'b'  → push b lên stack</span>
-<span class="cmt"># BINARY_OP  +   → pop 2, push kết quả</span>
-<span class="cmt"># RETURN_VALUE   → trả về đỉnh stack</span>
-
-<span class="cmt"># Garbage Collection — Reference Counting</span>
-a = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>]
-<span class="fn">print</span>(sys.<span class="fn">getrefcount</span>(a))  <span class="cmt"># số lần object được tham chiếu</span>
-b = a                        <span class="cmt"># refcount tăng</span>
-<span class="kw">del</span> a                        <span class="cmt"># refcount giảm</span>
-<span class="kw">del</span> b                        <span class="cmt"># refcount = 0 → GC giải phóng ngay</span>
-
-<span class="cmt"># Circular reference → refcount không về 0</span>
-<span class="cmt"># Python có cycle detector bổ sung để xử lý</span>
-gc.<span class="fn">collect</span>()   <span class="cmt"># chạy cycle detector thủ công</span></pre>
-                    </div>
-
-                    <div class="tip-box info">
-                        <span class="tip-icon">💡</span>
-                        <div class="tip-content"><strong>Interpreter vs Compiler:</strong> Python là <strong>interpreted</strong> — dịch và chạy từng dòng lúc runtime. C/Java là <strong>compiled</strong> — dịch toàn bộ sang machine code trước khi chạy. Python chậm hơn C nhưng linh hoạt hơn và code nhanh hơn. CPython là implementation mặc định; PyPy dùng JIT compiler để chạy nhanh hơn ~5–10x cho CPU-bound code.</div>
-                    </div>
-                </div>
-                <div class="theory-section">
-                    <div class="section-label">Bài tập thực hành</div>
-                    <div class="exercises">
-                        <div class="ex-item">
-                            <input type="checkbox" class="ex-check" id="ex-p1-exec-1" onchange="onCheck(this)">
-                            <label for="ex-p1-exec-1" style="display:contents;cursor:pointer">
-                                <div class="ex-text">
-                                    <div class="ex-title">Xem bytecode với dis</div>
-                                    <div class="ex-desc">Viết 3 hàm: tính tổng list, tìm max, sort. Dùng <code>dis.dis(fn)</code> xem bytecode. Giải thích: tại sao hàm sort có nhiều instruction hơn hàm tính tổng?</div>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="ex-item">
-                            <input type="checkbox" class="ex-check" id="ex-p1-exec-2" onchange="onCheck(this)">
-                            <label for="ex-p1-exec-2" style="display:contents;cursor:pointer">
-                                <div class="ex-text">
-                                    <div class="ex-title">Theo dõi reference count</div>
-                                    <div class="ex-desc">Dùng <code>sys.getrefcount(obj)</code> theo dõi: tạo object, gán biến, truyền vào hàm, xóa biến. Quan sát refcount thay đổi qua từng bước. Thử tạo circular reference và xác nhận <code>gc.collect()</code> giải phóng được.</div>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="note-area" id="note-area-p1-execution">
-                            <textarea class="note-textarea" id="note-text-p1-execution" placeholder="Ghi chú..." oninput="handleNoteInput(this)"></textarea>
-                            <div class="note-footer">
-                                <button class="note-clear-btn" onclick="clearNote('p1-execution')">Xoá ghi chú</button>
-                                <span class="note-saved-msg" id="note-saved-p1-execution">✓ Đã lưu</span>
-                            </div>
-                        </div>
-                        <button class="note-toggle-btn" id="note-btn-p1-execution" onclick="toggleNote('p1-execution')">📝 Ghi chú</button>
-                    </div>
+                    <button class="note-toggle-btn" id="note-btn-p1-algo" onclick="toggleNote('p1-algo')">📝 Ghi
+                        chú</button>
                 </div>
             </div>
         </div>
     </div>
-</div>
-</div>
 
-<!-- MILESTONE 1 -->
 <div class="milestone-card p1" id="p1-milestone">
     <div class="milestone-label">Bài Tập Lớn · Phase 1</div>
     <div class="milestone-title">Mini Library Manager CLI</div>
-    <div class="milestone-desc">Xây dựng tool quản lý thư viện sách chạy trên terminal: đọc/ghi dữ liệu từ CSV và JSON, cho phép tìm kiếm và sắp xếp. Áp dụng toàn bộ kiến thức Phase 1.</div>
+    <div class="milestone-desc">Xây dựng tool quản lý thư viện sách chạy trên terminal: đọc/ghi dữ liệu từ CSV và JSON,
+        cho phép tìm kiếm và sắp xếp. Áp dụng toàn bộ kiến thức Phase 1.</div>
     <ul class="checklist">
         <li onclick="toggleMilestone(this)"><input type="checkbox" class="milestone-check" id="ml-1"
                 onclick="event.stopPropagation()">
