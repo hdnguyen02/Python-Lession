@@ -95,9 +95,7 @@ is_active = <span class="kw">False</span>
                             <label for="ex-1" style="display:contents;cursor:pointer">
                                 <div class="ex-text">
                                     <div class="ex-title">Tính BMI từ input</div>
-                                    <div class="ex-desc">Nhập chiều cao (m) và cân nặng (kg) từ bàn
-                                        phím, tính BMI = weight/height², in ra kết quả và phân loại
-                                        (Gầy/Bình thường/Thừa cân).</div>
+                                    <div class="ex-desc">Nhập chiều cao (m) và cân nặng (kg) từ bàn phím, tính <code>BMI = cân_nặng / chiều_cao²</code>, in ra kết quả và phân loại theo tiêu chuẩn WHO: <strong>BMI &lt; 18.5</strong> → Gầy · <strong>18.5 – 24.9</strong> → Bình thường · <strong>25 – 29.9</strong> → Thừa cân · <strong>≥ 30</strong> → Béo phì.</div>
                                 </div>
                             </label>
                         </div>
@@ -127,15 +125,6 @@ is_active = <span class="kw">False</span>
                                 <div class="ex-text">
                                     <div class="ex-title">Tính giảm giá</div>
                                     <div class="ex-desc">Nhập giá gốc và phần trăm giảm, in ra: giá sau giảm, số tiền tiết kiệm, và thông điệp <code>"Tiết kiệm được 150,000đ (30%)"</code> dùng f-string.</div>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="ex-item">
-                            <input type="checkbox" class="ex-check" id="ex-1e" onchange="onCheck(this)">
-                            <label for="ex-1e" style="display:contents;cursor:pointer">
-                                <div class="ex-text">
-                                    <div class="ex-title">Phân tích chuỗi tên</div>
-                                    <div class="ex-desc">Nhập họ tên đầy đủ (ví dụ: <code>"nguyễn văn a"</code>), in ra: viết hoa toàn bộ, đếm số ký tự (không tính khoảng trắng), đếm số từ, và in tên (từ cuối).</div>
                                 </div>
                             </label>
                         </div>
